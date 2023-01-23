@@ -1,3 +1,17 @@
-html {
-    font-family: "Noto+Serif+TC"
+body {
+    font-family: 'jf-openhuninn-1.1';
+    font-size: 48px;
+}
+
+@font-face {
+    font-family: "jf-openhuninn-1.1";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://raw.githubusercontent.com/justfont/open-huninn-font/master/font/jf-openhuninn-1.1.ttf');
+}
+
+:root {
+    --md-text-font: "jf-openhuninn-1.1";
+    --md-code-font: "jf-openhuninn-1.1";
 }
