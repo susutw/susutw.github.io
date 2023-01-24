@@ -1,6 +1,5 @@
 body {
     font-family: 'jf-openhuninn-1.1';
-    font-size: 48px;
     background-color: linen;
 }
 
@@ -12,9 +11,37 @@ body {
     src: url('https://raw.githubusercontent.com/justfont/open-huninn-font/master/font/jf-openhuninn-1.1.ttf');
 }
 
+.welcome {
+    width: 500px;
+    font-size: 30px;
+}
+
 #profile_shot>img {
     clip-path: circle();
+    width: 400px;
+    height: 400px;
+}
 
+#profile_name>h1 {
+    font-size: 48px;
+}
+
+#profile_subtitle>p {
+    font-size: 20px;
+    color: rgb(119, 116, 116);
+}
+
+#profile_desc>p {
+    font-size: 25px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    /* 水平置中 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-items: center;
 }
 
 .rainbow-color {
