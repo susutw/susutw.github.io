@@ -16,7 +16,7 @@
   --lymph:#cfe6f2; --lipid:#f7e7b0; --granule:#4a2f22; --lamellar:#e0a526;
   --glass:#f6e6db; --glass-hi:#fffaf6; --shine:#ffffff; --seb:#eea93c; --sweat:#5aa6cf; --hair:#3b2a22;
   --l-corn:#e4ae92; --l-luc:#fbf1ea; --l-gran:#eebc9f; --l-spin:#f3cdb6; --l-basal:#d9967a;
-  --foll:#f3d2c0; --bug:#7a4fb3; --inflame:#e8898a; --pus:#fbf3d6; --keratin:#c98a6c; --air:#e8f2f5; --film:#f2d27a; --bad:#9aa7ab; --immune:#ffffff;
+  --foll:#f3d2c0; --bug:#7a4fb3; --inflame:#e8898a; --pus:#fbf3d6; --keratin:#c98a6c; --air:#e8f2f5; --film:#f2d27a; --bad:#9aa7ab; --immune:#ffffff; --uv:#7b52c2; --uv-soft:#e6dcf6; --water:#bfe0ef; --heat:#d9603a; --device:#dfe7e8;
   --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
 }
@@ -27,7 +27,7 @@
   --lymph:#23455a; --lipid:#5a4b24; --granule:#1c0f09; --lamellar:#e0a526;
   --glass:#9a7462; --glass-hi:#c9a896; --shine:#ffffff; --seb:#d69638; --sweat:#63b3db; --hair:#e0cdbf;
   --l-corn:#a8715a; --l-luc:#c9a896; --l-gran:#8f5e4a; --l-spin:#7a4f3e; --l-basal:#5e3a2c;
-  --foll:#744c3d; --bug:#c39af0; --inflame:#8e3b40; --pus:#d8cfa8; --keratin:#c08466; --air:#1d2c31; --film:#a88a36; --bad:#6d7b7f; --immune:#e8e8e8;
+  --foll:#744c3d; --bug:#c39af0; --inflame:#8e3b40; --pus:#d8cfa8; --keratin:#c08466; --air:#1d2c31; --film:#a88a36; --bad:#6d7b7f; --immune:#e8e8e8; --uv:#b99af2; --uv-soft:#3a2e55; --water:#2a5268; --heat:#f08a5a; --device:#2a3a3e;
   color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#111a1c; --paper:#182326; --fg:#e2ebeb; --muted:#9db0b3; --line:#2b3b3e;
@@ -36,7 +36,7 @@
   --lymph:#23455a; --lipid:#5a4b24; --granule:#1c0f09; --lamellar:#e0a526;
   --glass:#9a7462; --glass-hi:#c9a896; --shine:#ffffff; --seb:#d69638; --sweat:#63b3db; --hair:#e0cdbf;
   --l-corn:#a8715a; --l-luc:#c9a896; --l-gran:#8f5e4a; --l-spin:#7a4f3e; --l-basal:#5e3a2c;
-  --foll:#744c3d; --bug:#c39af0; --inflame:#8e3b40; --pus:#d8cfa8; --keratin:#c08466; --air:#1d2c31; --film:#a88a36; --bad:#6d7b7f; --immune:#e8e8e8;
+  --foll:#744c3d; --bug:#c39af0; --inflame:#8e3b40; --pus:#d8cfa8; --keratin:#c08466; --air:#1d2c31; --film:#a88a36; --bad:#6d7b7f; --immune:#e8e8e8; --uv:#b99af2; --uv-soft:#3a2e55; --water:#2a5268; --heat:#f08a5a; --device:#2a3a3e;
   color-scheme:dark }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.75;padding-inline:16px;padding-block:0 64px}
@@ -108,7 +108,7 @@ svg text{font-family:var(--sans);fill:var(--fg)}
 .shine{fill:var(--shine);opacity:.28}
 .corneo{fill:var(--corn);stroke:var(--corn);stroke-width:1}
 .l-corn{fill:var(--l-corn)} .l-luc{fill:var(--l-luc);stroke:var(--corn);stroke-width:.8} .l-gran{fill:var(--l-gran)} .l-spin{fill:var(--l-spin)} .l-basal{fill:var(--l-basal)}
-.lead{stroke:var(--muted);stroke-width:1}
+.lead{stroke:var(--muted);stroke-width:1;fill:none}
 .hair{fill:none;stroke:var(--hair);stroke-width:5;stroke-linecap:round}
 .sebum{fill:var(--seb)} .sweat{fill:none;stroke:var(--sweat);stroke-width:3}
 .surface{fill:none;stroke:var(--corn);stroke-width:3}
@@ -152,6 +152,17 @@ table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
 th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
 th{font-size:13px;color:var(--muted);border-bottom:1.5px solid var(--fg)}
 td:first-child{font-weight:700;white-space:nowrap}
+.water{fill:var(--water)} .heater{fill:none;stroke:var(--heat);stroke-width:3}
+.arm{fill:none;stroke:var(--muted);stroke-width:10;stroke-linejoin:round}
+.nozzle{fill:var(--device);stroke:var(--muted);stroke-width:1.5}
+.uvlamp{fill:var(--uv)} .uvglow{fill:var(--uv);opacity:.22}
+.steam{fill:var(--air);stroke:var(--line);stroke-width:1}
+.o3dot{fill:var(--uv)}
+.face{fill:var(--face, var(--epi));stroke:var(--corn);stroke-width:1.5}
+.dim{stroke:var(--fg);stroke-width:1.5;fill:none}
+.o-atom{fill:var(--air);stroke:var(--muted);stroke-width:1.5} .o3{fill:var(--uv-soft);stroke:var(--uv)}
+.atom-t{font-size:13px;font-weight:700;fill:var(--fg)}
+.bug-big{fill:var(--bug);opacity:.85}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 </style>
 
@@ -169,6 +180,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
       <li><a href="#acne-time">Q4 青春痘多久形成、多久消？</a></li>
       <li><a href="#comedo">Q5 粉刺和痘痘有什麼差別？</a></li>
       <li><a href="#ampoule">Q6 玻璃安瓿為什麼不適合裝化粧品？</a></li>
+      <li><a href="#ozone">Q7 蒸臉機為什麼有臭氧？</a></li>
     </ul>
   </header>
 
@@ -376,6 +388,48 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
       <li><b>容易被當成藥品。</b>玻璃安瓿是藥品注射劑的典型包裝。化粧品不能宣稱醫療效果<span class="q">化 8</span>，用藥品的包裝容易讓人誤會它是藥品。<span class="extra">補充</span></li>
     </ol>
     <div class="box"><b>跟「取用衛生」一起記：</b>這些容器題的共同原則是<b>安全、不汙染內容物</b>。廣口瓶要用挖杓取用，不要用手指挖<span class="q">化 12</span>，也是同樣的道理。市面上標榜「安瓶精華」的產品，名稱多半只是行銷說法，很多其實是塑膠製的單次用量小瓶。<span class="extra">補充</span></div>
+  </section>
+
+  <section class="qa" id="ozone">
+    <div class="qlabel">Q7</div>
+    <h2>臭氧為什麼會出現在蒸臉機的噴霧裡？</h2>
+    <p>題庫：「蒸臉噴霧有殺菌、消炎作用，是因噴霧中含有 ①雙氧 ②過氧 ③臭氧 ④酸氧」，答案是 ③<span class="q">護 55</span>。</p>
+    <div class="answer"><b>簡答：</b>臭氧不是加在水裡的成分。它是蒸臉機在<b>噴出口</b>用一支紫外線燈，把<b>空氣裡的氧氣</b>臨時變成臭氧，混進蒸氣一起噴出來。臭氧的氧化力很強，能殺菌，所以說蒸臉噴霧可以殺菌、消炎。</div>
+
+    <h4>臭氧是怎麼來的</h4>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 720 280" role="img" aria-label="蒸臉機產生臭氧的位置"><defs><marker id="ar4" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="arrowhead"/></marker></defs><rect x="60" y="250" width="160" height="16" rx="8" class="c-cap"/><rect x="132" y="170" width="16" height="82" class="c-cap"/><rect x="80" y="100" width="120" height="74" rx="12" class="c-glass"/><rect x="84" y="128" width="112" height="42" rx="8" class="water"/><path d="M100 160 q 8 -12 16 0 t 16 0 t 16 0 t 16 0" class="heater"/><text x="72" y="134" text-anchor="end" class="t-s">水箱</text><text x="72" y="152" text-anchor="end" class="t-s">＋加熱器</text><path d="M140 100 V 60 H 262" class="arm"/><path d="M262 44 H 330 L 350 36 V 84 L 330 76 H 262 Z" class="nozzle"/><rect x="276" y="54" width="46" height="12" rx="6" class="uvlamp"/><rect x="270" y="48" width="58" height="24" rx="12" class="uvglow"/><path d="M299 44 V 20 H 330" class="lead"/><text x="336" y="24" class="t-s">紫外線燈：把空氣中的氧氣變成臭氧</text><circle cx="372" cy="60" r="10" class="steam"/><circle cx="398" cy="52" r="13" class="steam"/><circle cx="428" cy="64" r="15" class="steam"/><circle cx="460" cy="54" r="17" class="steam"/><circle cx="494" cy="66" r="18" class="steam"/><circle cx="528" cy="58" r="19" class="steam"/><circle cx="388" cy="62" r="3.2" class="o3dot"/><circle cx="420" cy="54" r="3.2" class="o3dot"/><circle cx="446" cy="70" r="3.2" class="o3dot"/><circle cx="482" cy="58" r="3.2" class="o3dot"/><circle cx="514" cy="70" r="3.2" class="o3dot"/><circle cx="548" cy="60" r="3.2" class="o3dot"/><text x="372" y="112" class="t-s">含臭氧的蒸氣（紫點）</text><path d="M640 20 C 604 20, 588 44, 592 62 L 580 80 L 594 84 C 590 96, 596 104, 592 112 C 600 118, 598 128, 596 136 C 604 150, 630 150, 640 160 V 280 H 700 V 20 Z" class="face"/><text x="650" y="196" class="t-s">顧客</text><path d="M352 150 H 588" class="dim" marker-start="url(#ar4)" marker-end="url(#ar4)"/><text x="470" y="140" text-anchor="middle" class="t">約 40 公分</text><text x="470" y="172" text-anchor="middle" class="t-s">太近會燙傷、吸入太多臭氧</text></svg></div>
+      <figcaption>示意圖。有臭氧功能的蒸臉機通常有獨立的「臭氧」開關，打開後噴口會亮紫色的燈。<span class="extra">補充</span></figcaption>
+    </figure>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 720 140" role="img" aria-label="氧氣變成臭氧再殺菌的過程"><defs><marker id="ar5" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="arrowhead"/></marker></defs><circle cx="47" cy="70" r="15" class="o-atom"/><text x="47" y="75" text-anchor="middle" class="atom-t">O</text><circle cx="73" cy="70" r="15" class="o-atom"/><text x="73" y="75" text-anchor="middle" class="atom-t">O</text><text x="60" y="114" text-anchor="middle" class="t">氧氣 O₂</text><text x="60" y="132" text-anchor="middle" class="t-s">空氣裡本來就有</text><path d="M100 70 H 170" class="arrow" marker-end="url(#ar5)"/><text x="135" y="54" text-anchor="middle" class="t-s">紫外線</text><circle cx="200" cy="70" r="15" class="o-atom"/><text x="200" y="75" text-anchor="middle" class="atom-t">O</text><circle cx="250" cy="70" r="15" class="o-atom"/><text x="250" y="75" text-anchor="middle" class="atom-t">O</text><text x="225" y="114" text-anchor="middle" class="t">拆成 2 個氧原子</text><path d="M285 70 H 345" class="arrow" marker-end="url(#ar5)"/><text x="315" y="54" text-anchor="middle" class="t-s">＋ O₂</text><circle cx="378" cy="76" r="15" class="o-atom o3"/><text x="378" y="81" text-anchor="middle" class="atom-t">O</text><circle cx="400" cy="60" r="15" class="o-atom o3"/><text x="400" y="65" text-anchor="middle" class="atom-t">O</text><circle cx="422" cy="76" r="15" class="o-atom o3"/><text x="422" y="81" text-anchor="middle" class="atom-t">O</text><text x="400" y="114" text-anchor="middle" class="t">臭氧 O₃</text><text x="400" y="132" text-anchor="middle" class="t-s">不穩定、氧化力強</text><path d="M440 70 H 500" class="arrow" marker-end="url(#ar5)"/><text x="470" y="54" text-anchor="middle" class="t-s">碰到細菌</text><ellipse cx="560" cy="70" rx="34" ry="20" class="bug-big"/><path d="M538 58 L 582 82 M 582 58 L 538 82" class="nope"/><text x="560" y="114" text-anchor="middle" class="t">破壞細胞膜</text><text x="560" y="132" text-anchor="middle" class="t-s">→ 殺菌</text><circle cx="647" cy="70" r="15" class="o-atom"/><text x="647" y="75" text-anchor="middle" class="atom-t">O</text><circle cx="673" cy="70" r="15" class="o-atom"/><text x="673" y="75" text-anchor="middle" class="atom-t">O</text><text x="660" y="114" text-anchor="middle" class="t">變回氧氣</text><text x="660" y="132" text-anchor="middle" class="t-s">放一陣子就分解</text></svg></div>
+      <figcaption>氧氣是 2 個氧原子（O₂），臭氧是 3 個（O₃）。臭氧多出來的那個氧原子很容易脫離去氧化別的東西，這就是它能殺菌的原因。<span class="extra">補充</span></figcaption>
+    </figure>
+    <ul>
+      <li>紫外線燈的能量把氧氣（O₂）拆成單獨的氧原子，氧原子再和旁邊的氧氣結合，就變成臭氧（O₃）。也有機型用高壓放電產生，原理類似。<span class="extra">補充</span></li>
+      <li>臭氧有一股特殊氣味，像雷雨過後或影印機旁邊聞到的味道。<span class="extra">補充</span></li>
+    </ul>
+
+    <h4>為什麼能殺菌、消炎</h4>
+    <ul>
+      <li>臭氧很不穩定，會把多的氧原子「丟」給碰到的東西，破壞細菌的細胞膜，所以能<b>殺菌</b>。<span class="extra">補充</span></li>
+      <li>題庫說的「消炎」，是因為殺掉皮膚表面的細菌，減少面皰受到感染、惡化的機會，屬於間接的效果。<span class="extra">補充</span></li>
+      <li>臭氧放一陣子就會自己分解，變回氧氣，不會一直留在皮膚上。<span class="extra">補充</span></li>
+    </ul>
+
+    <h4>跟臭氧層是同一種東西</h4>
+    <p>高空的臭氧層也是 O₃：它會吸收 UVC<span class="q">皮 125</span>，被氟氯碳化物破壞後，紫外線增加會導致皮膚癌<span class="q">皮 7</span><span class="q">化 36</span>。臭氧在高空是保護罩；到了地面被吸進去，卻會刺激眼睛和呼吸道。所以蒸臉時要注意用量。<span class="extra">補充</span></p>
+
+    <div class="tbl"><table>
+      <thead><tr><th>使用重點</th><th>內容</th><th>出處</th></tr></thead>
+      <tbody>
+        <tr><td>距離</td><td>噴霧口離臉約 <b>40 公分</b>，太近會燙、也吸入較多臭氧</td><td><span class="q">護 54</span></td></tr>
+        <tr><td>時間</td><td>敏感、面皰皮膚比中性<b>短</b>；乾性比油性<b>短</b></td><td><span class="q">護 51</span><span class="q">護 52</span><span class="q">護 53</span></td></tr>
+        <tr><td>加水</td><td>低於最大刻度；水位低於最小刻度時，<b>先關電源再加水</b></td><td><span class="q">護 49</span><span class="q">護 50</span></td></tr>
+        <tr><td>環境</td><td>保持通風，臭氧只開需要的時間，不要整段都開<span class="extra">補充</span></td><td></td></tr>
+      </tbody>
+    </table></div>
+    <div class="box"><b>選項陷阱：</b>四個選項裡只有「臭氧」是真的氣體名稱。常聽到的「雙氧水」是過氧化氫的水溶液，是消毒藥水，不是蒸氣裡的成分。</div>
   </section>
 
   <footer>有新的疑問可以繼續加在這一頁。</footer>
