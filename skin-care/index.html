@@ -151,6 +151,9 @@ html{scroll-behavior:smooth}
 body{margin:0}
 .cta{display:inline-block;margin-top:20px;padding:10px 18px;border-radius:8px;background:var(--accent);color:var(--paper);font-weight:700;text-decoration:none}
 .cta:hover{filter:brightness(1.08)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.ctas .cta{margin-top:0}
+.cta.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent);padding:8.5px 16.5px}
 .cta:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 </style>
 
@@ -163,7 +166,7 @@ body{margin:0}
     <span><span class="q">護 12</span> 工作項目 02 護膚 第 12 題</span>
     <span><span class="q">化 8</span> 共同科目 化粧品認識 第 8 題</span>
   </div>
-  <a class="cta" href="quiz/">隨機 25 題測驗 →</a>
+  <div class="ctas"><a class="cta" href="quiz/">隨機 25 題測驗 →</a><a class="cta ghost" href="notes/">我的疑問</a></div>
 </header>
 
 </head>
@@ -249,6 +252,7 @@ body{margin:0}
     <li>表皮更新週期約 <span class="hl">28 天</span><span class="q">皮 17</span><span class="q">皮 126</span>。</li>
     <li>表皮的養分：由真皮的血液供給<span class="q">皮 98</span>，經過<b>基底膜</b>送到表皮<span class="q">皮 164</span>。選項中若有「血液及淋巴液」也對<span class="q">皮 48</span>。</li>
   </ul>
+  <p class="note">各層細胞放大後長什麼樣子、為什麼這樣命名，見<a href="notes/#layers" style="color:var(--accent)">我的疑問 Q1</a>；透明層為何只在手掌腳底，見 <a href="notes/#lucidum" style="color:var(--accent)">Q2</a>。</p>
   <div class="trap">「表皮最厚的<b>一層</b>」是有棘層；「表皮最厚的<b>部位</b>」是手掌與腳底。看清楚題目問的是層還是部位。</div>
 
   <h3 id="melanin">3. 黑色素與紫外線</h3>
