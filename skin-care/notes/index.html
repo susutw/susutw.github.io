@@ -137,6 +137,21 @@ svg text{font-family:var(--sans);fill:var(--fg)}
 .answer{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 16px;max-width:66ch;margin:12px 0 18px}
 .answer b{font-family:var(--serif)}
 h4{font-size:17px;margin:26px 0 6px;font-family:var(--serif);font-weight:600}
+.brk-calm{fill:none;stroke:var(--muted);stroke-width:1.5}
+.brk-hot{fill:none;stroke:var(--mark);stroke-width:1.5}
+.c-plastic{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.c-seal,.c-cap{fill:var(--muted)}
+.c-pump{fill:none;stroke:var(--muted);stroke-width:5;stroke-linecap:round}
+.c-glass{fill:var(--air);stroke:var(--muted);stroke-width:1.5}
+.c-liquid{fill:var(--film);opacity:.8}
+.c-snap{stroke:var(--mark);stroke-width:2;stroke-dasharray:4 3}
+.c-shard{fill:var(--air);stroke:var(--mark);stroke-width:1.2}
+.ok{font-size:13px;font-weight:700;fill:var(--accent)} .ng{font-size:13px;font-weight:700;fill:var(--mark)}
+.tbl{overflow-x:auto;margin:14px 0 18px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);border-bottom:1.5px solid var(--fg)}
+td:first-child{font-weight:700;white-space:nowrap}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 </style>
 
@@ -152,6 +167,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
       <li><a href="#lucidum">Q2 透明層為什麼只有手掌腳底有？</a></li>
       <li><a href="#sebum">Q3 皮脂能抑菌，為什麼還會長痘？</a></li>
       <li><a href="#acne-time">Q4 青春痘多久形成、多久消？</a></li>
+      <li><a href="#comedo">Q5 粉刺和痘痘有什麼差別？</a></li>
+      <li><a href="#ampoule">Q6 玻璃安瓿為什麼不適合裝化粧品？</a></li>
     </ul>
   </header>
 
@@ -316,6 +333,49 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius
       <li><b>凹洞疤痕</b>：真皮的膠原纖維被破壞<span class="q">皮 84</span>，不會自己長回來，要找皮膚科醫師處理。</li>
     </ul>
     <div class="box"><b>為什麼不要擠：</b>擠壓會把毛囊壁壓破得更深，細菌和皮脂擠進真皮，發炎更久、更容易留下紅黑印甚至凹疤。</div>
+  </section>
+
+  <section class="qa" id="comedo">
+    <div class="qlabel">Q5</div>
+    <h2>粉刺和痘痘有什麼差別？</h2>
+    <div class="answer"><b>簡答：</b>差在<b>有沒有發炎</b>。粉刺是毛孔被角質和皮脂塞住，還沒發炎，不紅不痛；痘痘是粉刺裡的細菌繁殖、毛囊發炎後的樣子，會紅、腫、痛。粉刺是痘痘的前一個階段（見 Q3 的五階段圖）。</div>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 898 302" role="img" aria-label="粉刺與發炎痘痘的五種型態"><clipPath id="lt0"><rect x="0" y="44" width="170" height="206" rx="10"/></clipPath><g clip-path="url(#lt0)"><rect x="0" y="44" width="170" height="36" class="bg-air"/><rect x="0" y="80" width="170" height="170" class="bg-derm"/><path d="M0 80 H51 Q 85 66 119 80 H170 V110 H0 Z" class="bg-cell"/><path d="M0 80 H51 Q 85 66 119 80 H170" class="surface"/><path d="M77 80 C 75 90, 63 94, 63 114 C 63 132, 77 138, 79 180 H 91 C 93 138, 107 132, 107 114 C 107 94, 95 90, 93 80" class="foll"/><ellipse cx="85" cy="114" rx="18" ry="24" class="sebum-fill"/><ellipse cx="88" cy="117.8" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-48 88 117.8)"/><ellipse cx="80.6" cy="128.9" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(32 80.6 128.9)"/><ellipse cx="96.6" cy="116.5" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-33 96.6 116.5)"/><ellipse cx="90" cy="120.3" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(1 90 120.3)"/><ellipse cx="80.4" cy="127.3" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(8 80.4 127.3)"/><path d="M76 77 Q 85 68 94 77" class="closed"/><circle cx="85" cy="74" r="5" class="pus"/></g><rect x="0.5" y="44.5" width="169" height="205" rx="10" class="frame"/><text x="8" y="274" class="t">白頭粉刺</text><text x="8" y="294" class="t-s">膚色小凸起、不痛</text><clipPath id="lt1"><rect x="182" y="44" width="170" height="206" rx="10"/></clipPath><g clip-path="url(#lt1)"><rect x="182" y="44" width="170" height="36" class="bg-air"/><rect x="182" y="80" width="170" height="170" class="bg-derm"/><path d="M182 80 H233 Q 267 80 301 80 H352 V110 H182 Z" class="bg-cell"/><path d="M182 80 H233 Q 267 80 301 80 H352" class="surface"/><path d="M259 80 C 257 90, 245 94, 245 114 C 245 132, 259 138, 261 180 H 273 C 275 138, 289 132, 289 114 C 289 94, 277 90, 275 80" class="foll"/><ellipse cx="267" cy="114" rx="18" ry="24" class="sebum-fill"/><ellipse cx="259.6" cy="126.6" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-18 259.6 126.6)"/><ellipse cx="261.4" cy="126.9" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-28 261.4 126.9)"/><ellipse cx="267.8" cy="122.5" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(41 267.8 122.5)"/><ellipse cx="263.8" cy="104.5" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-49 263.8 104.5)"/><ellipse cx="259.8" cy="128.4" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(46 259.8 128.4)"/><ellipse cx="267" cy="82" rx="9" ry="5" class="blackhead"/></g><rect x="182.5" y="44.5" width="169" height="205" rx="10" class="frame"/><text x="190" y="274" class="t">黑頭粉刺</text><text x="190" y="294" class="t-s">毛孔口有黑點、不痛</text><clipPath id="lt2"><rect x="364" y="44" width="170" height="206" rx="10"/></clipPath><g clip-path="url(#lt2)"><rect x="364" y="44" width="170" height="36" class="bg-air"/><rect x="364" y="80" width="170" height="170" class="bg-derm"/><path d="M364 80 H415 Q 449 56 483 80 H534 V110 H364 Z" class="bg-cell"/><ellipse cx="449" cy="106" rx="36" ry="36" class="inflame"/><path d="M364 80 H415 Q 449 56 483 80 H534" class="surface"/><path d="M441 80 C 439 90, 427 94, 427 114 C 427 132, 441 138, 443 180 H 455 C 457 138, 471 132, 471 114 C 471 94, 459 90, 457 80" class="foll"/><ellipse cx="449" cy="114" rx="18" ry="24" class="sebum-fill"/><ellipse cx="448.3" cy="124.9" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-7 448.3 124.9)"/><ellipse cx="441.3" cy="110.7" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(9 441.3 110.7)"/><ellipse cx="445.3" cy="124.3" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-9 445.3 124.3)"/><ellipse cx="449.5" cy="121.7" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(33 449.5 121.7)"/><ellipse cx="455.1" cy="114.6" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-24 455.1 114.6)"/><ellipse cx="454.3" cy="106.2" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-38 454.3 106.2)"/><ellipse cx="447.9" cy="122" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(42 447.9 122)"/><ellipse cx="458.8" cy="114.1" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(32 458.8 114.1)"/><ellipse cx="450.7" cy="130.1" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(41 450.7 130.1)"/></g><rect x="364.5" y="44.5" width="169" height="205" rx="10" class="frame"/><text x="372" y="274" class="t">丘疹</text><text x="372" y="294" class="t-s">紅、硬、壓了會痛</text><clipPath id="lt3"><rect x="546" y="44" width="170" height="206" rx="10"/></clipPath><g clip-path="url(#lt3)"><rect x="546" y="44" width="170" height="36" class="bg-air"/><rect x="546" y="80" width="170" height="170" class="bg-derm"/><path d="M546 80 H597 Q 631 48 665 80 H716 V110 H546 Z" class="bg-cell"/><ellipse cx="631" cy="106" rx="38" ry="38" class="inflame"/><path d="M546 80 H597 Q 631 48 665 80 H716" class="surface"/><path d="M623 80 C 621 90, 609 94, 609 114 C 609 132, 623 138, 625 180 H 637 C 639 138, 653 132, 653 114 C 653 94, 641 90, 639 80" class="foll"/><ellipse cx="631" cy="114" rx="18" ry="24" class="sebum-fill"/><ellipse cx="622" cy="109.8" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-33 622 109.8)"/><ellipse cx="628.4" cy="104.8" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(10 628.4 104.8)"/><ellipse cx="641.4" cy="110.4" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-31 641.4 110.4)"/><ellipse cx="631.1" cy="103.2" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(16 631.1 103.2)"/><ellipse cx="627.2" cy="115.5" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(42 627.2 115.5)"/><ellipse cx="625.6" cy="131.4" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(16 625.6 131.4)"/><ellipse cx="624.2" cy="129.8" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(36 624.2 129.8)"/><ellipse cx="629.3" cy="103.1" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(38 629.3 103.1)"/><ellipse cx="631.8" cy="124" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(6 631.8 124)"/><ellipse cx="631" cy="70" rx="12" ry="9" class="pus"/></g><rect x="546.5" y="44.5" width="169" height="205" rx="10" class="frame"/><text x="554" y="274" class="t">膿皰</text><text x="554" y="294" class="t-s">紅腫＋頂端白黃色膿</text><clipPath id="lt4"><rect x="728" y="44" width="170" height="206" rx="10"/></clipPath><g clip-path="url(#lt4)"><rect x="728" y="44" width="170" height="36" class="bg-air"/><rect x="728" y="80" width="170" height="170" class="bg-derm"/><path d="M728 80 H753 Q 813 40 873 80 H898 V110 H728 Z" class="bg-cell"/><ellipse cx="813" cy="170" rx="66" ry="64" class="inflame"/><ellipse cx="813" cy="172" rx="36" ry="38" class="pus"/><ellipse cx="834.4" cy="171.6" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(27 834.4 171.6)"/><ellipse cx="799.6" cy="173.4" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-2 799.6 173.4)"/><ellipse cx="802.9" cy="183.9" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-47 802.9 183.9)"/><ellipse cx="819.7" cy="173.2" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(18 819.7 173.2)"/><ellipse cx="829.5" cy="175.1" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-45 829.5 175.1)"/><ellipse cx="804" cy="165.8" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(16 804 165.8)"/><ellipse cx="799" cy="190.2" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(1 799 190.2)"/><ellipse cx="835.5" cy="173.3" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(19 835.5 173.3)"/><ellipse cx="816.5" cy="156.5" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(22 816.5 156.5)"/><ellipse cx="814.7" cy="172.2" rx="3.6" ry="1.8199999999999998" class="bug" transform="rotate(-35 814.7 172.2)"/><path d="M728 80 H753 Q 813 40 873 80 H898" class="surface"/><line x1="884" y1="80" x2="884" y2="236" class="lead"/><text x="880" y="230" text-anchor="end" class="t-s">深</text></g><rect x="728.5" y="44.5" width="169" height="205" rx="10" class="frame"/><text x="736" y="274" class="t">結節・囊腫</text><text x="736" y="294" class="t-s">又大又深、很痛、易留疤</text><path d="M2 32 V 24 H 350 V 32" class="brk-calm"/><text x="176" y="16" text-anchor="middle" class="t">粉刺：沒有發炎</text><path d="M366 32 V 24 H 896 V 32" class="brk-hot"/><text x="631" y="16" text-anchor="middle" class="t">痘痘：已經發炎</text></svg></div>
+      <figcaption>左邊兩種是粉刺，右邊三種是發炎的痘痘，越往右發炎的位置越深。</figcaption>
+    </figure>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>粉刺</th><th>痘痘</th></tr></thead>
+      <tbody>
+        <tr><td>本質</td><td>毛孔被角質＋皮脂堵住</td><td>堵住的毛孔裡細菌繁殖、毛囊發炎</td></tr>
+        <tr><td>種類</td><td>白頭（毛孔口封住）、黑頭（毛孔口打開）</td><td>丘疹 → 膿皰 → 結節・囊腫（由淺到深）</td></tr>
+        <tr><td>外觀</td><td>膚色或黑色小點，不紅</td><td>紅腫，膿皰頂端有白黃色膿</td></tr>
+        <tr><td>痛不痛</td><td>不痛</td><td>會痛，越深越痛</td></tr>
+        <tr><td>會不會留疤</td><td>通常不會</td><td>可能留紅印、黑印，結節囊腫容易留凹疤</td></tr>
+        <tr><td>美容師怎麼處理</td><td>清潔為主，保持毛孔通暢</td><td>著重清潔、消炎<span class="q">護 14</span>；化膿的請顧客看皮膚科<span class="q">皮 15</span>；嚴重的不做按摩<span class="q">護 17</span></td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li>題庫裡的「<b>面皰</b>」「<b>青春痘</b>」「<b>痤瘡</b>」指的是同一件事，都是整個疾病的名稱，粉刺和發炎的痘痘都算在內。<span class="extra">補充</span></li>
+      <li>黑頭的黑色是毛孔口的角質、皮脂和黑色素接觸空氣<b>氧化</b>變黑，不是髒東西，所以用力搓洗洗不掉。<span class="extra">補充</span></li>
+      <li>白頭的毛孔口被封住，裡面缺氧，比黑頭更容易變成發炎的痘痘。<span class="extra">補充</span></li>
+    </ul>
+  </section>
+
+  <section class="qa" id="ampoule">
+    <div class="qlabel">Q6</div>
+    <h2>玻璃安瓿為什麼不適合裝化粧品？</h2>
+    <p>題庫：「下列何種容器不適用於化粧品？ ①軟管 ②塑膠瓶 ③玻璃安瓿 ④小瓶」，答案是 ③<span class="q">化 26</span>。</p>
+    <figure>
+      <div class="scroll"><svg viewBox="0 0 740 286" role="img" aria-label="化粧品容器比較"><path d="M40 40 H 120 L 112 180 H 48 Z" class="c-plastic"/><rect x="36" y="32" width="88" height="10" rx="3" class="c-seal"/><rect x="66" y="180" width="28" height="30" rx="4" class="c-cap"/><rect x="220" y="80" width="84" height="130" rx="16" class="c-plastic"/><rect x="244" y="60" width="36" height="22" rx="4" class="c-cap"/><path d="M262 60 V 42 H 292" class="c-pump"/><rect x="410" y="100" width="56" height="110" rx="10" class="c-glass"/><rect x="416" y="84" width="44" height="18" rx="3" class="c-cap"/><rect x="416" y="150" width="44" height="54" rx="6" class="c-liquid"/><path d="M596 210 H 644 Q 652 210 652 200 V 128 Q 652 112 632 104 V 88 Q 640 80 632 70 V 50 Q 632 40 620 40 Q 608 40 608 50 V 70 Q 600 80 608 88 V 104 Q 588 112 588 128 V 200 Q 588 210 596 210 Z" class="c-glass"/><rect x="592" y="150" width="56" height="56" rx="6" class="c-liquid"/><line x1="600" y1="78" x2="640" y2="78" class="c-snap"/><path d="M670 70 l 8 -4 l -2 9 z" class="c-shard" transform="rotate(20 670 70)"/><path d="M684 92 l 8 -4 l -2 9 z" class="c-shard" transform="rotate(-30 684 92)"/><path d="M662 100 l 8 -4 l -2 9 z" class="c-shard" transform="rotate(60 662 100)"/><text x="660" y="62" class="t-s">折斷處</text><text x="80" y="240" text-anchor="middle" class="t">軟管</text><text x="80" y="258" text-anchor="middle" class="ok">✓ 適用</text><text x="80" y="276" text-anchor="middle" class="t-s">擠出使用、手不碰到內容物</text><text x="262" y="240" text-anchor="middle" class="t">塑膠瓶</text><text x="262" y="258" text-anchor="middle" class="ok">✓ 適用</text><text x="262" y="276" text-anchor="middle" class="t-s">按壓或倒出、可重複開關</text><text x="438" y="240" text-anchor="middle" class="t">小瓶</text><text x="438" y="258" text-anchor="middle" class="ok">✓ 適用</text><text x="438" y="276" text-anchor="middle" class="t-s">有蓋子、可重複開關</text><text x="620" y="240" text-anchor="middle" class="t">玻璃安瓿</text><text x="620" y="258" text-anchor="middle" class="ng">✗ 不適用</text><text x="620" y="276" text-anchor="middle" class="t-s">全密封，要折斷瓶頸才打得開</text></svg></div>
+      <figcaption>玻璃安瓿整支密封，瓶頸有一圈刻痕（紅色虛線），要折斷才打得開。</figcaption>
+    </figure>
+    <ol class="reasons">
+      <li><b>折斷時容易割傷。</b>安瓿要用手折斷玻璃瓶頸才能打開，斷口很銳利。化粧品是一般消費者在家自己使用，沒有醫護人員的訓練和工具，容易割到手。</li>
+      <li><b>玻璃碎屑可能掉進內容物。</b>折斷時的細小碎玻璃可能掉進液體裡，再被塗到臉上、眼睛周圍，比割到手更危險。</li>
+      <li><b>打開後不能再蓋回去。</b>安瓿是設計給「一次用完」的。沒用完的放著，就會接觸空氣和細菌，容易氧化、變質、被汙染。軟管、塑膠瓶和小瓶都能蓋回去重複使用。</li>
+      <li><b>容易被當成藥品。</b>玻璃安瓿是藥品注射劑的典型包裝。化粧品不能宣稱醫療效果<span class="q">化 8</span>，用藥品的包裝容易讓人誤會它是藥品。<span class="extra">補充</span></li>
+    </ol>
+    <div class="box"><b>跟「取用衛生」一起記：</b>這些容器題的共同原則是<b>安全、不汙染內容物</b>。廣口瓶要用挖杓取用，不要用手指挖<span class="q">化 12</span>，也是同樣的道理。市面上標榜「安瓶精華」的產品，名稱多半只是行銷說法，很多其實是塑膠製的單次用量小瓶。<span class="extra">補充</span></div>
   </section>
 
   <footer>有新的疑問可以繼續加在這一頁。</footer>
