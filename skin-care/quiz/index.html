@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>美容丙級隨機測驗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* Layout: one narrow answer-sheet column; a sticky bar keeps progress and the submit button in reach. */
+:root{
+  --bg:#f3f6f6; --paper:#ffffff; --fg:#1b2a2d; --muted:#5a6b6f; --line:#d3dfe0;
+  --accent:#17736f; --accent-soft:#d9eeec; --mark:#b8475d; --mark-soft:#f8e3e7;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111a1c; --paper:#182326; --fg:#e2ebeb; --muted:#9db0b3; --line:#2b3b3e;
+  --accent:#5fc6c0; --accent-soft:#1b3b3a; --mark:#f08ca0; --mark-soft:#3b2229; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#111a1c; --paper:#182326; --fg:#e2ebeb; --muted:#9db0b3; --line:#2b3b3e;
+  --accent:#5fc6c0; --accent-soft:#1b3b3a; --mark:#f08ca0; --mark-soft:#3b2229; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.7;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:760px;margin:0 auto}
+header{padding-block:40px 20px}
+.back{font-size:14px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent)}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(28px,5vw,38px);line-height:1.25;margin:.3em 0 .2em;text-wrap:balance}
+.sub{color:var(--muted);margin:0}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-block:10px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.prog{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;display:flex;align-items:center;gap:10px}
+.track{width:120px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;font-weight:700;border-radius:8px;padding:8px 16px;cursor:pointer;border:1.5px solid var(--accent);background:var(--accent);color:var(--paper)}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+button[hidden]{display:none}
+
+.warn{margin:12px 0 0;padding:10px 14px;border-radius:8px;background:var(--mark-soft);color:var(--fg);font-size:15px}
+
+.score{margin:20px 0 4px;padding:20px;border-radius:12px;background:var(--paper);border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.score .big{font-family:var(--serif);font-weight:900;font-size:48px;line-height:1;font-variant-numeric:tabular-nums}
+.score .big small{font-size:20px;color:var(--muted);font-weight:600}
+.score .msg{color:var(--muted)}
+.filter{display:flex;align-items:center;gap:8px;font-size:15px;margin-left:auto;cursor:pointer}
+
+ol.qs{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.q .head{display:flex;gap:12px;align-items:baseline}
+.q .no{font-family:var(--serif);font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums;min-width:2ch}
+.q .text{flex:1;min-width:0}
+.q .src{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:2px 5px;white-space:nowrap}
+.blank{display:inline-block;min-width:3em;border-bottom:1.5px solid var(--fg);margin:0 4px;vertical-align:-2px}
+.opts{display:grid;gap:6px;margin-top:10px;padding-left:calc(2ch + 12px)}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;border-radius:8px;border:1px solid var(--line);cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin:3px 0 0;accent-color:var(--accent);flex:none}
+.opt .n{color:var(--muted);flex:none}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.opt:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:1px}
+@media (max-width:520px){.opts{padding-left:0}}
+
+.done .opt{cursor:default}
+.done .opt:hover{border-color:var(--line)}
+.done .opt.right{border-color:var(--accent);background:var(--accent-soft)}
+.done .opt.wrong{border-color:var(--mark);background:var(--mark-soft)}
+.opt .tag{margin-left:auto;font-size:13px;font-weight:700;white-space:nowrap;padding-left:8px}
+.opt.right .tag{color:var(--accent)}
+.opt.wrong .tag{color:var(--mark)}
+.q.miss{border-color:var(--mark)}
+.q .verdict{font-size:13px;font-weight:700;white-space:nowrap}
+.q.hit .verdict{color:var(--accent)}
+.q.miss .verdict{color:var(--mark)}
+.only-wrong .q.hit{display:none}
+footer{margin-top:28px;font-size:13px;color:var(--muted)}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../">← 回講義</a>
+    <h1>美容丙級隨機測驗</h1>
+    <p class="sub">從 <b id="total"></b> 題不重複題庫中隨機抽 25 題。作答完按「送出」對答案，重新整理或按「換一組」會重抽。</p>
+  </header>
+
+  <div class="bar">
+    <div class="prog"><span id="count">已作答 0 / 25</span><span class="track"><i id="fill"></i></span></div>
+    <div class="btns">
+      <button id="submit" type="button">送出對答案</button>
+      <button id="again" type="button" class="ghost">換一組</button>
+    </div>
+  </div>
+  <p class="warn" id="warn" hidden></p>
+
+  <div class="score" id="score" hidden>
+    <span class="big" id="big"></span>
+    <span class="msg" id="msg"></span>
+    <label class="filter"><input type="checkbox" id="onlyWrong"> 只看錯題</label>
+  </div>
+
+  <ol class="qs" id="list"></ol>
+  <footer>題號標籤：皮＝皮膚認識、護＝護膚、化＝化粧品認識，數字為原題庫題號。</footer>
+</div>
+
+<script>
+const BANK = [{"id":"皮1","stem":"顧客臉上黑斑有異常變化應如何處理？","trail":"","opts":["幫顧客「做臉」","介紹他（她）使用漂白霜","告知找皮膚科醫師診治","依顧客之方便選擇處理方法"],"ans":3},{"id":"皮2","stem":"以下何者不是造成黑斑的原因？","trail":"","opts":["服用某些藥物","使用不當的化粧品","紫外線照射","肝功能不良"],"ans":4},{"id":"皮3","stem":"發現顧客臉上有一出血及結痂的小黑痣，應如何處理？","trail":"","opts":["與自己的工作無關，可不予理會","予以塗抹消炎藥膏","想辦法點掉該痣","請顧客找皮膚科醫師診治"],"ans":4},{"id":"皮4","stem":"不屬於含藥化粧品的是","trail":"","opts":["染髮劑","青春痘乳膏","清潔霜","漂白霜"],"ans":3},{"id":"皮5","stem":"下列何者敘述錯誤？","trail":"","opts":["皮脂腺與青春痘有關","美容師不應該為顧客換膚","正常皮膚的 pH 值是 7","每日落髮的數目是 50 ～100 根左右"],"ans":3},{"id":"皮6","stem":"選出正確的敘述？","trail":"","opts":["蛋白敷臉可以消除黑斑","每一種化粧品都有益於皮膚，所以用越多種，用越多的量，對皮膚越有幫助","化粧品所含香料，易導致過敏","買化粧品不必在乎製造日期"],"ans":3},{"id":"皮7","stem":"大氣中臭氧層有破洞會造成的症狀是","trail":"","opts":["皮脂漏","肝炎","皮膚癌","腸胃炎"],"ans":3},{"id":"皮8","stem":"身體沒有皮脂腺的部位是","trail":"","opts":["手掌","背部","臉部","腰部"],"ans":1},{"id":"皮9","stem":"皮膚所須之營養素由","trail":"供應。","opts":["神經","肌肉","血液","脂肪"],"ans":3},{"id":"皮10","stem":"皮膚最外層為","trail":"","opts":["表皮層","乳頭層","真皮層","皮下組織"],"ans":1},{"id":"皮11","stem":"角質層的細胞為","trail":"","opts":["圓形","扁平狀","柱狀","纖維狀"],"ans":2},{"id":"皮12","stem":"皮膚不具有的功能是？","trail":"","opts":["消化作用","吸收作用","排汗作用","分泌作用"],"ans":1},{"id":"皮13","stem":"皮膚經日光照射可以合成","trail":"","opts":["葡萄糖","胺基酸","維生素 D","脂肪"],"ans":3},{"id":"皮14","stem":"粗糙無光澤且易呈小皺紋的是","trail":"","opts":["油性肌膚","乾性肌膚","乾燥型油性肌膚","正常肌膚"],"ans":2},{"id":"皮15","stem":"臉部保養時，顧客臉上有化膿性的痤瘡，應該","trail":"","opts":["擠掉","塗外用藥","口服藥","請顧客看皮膚科醫師"],"ans":4},{"id":"皮16","stem":"下列何者不易引起過敏性接觸皮膚炎？","trail":"","opts":["染髮劑、燙髮劑、整髮劑","不含香料的肥皂","指甲油、去光水","含香料或色素的化粧品"],"ans":2},{"id":"皮17","stem":"皮膚新陳代謝的週期約","trail":"","opts":["15 天","35 天","180 天","28 天"],"ans":4},{"id":"皮18","stem":"基底層亦稱為","trail":"","opts":["角質層","顆粒層","有棘層","生發層"],"ans":4},{"id":"皮19","stem":"下列何者不存在真皮的網狀層中？","trail":"","opts":["小神經末梢","血管","淋巴管","黑色素"],"ans":4},{"id":"皮20","stem":"表皮的最內層是","trail":"","opts":["有棘層","顆粒層","基底層","角質層"],"ans":3},{"id":"皮21","stem":"黑色素可以保護皮膚對抗有害的","trail":"","opts":["細菌","壓力","電流","紫外線"],"ans":4},{"id":"皮22","stem":"汗腺可排洩身體的","trail":"","opts":["氧氣","廢物","油","皮脂"],"ans":2},{"id":"皮23","stem":"皮膚中的血液及汗腺可調節體溫，使體溫保持在正常的","trail":"","opts":["攝氏 10 °","攝氏23.8 °","攝氏 65.5 °","攝氏 37 °"],"ans":4},{"id":"皮24","stem":"手掌、腳底、前額、腋下均含有大量的","trail":"","opts":["汗腺","皮脂腺","腎上腺","唾液腺"],"ans":1},{"id":"皮25","stem":"皮下組織的位置是在","trail":"","opts":["角質層之上","表皮之上","真皮之下","脂肪組織之下"],"ans":3},{"id":"皮26","stem":"皮膚的衍生構造有毛髮及","trail":"","opts":["血管","感覺神經纖維","運動神經纖維","指甲"],"ans":4},{"id":"皮27","stem":"顆粒層細胞中的顆粒是","trail":"","opts":["黑色素","脂質","角質素","氣泡"],"ans":3},{"id":"皮28","stem":"表皮中最年輕的細胞是在","trail":"","opts":["角質層","透明層","有棘層","基底層"],"ans":4},{"id":"皮29","stem":"下列何處沒有毛髮？","trail":"","opts":["皮膚","嘴唇","頭皮","下巴"],"ans":2},{"id":"皮30","stem":"皮脂漏的皮膚，其外觀是","trail":"","opts":["乾而緊繃","脫皮","油膩而閃光","紅腫"],"ans":3},{"id":"皮31","stem":"人體的血液是","trail":"","opts":["弱酸性","弱鹼性","中性","不一定"],"ans":2},{"id":"皮32","stem":"「Ｔ」字部位是指額頭，鼻子及","trail":"","opts":["臉頰","太陽穴","下巴","眼眶"],"ans":3},{"id":"皮33","stem":"油性皮膚臉上最不油的部位是","trail":"","opts":["眼眶","鼻頭","臉頰","額頭"],"ans":1},{"id":"皮34","stem":"最理想的皮膚類型是","trail":"","opts":["混合性皮膚","乾性皮膚","中性皮膚","油性皮膚"],"ans":3},{"id":"皮35","stem":"下列哪一層與皮膚表面柔軟，光滑有關？","trail":"","opts":["角質層","透明層","顆粒層","基底層"],"ans":1},{"id":"皮36","stem":"黑色素細胞只分布在下列哪一層？","trail":"","opts":["角質層","顆粒層","透明層","基底層"],"ans":4},{"id":"皮37","stem":"膠原纖維在下列哪一層中存在？","trail":"","opts":["表皮層","基底層","網狀層","乳頭層"],"ans":3},{"id":"皮38","stem":"汗腺是存在於下列哪一層中？","trail":"","opts":["真皮層","表皮層","皮下組織","基底層"],"ans":1},{"id":"皮39","stem":"含有許多脂肪與人體的曲線美有密切關係的是","trail":"","opts":["皮下組織","皮脂腺","真皮","表皮"],"ans":1},{"id":"皮40","stem":"皮膚的ｐ H 值在 4～6 時，皮膚屬於","trail":"","opts":["弱酸性","弱鹼性","酸性","鹼性"],"ans":1},{"id":"皮41","stem":"表皮中能進行細胞分裂，產生新細胞的是","trail":"","opts":["基底層、有棘層","角質層、透明層","有棘層、透明層","基底層、角質層"],"ans":1},{"id":"皮42","stem":"乾性肌膚的主要特徵之一是","trail":"","opts":["油分多","水分少","肌紋深","毛孔大"],"ans":2},{"id":"皮43","stem":"敏感皮膚的特徵","trail":"","opts":["易長黑斑、面皰","易呈現小紅點、發癢","油分多、水分少","油分少、水分多"],"ans":2},{"id":"皮44","stem":"表皮內有","trail":"","opts":["基底層","彈性纖維","豎毛肌","脂肪層"],"ans":1},{"id":"皮45","stem":"表皮的最外層是","trail":"","opts":["透明層","顆粒層","角質層","基底層"],"ans":3},{"id":"皮46","stem":"皮膚的顏色主要決定於","trail":"","opts":["角質素","黑色素","脂肪","水分"],"ans":2},{"id":"皮47","stem":"表皮層中其細胞會不斷剝落、遞補為","trail":"","opts":["透明層","角質層","顆粒層","有棘層"],"ans":2},{"id":"皮48","stem":"皮膚獲得養分的管道為","trail":"","opts":["皮脂腺","血液及淋巴液","汗腺","皮下脂肪"],"ans":2},{"id":"皮49","stem":"人體之最大器官是","trail":"","opts":["心臟","肺臟","皮膚","胃"],"ans":3},{"id":"皮50","stem":"下列何項不是皮膚的功能？","trail":"","opts":["分泌","知覺","造血","呼吸"],"ans":3},{"id":"皮51","stem":"全臉油膩，毛孔粗大、易生面皰是","trail":"皮膚的特徵。","opts":["油性","乾性","中性","敏感性"],"ans":1},{"id":"皮52","stem":"皮膚所以有冷、熱、痛等知覺，主要是因為其內含有","trail":"之故。","opts":["毛細血管","神經","皮脂腺","淋巴液"],"ans":2},{"id":"皮53","stem":"粉刺之形成係","trail":"分泌失調所引起。","opts":["汗腺","胃腺","皮脂腺","胰島腺"],"ans":3},{"id":"皮54","stem":"內部含有血管、神經、汗腺、皮脂腺等構造的是","trail":"","opts":["表皮層","真皮層","皮下組織","基底層"],"ans":2},{"id":"皮55","stem":"急速減肥，皮膚易形成","trail":"","opts":["油性","面皰","過敏性","皺紋"],"ans":4},{"id":"皮56","stem":"皮脂之作用，下列何者錯誤？","trail":"","opts":["供給皮膚養分","具有抑菌作用","潤滑作用","防止皮膚乾燥"],"ans":1},{"id":"皮57","stem":"人體熱量有 80 ％靠","trail":"來發散，以調節體溫。","opts":["肺","鼻子","皮膚","唇"],"ans":3},{"id":"皮58","stem":"皮膚老化產生皺紋，主要是由於","trail":"內部組織衰退，失去彈性之故。","opts":["表皮層","真皮層","皮下組織","骨骼"],"ans":2},{"id":"皮59","stem":"對紫外線具有防禦能力的是","trail":"","opts":["脂肪層","角質層","網狀層","透明層"],"ans":2},{"id":"皮61","stem":"與狐臭有關的是","trail":"","opts":["小汗腺","皮脂腺","大汗腺","微血管"],"ans":3},{"id":"皮62","stem":"體溫經常保持恆定，是因皮膚的哪一項功能？","trail":"","opts":["保護作用","分泌作用","調節體溫作用","吸收作用"],"ans":3},{"id":"皮63","stem":"皮膚可藉由汗腺將汗排出體外的是下列哪種功能？","trail":"","opts":["分泌作用","呼吸作用","保護作用","排泄作用"],"ans":4},{"id":"皮65","stem":"Ｔ型區域易出油、毛孔粗大，但雙頰呈乾燥現象的是","trail":"","opts":["乾性皮膚","油性皮膚","混合性皮膚","敏感性皮膚"],"ans":3},{"id":"皮66","stem":"皮膚健康有光澤，紋理細緻的是","trail":"","opts":["油性皮膚","中性皮膚","乾性皮膚","混合性皮膚"],"ans":2},{"id":"皮67","stem":"角質層中水分的含量在","trail":"","opts":["50 ％～ 60 ％","5％～ 10 ％","10 ％～ 20 ％","70 ％～80 ％最理想"],"ans":3},{"id":"皮68","stem":"健康的指甲呈現","trail":"","opts":["粉紅色","紫色","乳白色","黃色"],"ans":1},{"id":"皮69","stem":"以下何者不是皮脂膜的功用？","trail":"","opts":["潤滑皮膚","防止皮膚乾燥","漂白皮膚","抑菌"],"ans":3},{"id":"皮70","stem":"多汗症是由於","trail":"分泌過量所致。","opts":["大汗腺","小汗腺","皮脂腺","頂漿腺"],"ans":2},{"id":"皮71","stem":"小汗腺開口於","trail":"","opts":["毛囊","皮膚表面","豎毛肌","毛幹"],"ans":2},{"id":"皮72","stem":"表皮層中，由裡向外第二層是","trail":"","opts":["角質層","透明層","有棘層","基底層"],"ans":3},{"id":"皮73","stem":"正常皮膚表面之皮脂膜為","trail":"","opts":["鹼性","中性","弱酸性","強酸性"],"ans":3},{"id":"皮75","stem":"黑斑是","trail":"聚集在一起所造成。","opts":["血紅素","黑色素","胡蘿蔔素","角質素"],"ans":2},{"id":"皮76","stem":"皮膚能行呼吸作用，其呼吸量與肺相較約為肺之","trail":"","opts":["80 ％","50 ％","10 ％","1％"],"ans":4},{"id":"皮78","stem":"毛髮突出於皮膚表面的部分稱為","trail":"","opts":["毛囊","毛幹","毛根","毛球"],"ans":2},{"id":"皮79","stem":"皮膚表面呈現許多細而凹凸不平的紋路，其凹處稱為","trail":"","opts":["皮溝","皮丘","汗孔","毛囊"],"ans":1},{"id":"皮80","stem":"健康皮膚的ｐ H 值約為","trail":"","opts":["7","5～6","3～4","9～10"],"ans":2},{"id":"皮81","stem":"汗腺廣佈於全身，唯一不存在於下列哪一部分？","trail":"","opts":["手掌","腳底","腋下","唇部"],"ans":4},{"id":"皮82","stem":"面皰、粉刺最容易形成的時期是在下列哪一個階段？","trail":"","opts":["壯年期","青春期","幼年期","老年期"],"ans":2},{"id":"皮83","stem":"下列部位中，何者的皮脂腺分泌最豐富？","trail":"","opts":["手掌","腳掌","額頭","臉頰"],"ans":3},{"id":"皮84","stem":"膠原纖維失去了柔軟及溶水性時，皮膚呈何種現象？","trail":"","opts":["細緻","柔潤","皺紋與鬆弛","健康"],"ans":3},{"id":"皮85","stem":"表皮細胞在哪一層開始蛻變出角質物質？","trail":"","opts":["基底層","有棘層","顆粒層","角質層"],"ans":3},{"id":"皮86","stem":"賦予皮膚彈力和張力的是","trail":"","opts":["平滑肌纖維","乳頭層纖維","彈性纖維","皮下組織"],"ans":3},{"id":"皮87","stem":"藉著水分分泌及蒸發來散發身體熱量的構造是","trail":"","opts":["小汗腺","皮脂腺","大汗腺","胸腺"],"ans":1},{"id":"皮88","stem":"皮膚的感覺接受器位於","trail":"","opts":["角質層","表皮層","真皮層","皮下組織"],"ans":3},{"id":"皮89","stem":"角質層是表皮的最外層，它是一種","trail":"","opts":["有核的細胞","無核的死細胞","新生的細胞","健康的細胞"],"ans":2},{"id":"皮90","stem":"由彈性纖維及膠原纖維所構成的是","trail":"","opts":["角質層","表皮層","真皮層","皮下組織"],"ans":3},{"id":"皮91","stem":"青春痘通常與青春期的","trail":"分泌量變化有關。","opts":["汗腺","淋巴液","性賀爾蒙","血液"],"ans":3},{"id":"皮92","stem":"與皮膚硬度及伸張度有關的是","trail":"","opts":["大汗腺","汗腺","彈力及膠原纖維","皮脂腺"],"ans":3},{"id":"皮93","stem":"大汗腺是附在毛囊旁邊的汗腺，通常在何時期功能最為旺盛？","trail":"","opts":["幼兒期","青春期","中年期","老年期"],"ans":2},{"id":"皮94","stem":"透明層是由何種細胞構成？","trail":"","opts":["有核細胞","無核細胞","半核細胞","核心細胞"],"ans":2},{"id":"皮95","stem":"皮脂腺分泌油脂最多的部位是","trail":"","opts":["鼻頭","下肢","手掌","腳底"],"ans":1},{"id":"皮96","stem":"皮膚由外而內依次分為哪三大部分？","trail":"","opts":["真皮→皮下組織→表皮","皮下組織→表皮→真皮","表皮→真皮→皮下組織","真皮→表皮→皮下組織"],"ans":3},{"id":"皮98","stem":"表皮本身沒有血管，故其營養依靠","trail":"供給。","opts":["細胞","真皮的血液","肌肉","皮脂腺"],"ans":2},{"id":"皮99","stem":"負責表皮新陳代謝，可不斷分裂產生新細胞者為","trail":"","opts":["基底細胞","黑色素細胞","有棘細胞","核細胞"],"ans":1},{"id":"皮100","stem":"表皮最厚的部位在","trail":"","opts":["頰部","眼臉","手掌與腳底","額頭"],"ans":3},{"id":"皮101","stem":"影響皮膚性質的主要因素是","trail":"","opts":["胸腺","皮脂腺","毛細血管","淋巴腺"],"ans":2},{"id":"皮102","stem":"開口於毛囊，存在腋下及陰部處，分泌物含蛋白質，經氧化易產生體臭的是","trail":"","opts":["大汗腺","小汗腺","皮脂腺","淋巴腺"],"ans":1},{"id":"皮103","stem":"皮脂分泌最旺盛的年齡約","trail":"","opts":["10 ～12 歲","15 ～20 歲","21 ～25 歲","26 ～30歲"],"ans":2},{"id":"皮104","stem":"下列何者是皮膚老化的現象之一？","trail":"","opts":["皮膚乾燥","有光澤","油脂分泌多","有彈性"],"ans":1},{"id":"皮105","stem":"皮膚之所以能調節體溫，主要是因為","trail":"的排泄作用。","opts":["汗腺","皮脂腺","血液","淋巴腺"],"ans":1},{"id":"皮106","stem":"天然保溼因子 (N.M.F) 係皮膚哪一層的產物？","trail":"","opts":["角質層","顆粒層","有棘層","基底層"],"ans":1},{"id":"皮107","stem":"皮脂的功用在使皮膚保持","trail":"","opts":["清潔","滋潤","乾燥","角化"],"ans":2},{"id":"皮108","stem":"表皮中最厚的一層，且有淋巴液流通者為","trail":"","opts":["角質層","透明層","基底層","有棘層"],"ans":4},{"id":"皮109","stem":"真皮層的功用有","trail":"","opts":["製造荷爾蒙","形成障壁以防止水份和電解質流失","包覆皮膚與指甲","供給表皮營養"],"ans":4},{"id":"皮110","stem":"","trail":"是一種無核細胞分佈在手掌、足蹠。","opts":["有棘層","透明層","顆粒層","基底層"],"ans":2},{"id":"皮111","stem":"皮脂腺的分佈，哪個部位最少？","trail":"","opts":["額部","兩頰","四肢","鼻"],"ans":3},{"id":"皮112","stem":"汗腺及皮脂腺為","trail":"","opts":["無導管腺體","內分泌腺","有導管腺體","消化腺"],"ans":3},{"id":"皮113","stem":"下列何者控制皮膚排出汗液？","trail":"","opts":["肌肉系統","循環系統","呼吸系統","神經系統"],"ans":4},{"id":"皮117","stem":"皮膚有體溫調節的作用，受熱時血管會","trail":"","opts":["擴張","收縮","散發","分泌"],"ans":1},{"id":"皮118","stem":"判別皮膚的性質，應以下列何者為考量？","trail":"","opts":["油分","水分","油分及水分並重","酸鹼度"],"ans":3},{"id":"皮119","stem":"由成群相似的細胞所組成的構造稱為","trail":"","opts":["器官","系統","組織","細胞"],"ans":3},{"id":"皮120","stem":"血管、淋巴管分佈於","trail":"","opts":["角質層","表皮層","基底層","真皮層"],"ans":4},{"id":"皮121","stem":"皮膚最薄的部位是","trail":"","opts":["手掌","腳底","眼瞼","額頭"],"ans":3},{"id":"皮122","stem":"皮膚的表面覆蓋著一層膜，稱為皮脂膜，它是由","trail":"混合而成。","opts":["汗液、皮脂","真皮、表皮","汗水、污垢","纖維、皮脂"],"ans":1},{"id":"皮123","stem":"小汗腺分佈於","trail":"","opts":["全身","外耳道、腋窩","乳暈","臍部"],"ans":1},{"id":"皮124","stem":"下列何者沒有血管的分佈？","trail":"","opts":["表皮層","真皮層","皮下組織","脂肪組織"],"ans":1},{"id":"皮125","stem":"在大氣中被臭氧層吸收，未達地面而對皮膚影響不大的光線是","trail":"","opts":["紫外線Ａ","紫外線Ｂ","紫外線Ｃ","紅外線"],"ans":3},{"id":"皮127","stem":"表皮可分為五層，由外至內依次可分為","trail":"","opts":["角質層、顆粒層、透明層、有棘層、基底層","角質層、透明層、顆粒層、有棘層、基底層","角質層、透明層、有棘層、顆粒層、基底層","角質層、顆粒層、有棘層、透明層、基底層"],"ans":2},{"id":"皮129","stem":"皮膚的光澤度，與下列何者有關？","trail":"","opts":["顆粒層所含的油脂","角質層所含的水份","有棘層所含的水份","基底層所含的油脂"],"ans":2},{"id":"皮130","stem":"物質在下列何種情況下較易穿透皮膚？","trail":"","opts":["皮膚溫度降低時","物質溶解在脂溶性溶劑時","真皮的含水量較少時","物質溶解在水溶性溶劑時"],"ans":2},{"id":"皮131","stem":"每蒸發一公升的汗所散發的體熱約為","trail":"","opts":["540","640","740","840 仟卡路里(Kcal)"],"ans":1},{"id":"皮132","stem":"指甲平均每天長出","trail":"","opts":["0.1mm","0.01mm","0.1cm","1mm"],"ans":1},{"id":"皮135","stem":"癢覺的皮膚接受器是","trail":"","opts":["神經末端","毛囊","皮脂腺","小汗腺"],"ans":1},{"id":"皮137","stem":"正常皮膚中黑色素細胞和基底細胞的比率大約為","trail":"","opts":["1：10","1：20","1：30","1：40"],"ans":1},{"id":"皮138","stem":"一般成年人全身的皮膚重量約佔體重的","trail":"","opts":["5％","10 ％","15 ％","20 ％"],"ans":3},{"id":"皮140","stem":"真皮的厚度約為","trail":"","opts":["0.1 ～1 毫米","0.2 ～2 毫米","0.3 ～3 毫米","0.4 ～4 毫米"],"ans":3},{"id":"皮141","stem":"傷口的癒合，需依賴下列何種細胞的增殖來達成？","trail":"","opts":["組織球","單核球","脂肪細胞","纖維母細胞"],"ans":4},{"id":"皮142","stem":"汗水屬","trail":"","opts":["中性","弱酸性","弱鹼性","強鹼性"],"ans":2},{"id":"皮144","stem":"乳腺是一種變型的","trail":"","opts":["皮脂腺","小汗腺","頂漿腺","腎上腺"],"ans":3},{"id":"皮145","stem":"支配豎毛肌機能的是","trail":"","opts":["感覺神經","中樞神經","自主神經","腦幹"],"ans":3},{"id":"皮146","stem":"皮膚主要的化學屏障為","trail":"","opts":["角質層的游離脂肪","基底層和汗液","顆粒層和皮脂膜","有棘層和黑色素"],"ans":1},{"id":"皮147","stem":"描述有關皮膚的完整性，下列何者不正確？","trail":"","opts":["皮膚上有一群正常生態的微生物","皮膚間隙處有較多的微生物","細菌在乾燥地區生長較快","皮膚的完整性受破壞時，易導致微生物增殖"],"ans":3},{"id":"皮148","stem":"就滲透性而言，下列何種動物皮膚與人類皮膚較相似？","trail":"","opts":["豬","牛","馬","羊"],"ans":1},{"id":"皮149","stem":"下列何種維生素缺乏時，皮脂和汗水的分泌也會衰退？","trail":"","opts":["維生素Ａ","維生素Ｂ","維生素Ｃ","維生素Ｄ"],"ans":1},{"id":"皮150","stem":"與皮膚的氧化還原有密切關係的是","trail":"","opts":["維生素Ａ","維生素Ｂ","維生素Ｃ","維生素Ｄ"],"ans":3},{"id":"皮152","stem":"存在於腋下大汗腺上，使其產生特殊氣味的大多是","trail":"","opts":["革蘭氏陽性菌","革蘭氏陰性菌","皮黴菌","寄生蟲"],"ans":1},{"id":"皮155","stem":"下列何者不是保持皮膚年輕健康的法則？","trail":"","opts":["均衡的營養","保持清潔，避免物理化學刺激","經常做日光浴","充足的睡眠"],"ans":3},{"id":"皮156","stem":"防止「青春痘」之發生或症狀惡化，最好的方法是用不含香料的肥皂洗臉","trail":"","opts":["每天早上洗臉 1 次","每天晚上洗臉 1 次","每天早、晚各洗臉 1 次","每天洗臉 5 次以上"],"ans":3},{"id":"皮157","stem":"下列何者不是睫毛的生理功用？","trail":"","opts":["防止塵土吹入眼睛","防止刺目的強光刺激眼睛","防止昆蟲侵入眼睛","增加眼部美麗"],"ans":4},{"id":"皮158","stem":"人類毛髮的生長週期約為","trail":"","opts":["2～6 週","2～6 天","2～6 月","2～6 年"],"ans":4},{"id":"皮159","stem":"人的手掌與腳底比身體其他部位的皮膚看起來更厚、更結實、更白，是因為多了","trail":"","opts":["角質層","基底層","透明層","有棘層"],"ans":3},{"id":"皮160","stem":"下列何者不是構成真皮的細胞？","trail":"","opts":["纖維母細胞","組織球、單核球","角化細胞","脂肪細胞"],"ans":3},{"id":"皮161","stem":"構成真皮的最大部分是","trail":"","opts":["膠原纖維","血管","組織球","脂肪細胞"],"ans":1},{"id":"皮162","stem":"下列何者不是皮下脂肪的功用？","trail":"","opts":["防止體溫的發散","緩和外界的刺激","貯存體內過剩的能量","使皮膚有光澤"],"ans":4},{"id":"皮163","stem":"下列何者不是皮脂膜的功用？","trail":"","opts":["潤滑皮膚","潤滑毛髮","防止微生物繁殖","防止長「青春痘」"],"ans":4},{"id":"皮164","stem":"皮膚所需的養分是藉由下列何者供應的？","trail":"","opts":["角質層","透明層","基底層","基底膜"],"ans":4},{"id":"皮165","stem":"在身體與外界環境之間有角質層充當保護屏障，下列敘述何者正確？","trail":"","opts":["角質層是死皮，需要經常磨皮去掉它","角質層會自然地更新，不必去除它","角質層是無核的死細胞，要設法去掉它","角質層必需靠換膚術才能去除乾淨死皮"],"ans":2},{"id":"皮166","stem":"下列何者不是小汗腺分佈的部位？","trail":"","opts":["手掌、腳底","腋下、軀幹","甲床、唇緣","臉、頸"],"ans":3},{"id":"皮167","stem":"人體的小汗腺約有","trail":"","opts":["20 ～50 萬個","2～5 萬個","2000 ～5000 個","200 ～500 萬個"],"ans":4},{"id":"皮169","stem":"下列何者經紫外線照射後會增加黑色素的分泌，以吸收紫外線、防止其侵入深層組織以保護皮膚？","trail":"","opts":["顆粒層細胞","黑色素細胞","纖維母細胞","脂肪細胞"],"ans":2},{"id":"護1","stem":"皮脂分泌過少的皮膚是","trail":"","opts":["油性皮膚","乾性皮膚","中性皮膚","混合性皮膚"],"ans":2},{"id":"護3","stem":"臉部按摩的方向是順著","trail":"","opts":["骨骼","血液流動的方向","毛孔","肌肉紋理"],"ans":4},{"id":"護4","stem":"下列何者與臉部按摩手技最無關連性？","trail":"","opts":["肌肉紋理","臉部神經叢所在位置","血液循環系統","皮膚酸鹼度"],"ans":4},{"id":"護5","stem":"卸粧時，應由下列哪個部位先行卸粧？","trail":"","opts":["雙頰","額頭","眼、唇","下顎"],"ans":3},{"id":"護6","stem":"敏感性肌膚按摩之力量與時間應該如何？","trail":"","opts":["輕、長","重、短","重、長","輕、短"],"ans":4},{"id":"護7","stem":"專業皮膚保養，應多久做一次？","trail":"","opts":["每天","每月","每年","視肌膚狀況而定"],"ans":4},{"id":"護8","stem":"為了紓解客人的緊張，按摩動作宜採用","trail":"","opts":["搓","揉","輕撫","捏"],"ans":3},{"id":"護9","stem":"高油度的營養霜適合","trail":"","opts":["面皰皮膚","乾性皮膚","油性皮膚","皮脂溢漏皮膚"],"ans":2},{"id":"護10","stem":"按摩時常用的手指是","trail":"的第一、二節指腹。","opts":["食指、中指","中指、無名指","中指、小指","小指、無名指"],"ans":2},{"id":"護11","stem":"乾性肌膚保養時宜","trail":"","opts":["多蒸臉、多按摩","少蒸臉、少按摩","少蒸臉、多按摩","多蒸臉、少按摩"],"ans":3},{"id":"護12","stem":"維生素","trail":"具有還原已形成之黑色素的作用。","opts":["Ａ","Ｂ群","Ｃ","Ｄ"],"ans":3},{"id":"護13","stem":"防曬製品中，防曬係數以","trail":"","opts":["2","4","8","15 的防曬效果最佳"],"ans":4},{"id":"護14","stem":"護理青春痘時，應著重","trail":"","opts":["按摩","清潔、消炎","擠壓","去角質"],"ans":2},{"id":"護15","stem":"清潔皮膚的程序，應優先使用","trail":"","opts":["清潔乳／霜","化粧水","營養乳／霜","敷面劑"],"ans":1},{"id":"護16","stem":"面皰肌膚者飲食上宜多吃","trail":"的食品。","opts":["鹼性","中性","酸性","刺激性"],"ans":1},{"id":"護17","stem":"嚴重面皰的肌膚按摩宜","trail":"","opts":["每週一次","每週二次","每天做","不做"],"ans":4},{"id":"護18","stem":"皺紋出現在與肌肉紋理","trail":"","opts":["平行之處","垂直之處","重疊之處","毫無關係"],"ans":2},{"id":"護19","stem":"下列哪個部位的肌肉紋理是斜向的？","trail":"","opts":["眼部","額部","頰部","唇部"],"ans":3},{"id":"護20","stem":"","trail":"而有節奏的按摩動作，是按摩必備的條件。","opts":["輕緩","強力","快速","長時間"],"ans":1},{"id":"護21","stem":"肌膚新陳代謝最旺盛的時刻是","trail":"","opts":["工作時","沐浴時","進餐時","睡眠時"],"ans":4},{"id":"護22","stem":"卸粧最適宜的用品是","trail":"","opts":["香皂","清潔乳／霜","洗面皂","磨砂膏"],"ans":2},{"id":"護23","stem":"洗臉宜使用","trail":"","opts":["冷水","溫水","熱水","硬水"],"ans":2},{"id":"護24","stem":"臉上有化粧，洗臉時宜","trail":"","opts":["僅用溫水即可","直接用洗面皂洗","使用蒸氣洗臉","先卸粧再洗臉"],"ans":4},{"id":"護25","stem":"皮膚吸收養分最佳時刻為","trail":"","opts":["白天","夜間","冬季","季節變化時"],"ans":2},{"id":"護26","stem":"晚間保養最後一個步驟是","trail":"","opts":["去角質","蒸臉","營養","敷面"],"ans":3},{"id":"護27","stem":"下列何者不是保持皮膚美麗健康的法則？","trail":"","opts":["保持皮膚清潔","均衡的營養","充足的睡眠","暴飲暴食"],"ans":4},{"id":"護28","stem":"長「青春痘」時，洗臉宜選用","trail":"","opts":["含香料的肥皂","油性洗面劑","磨砂膏","刺激性小的肥皂"],"ans":4},{"id":"護29","stem":"若臉上有嚴重「青春痘」時，下列行為何者不適宜？","trail":"","opts":["保持皮膚清潔","去看皮膚科醫生","化濃粧掩飾","注意飲食作息"],"ans":3},{"id":"護30","stem":"下列何者不是健康皮膚要件？","trail":"","opts":["皮脂膜機能正常","血液循環順暢","角化功能順暢","黑色素細胞含量較少"],"ans":4},{"id":"護31","stem":"皮膚乾燥大多是因為缺乏","trail":"","opts":["水分、油分","汗液","碘","鐵"],"ans":1},{"id":"護32","stem":"為了避免面皰的惡化，化粧品不宜選用","trail":"","opts":["親水性之化粧品","無刺激性之化粧品","高油度之化粧品","消炎作用之化粧品"],"ans":3},{"id":"護33","stem":"按摩時應該使用","trail":"","opts":["清潔霜","按摩霜","隔離霜","潔膚乳"],"ans":2},{"id":"護34","stem":"敏感性肌膚的保養品，宜選用","trail":"","opts":["高油度","不含色素、香料及酒精","高養分","治療性藥劑"],"ans":2},{"id":"護36","stem":"敏感性皮膚保養時宜","trail":"","opts":["多蒸臉、多按摩","多蒸臉、少按摩","少蒸臉、多按摩","少蒸臉、少按摩"],"ans":4},{"id":"護37","stem":"油性皮膚保養時宜","trail":"","opts":["多蒸臉、多按摩","多蒸臉、少按摩","少蒸臉、多按摩","少蒸臉、少按摩"],"ans":2},{"id":"護38","stem":"面皰皮膚保養時宜","trail":"","opts":["多蒸臉、多按摩","多蒸臉、少按摩","少蒸臉、多按摩","少蒸臉、少按摩"],"ans":4},{"id":"護39","stem":"美容從業人員工作前，應以","trail":"洗淨雙手。","opts":["自來水","肥皂水","酒精","蒸餾水"],"ans":2},{"id":"護40","stem":"按摩的手技是以","trail":"為主。","opts":["指尖","指節","指腹","掌根"],"ans":3},{"id":"護41","stem":"洗臉的水質以下列哪項最理想？","trail":"","opts":["軟水","硬水","井水","自來水"],"ans":1},{"id":"護42","stem":"無刺激性、具安撫鎮靜作用的保養品較適用於","trail":"皮膚。","opts":["乾性","敏感性","中性","油性"],"ans":2},{"id":"護43","stem":"皮膚保養時，美容從業人員正確坐姿應","trail":"","opts":["背脊伸直","上半身緊靠顧客的臉","手肘靠緊身體","兩腿交疊"],"ans":1},{"id":"護44","stem":"按摩時要順著肌肉紋理","trail":"的原則。","opts":["由上往下，由內往外","由下往上，由外往內","由下往上，由內往外","由上往下，由外往內"],"ans":3},{"id":"護45","stem":"暫時隔絕空氣使毛孔收歛，以達到保養效果的是","trail":"","opts":["清潔","乳液","敷面","蒸臉"],"ans":3},{"id":"護46","stem":"皮膚保養程序，何者為先？","trail":"","opts":["卸粧","洗臉","按摩","敷臉"],"ans":1},{"id":"護47","stem":"專業皮膚保養時應讓顧客採","trail":"的姿勢。","opts":["蹲著","躺著","站著","坐著"],"ans":2},{"id":"護48","stem":"下列何者不是按摩的功效？","trail":"","opts":["促進血液循環","降低皮膚溫度","促進皮膚張力和彈力","延緩皮膚老化"],"ans":2},{"id":"護49","stem":"蒸臉器中，水的添加應","trail":"","opts":["高於最大容量刻度","低於最大容量刻度","低於最小容量刻度","無所謂"],"ans":2},{"id":"護50","stem":"當蒸臉器中，水面低於最小容量刻度時，應","trail":"","opts":["先關電源再加水","先加水再關電源","使用中加水","繼續使用"],"ans":1},{"id":"護51","stem":"敏感皮膚較中性皮膚蒸臉時間宜","trail":"","opts":["縮短","延長","不變","無所謂"],"ans":1},{"id":"護52","stem":"面皰皮膚較中性皮膚蒸臉時間宜","trail":"","opts":["縮短","延長","不變","無所謂"],"ans":1},{"id":"護53","stem":"乾性皮膚比油性皮膚蒸臉時間","trail":"","opts":["較短","較長","一樣","無所謂"],"ans":1},{"id":"護54","stem":"蒸臉器使用時噴霧口距離顧客臉部約","trail":"","opts":["20 公分","40 公分","60 公分","10公分"],"ans":2},{"id":"護55","stem":"蒸臉噴霧有殺菌、消炎作用，是因噴霧中含有","trail":"","opts":["雙氧","過氧","臭氧","酸氧"],"ans":3},{"id":"化1","stem":"化粧品中不得含有","trail":"","opts":["香料","色料","維生素","類固醇"],"ans":4},{"id":"化3","stem":"化粧品使用後，如有皮膚發炎、發癢、紅腫、水泡等情況發生，其處理方式為","trail":"","opts":["用溫水濕布","用收斂化粧水濕布","應立即停止使用","立刻擦皮膚藥膏"],"ans":3},{"id":"化4","stem":"化粧品的成分中，能夠使油溶性與水溶性成分密切結合的物質稱之為","trail":"","opts":["維他命","荷爾蒙","界面活性劑","防腐劑"],"ans":3},{"id":"化5","stem":"化粧品成分中具有防止氧化兼有防止變質為","trail":"","opts":["基劑","香料","維他命Ｅ","界面活性劑"],"ans":3},{"id":"化6","stem":"下列何者屬於水溶性成分？","trail":"","opts":["維他命Ｃ","維他命Ａ","綿羊油","蠟"],"ans":1},{"id":"化7","stem":"化粧品衛生安全管理法所稱化粧品業者：","trail":"","opts":["指以製造化粧品為營業者","指以製造、輸入或販賣化粧品為營業者","指以輸入化粧品為營業者","指以販賣化粧品為營業者"],"ans":2},{"id":"化8","stem":"化粧品之用途不得宣稱，具有何種效果？","trail":"","opts":["改善體味","修飾容貌","潤澤肌膚","平撫肌膚疤痕"],"ans":4},{"id":"化9","stem":"pH 值酸鹼平衡之中性點為","trail":"","opts":["pH ＝0","pH ＝5","pH ＝7","pH ＝14"],"ans":3},{"id":"化10","stem":"液體的酸鹼度 pH 值愈低其","trail":"","opts":["酸性愈強","酸性不變","鹼性愈強","鹼性不變"],"ans":1},{"id":"化11","stem":"混合兩種互不相溶之液體，使一液體均勻分散在另一液體中，此狀態稱為","trail":"","opts":["乳化","硬化","軟化","液化"],"ans":1},{"id":"化12","stem":"取用廣口瓶裝化粧品的正確方法是","trail":"","opts":["用挖杓","用棉花棒","用手指","用刀片"],"ans":1},{"id":"化13","stem":"下列何者是磨砂膏的功用","trail":"","opts":["移除老舊角質層","控制流汗","遮蓋體臭","防曬"],"ans":1},{"id":"化14","stem":"擦拭香水後，依香味出現的時間分為前調、中調、後調，下列何者不是前調香味？","trail":"","opts":["花香調","綠草調","水果調","動物香精"],"ans":4},{"id":"化15","stem":"香水、古龍水是屬於何種化粧品","trail":"","opts":["清潔用化粧品","保養用化粧品","美化用化粧品","香氛用化粧品"],"ans":4},{"id":"化16","stem":"俗稱果酸，其化學名為","trail":"","opts":["α -氫氧基酸","β -氫氧基酸","γ -氫氧基酸","ω-氫氧基酸"],"ans":1},{"id":"化17","stem":"使用脫色脫染劑間隔應在幾天後始得進行燙髮","trail":"","opts":["1 天","3 天","7 天","無限制"],"ans":3},{"id":"化18","stem":"染髮後，何時進行冷燙較為適宜？","trail":"","opts":["當天","3 天後","5 天後","7 天後"],"ans":4},{"id":"化19","stem":"燙髮劑中含有濃度 11% 以上硫醇基乙酸（ Thioglycolic acid ）為主成分之冷燙劑，下列敘述何者正確","trail":"","opts":["限白天使用","限溫度 23 ℃以下使用","限美髮專業技術人士使用","無使用上的限制"],"ans":3},{"id":"化20","stem":"下列哪種成分屬於化粧品中的活性成分？","trail":"","opts":["賦形劑","抗氧化劑","穩定劑","防腐劑"],"ans":2},{"id":"化21","stem":"美化膚色的化粧品為","trail":"","opts":["眼影","眉筆","唇線筆","粉底"],"ans":4},{"id":"化22","stem":"修飾臉形輪廓的產品是","trail":"","opts":["眉筆","睫毛膏","腮紅","蜜粉"],"ans":3},{"id":"化23","stem":"富含油質的清潔霜適用於何種皮膚","trail":"","opts":["油性皮膚","乾性皮膚","敏感皮膚","青春痘皮膚"],"ans":2},{"id":"化24","stem":"使用化粧品產生過敏症狀時，應","trail":"","opts":["用蛋白敷臉","用儀器治療","請醫師治療","以化粧水輕拍皮膚"],"ans":3},{"id":"化26","stem":"下列何種容器不適用於化粧品？","trail":"","opts":["軟管（ tube ）","塑膠瓶（ bottle ）","玻璃安瓿（ ampoule ）","小瓶（ vial ）"],"ans":3},{"id":"化28","stem":"下列哪一項可為化粧品之宣稱詞句？","trail":"","opts":["改善橘皮組織","塑身","瓦解脂肪","滋潤肌膚"],"ans":4},{"id":"化30","stem":"化粧品的仿單係指化粧品的","trail":"","opts":["說明書","容器","包裝盒","標籤"],"ans":1},{"id":"化32","stem":"化粧品廣告管理，何者敘述正確？","trail":"","opts":["應事前經縣市衛生主管機關核准","應事前經中央或直轄市衛生主管機關核准","刊播後由主管機關監控","無須管理"],"ans":3},{"id":"化33","stem":"國內製造的化粧品，其品名、標籤、仿單及包裝等刊載之文字，應以","trail":"文為主。","opts":["中","英","法","日"],"ans":1},{"id":"化34","stem":"化粧品工廠設廠標準，係由何機關訂定？","trail":"","opts":["衛生福利部","經濟部","經濟部會同衛生福利部","法務部"],"ans":3},{"id":"化35","stem":"下列那些情況下不宜染髮： A. 懷孕婦女 B. 頭頸部有紅腫、受傷或皮膚疾病C. 皮膚測試後，發紅或起水泡？","trail":"","opts":["A+B","A+C","B+C","A+B+C"],"ans":4},{"id":"化36","stem":"化粧品中禁止使用氟氯碳化物（ Chlorofluorocarbons ），係因它在大氣層中會消耗","trail":"使皮膚受到紫外線的傷害。","opts":["臭氧","氧氣","二氧化碳","一氧化碳"],"ans":1},{"id":"化37","stem":"化粧品衛生安全管理係由衛生福利部納入","trail":"業務的一環。","opts":["國民健康署","食品藥物管理署","疾病管制署","社會及家庭署"],"ans":2},{"id":"化38","stem":"依化粧品衛生安全管理法規定，化粧品包裝必須刊載","trail":"","opts":["商標","規格","全成分","售價"],"ans":3}];
+const N = 25, MARKS = ['①','②','③','④'];
+const $ = id => document.getElementById(id);
+let picked = [], submitted = false, confirmArmed = false;
+
+function rand(n){
+  try { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0] % n; }
+  catch(e){ return Math.floor(Math.random()*n); }
+}
+function sample(arr, k){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){ const j = rand(i+1); [a[i],a[j]] = [a[j],a[i]]; }
+  return a.slice(0, k);
+}
+function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function render(){
+  picked = sample(BANK, N);
+  submitted = false; confirmArmed = false;
+  $('list').className = 'qs';
+  $('score').hidden = true; $('warn').hidden = true;
+  $('onlyWrong').checked = false;
+  $('submit').hidden = false;
+  $('list').innerHTML = picked.map((q, i) => {
+    const text = q.trail || !q.stem
+      ? `${esc(q.stem)}<span class="blank"></span>${esc(q.trail)}`
+      : esc(q.stem);
+    const opts = q.opts.map((o, k) => `
+      <label class="opt" data-k="${k+1}">
+        <input type="radio" name="q${i}" value="${k+1}">
+        <span class="n">${MARKS[k]}</span><span>${esc(o)}</span><span class="tag"></span>
+      </label>`).join('');
+    return `<li class="q" id="q${i}">
+      <div class="head"><span class="no">${i+1}</span><span class="text">${text}</span><span class="src">${esc(q.id.slice(0,1))} ${esc(q.id.slice(1))}</span></div>
+      <div class="opts">${opts}</div></li>`;
+  }).join('');
+  update();
+  window.scrollTo({top:0});
+}
+
+function answered(){ return picked.filter((_, i) => document.querySelector(`input[name="q${i}"]:checked`)).length; }
+function update(){
+  const a = answered();
+  $('count').textContent = `已作答 ${a} / ${N}`;
+  $('fill').style.width = (a / N * 100) + '%';
+  if (confirmArmed && a === N){ confirmArmed = false; $('warn').hidden = true; $('submit').textContent = '送出對答案'; }
+}
+
+function grade(){
+  const left = N - answered();
+  if (left > 0 && !confirmArmed){
+    confirmArmed = true;
+    $('warn').textContent = `還有 ${left} 題沒作答，沒答的會算錯。再按一次「送出」就直接對答案。`;
+    $('warn').hidden = false;
+    $('submit').textContent = '確定送出';
+    const first = picked.findIndex((_, i) => !document.querySelector(`input[name="q${i}"]:checked`));
+    if (first >= 0) $('q'+first).scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+  submitted = true;
+  $('warn').hidden = true;
+  $('submit').hidden = true; $('submit').textContent = '送出對答案';
+  let right = 0;
+  picked.forEach((q, i) => {
+    const li = $('q'+i);
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    const v = sel ? +sel.value : 0;
+    const ok = v === q.ans;
+    if (ok) right++;
+    li.classList.add(ok ? 'hit' : 'miss');
+    li.querySelectorAll('input').forEach(x => x.disabled = true);
+    li.querySelectorAll('.opt').forEach(o => {
+      const k = +o.dataset.k;
+      if (k === q.ans){ o.classList.add('right'); o.querySelector('.tag').textContent = '正確答案'; }
+      else if (k === v){ o.classList.add('wrong'); o.querySelector('.tag').textContent = '你的答案'; }
+    });
+    const head = li.querySelector('.head');
+    const vd = document.createElement('span');
+    vd.className = 'verdict';
+    vd.textContent = ok ? '答對' : (v ? '答錯' : '未作答');
+    head.appendChild(vd);
+  });
+  $('list').classList.add('done');
+  const score = Math.round(right / N * 100);
+  $('big').innerHTML = `${score}<small> 分</small>`;
+  $('msg').textContent = `答對 ${right} / ${N} 題` + (score >= 60 ? '，及格' : '，還差一點（60 分及格）');
+  $('score').hidden = false;
+  $('score').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+$('total').textContent = BANK.length;
+$('list').addEventListener('change', update);
+$('submit').addEventListener('click', grade);
+$('again').addEventListener('click', render);
+$('onlyWrong').addEventListener('change', e => $('list').classList.toggle('only-wrong', e.target.checked));
+render();
+</script>
+
+</body>
+</html>

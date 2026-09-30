@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>美容丙級學科講義</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* Layout: a study handout — sticky chapter index on the left (desktop), one reading column, figures set wider than text. */
+:root{
+  --bg:#f3f6f6; --paper:#ffffff; --fg:#1b2a2d; --muted:#5a6b6f; --line:#d3dfe0;
+  --accent:#17736f; --accent-soft:#d9eeec; --mark:#b8475d; --mark-soft:#f8e3e7;
+  --epi:#f1c7ad; --corn:#d99b7c; --corn-soft:#f6d9c7; --luc:#fbf1ea; --derm:#f8e1d6; --subq:#fbefc6; --fat:#f6dc86; --fat-line:#d9b74e;
+  --art:#cf4a42; --vein:#4a6ec2; --nerve:#c9971a; --seb:#eea93c; --sweat:#5aa6cf; --hair:#3b2a22; --muscle:#b8606f;
+  --mel:#5b3825; --foll:#f3d2c0; --face:#f6dccd; --t:#6fc3bb; --lip:#d97b88; --eye:#ffffff;
+  --sun:#f3c43f; --ozone:#b9dbe8; --uvc:#8a63c9; --uvb:#d0662f; --uva:#c9a21a;
+  --acid:#e27b86; --neutral:#e9e6d7; --alk:#5fa9c7; --water:#dcecf4; --oil:#f6dc86;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111a1c; --paper:#182326; --fg:#e2ebeb; --muted:#9db0b3; --line:#2b3b3e;
+  --accent:#5fc6c0; --accent-soft:#1b3b3a; --mark:#f08ca0; --mark-soft:#3b2229;
+  --epi:#8c5b48; --corn:#b67b60; --corn-soft:#6e4a3c; --luc:#9a7462; --derm:#5a3f37; --subq:#57492a; --fat:#7f6a2e; --fat-line:#a88c3c;
+  --art:#e8645c; --vein:#7d9ce6; --nerve:#e7bb45; --seb:#d69638; --sweat:#63b3db; --hair:#e0cdbf; --muscle:#d68392;
+  --mel:#2a170d; --foll:#744c3d; --face:#5d4439; --t:#2f8e87; --lip:#b35c69; --eye:#dbe3e3;
+  --sun:#d8aa2a; --ozone:#2d5566; --uvc:#b393f0; --uvb:#f08a52; --uva:#e3c040;
+  --acid:#a9505c; --neutral:#6d6a5e; --alk:#3c7f9b; --water:#1f3844; --oil:#8a7433;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#111a1c; --paper:#182326; --fg:#e2ebeb; --muted:#9db0b3; --line:#2b3b3e;
+  --accent:#5fc6c0; --accent-soft:#1b3b3a; --mark:#f08ca0; --mark-soft:#3b2229;
+  --epi:#8c5b48; --corn:#b67b60; --corn-soft:#6e4a3c; --luc:#9a7462; --derm:#5a3f37; --subq:#57492a; --fat:#7f6a2e; --fat-line:#a88c3c;
+  --art:#e8645c; --vein:#7d9ce6; --nerve:#e7bb45; --seb:#d69638; --sweat:#63b3db; --hair:#e0cdbf; --muscle:#d68392;
+  --mel:#2a170d; --foll:#744c3d; --face:#5d4439; --t:#2f8e87; --lip:#b35c69; --eye:#dbe3e3;
+  --sun:#d8aa2a; --ozone:#2d5566; --uvc:#b393f0; --uvb:#f08a52; --uva:#e3c040;
+  --acid:#a9505c; --neutral:#6d6a5e; --alk:#3c7f9b; --water:#1f3844; --oil:#8a7433;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.75;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}}
+
+header.top{max-width:1120px;margin:0 auto;padding-block:48px 28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.kicker{font-size:13px;letter-spacing:.14em;color:var(--accent);font-weight:700}
+h1{font-family:var(--serif);font-weight:900;font-size:clamp(30px,5vw,46px);line-height:1.2;margin:.2em 0 .3em;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:14px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:14px;line-height:1.5}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.toc a{color:var(--muted);text-decoration:none;display:block;padding:4px 10px;border-radius:6px}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--accent-soft);color:var(--fg);outline:none}
+nav.toc .part{font-weight:700;color:var(--fg);margin-top:12px;padding-left:10px;font-size:13px;letter-spacing:.06em}
+@media (max-width:900px){nav.toc{display:none}}
+
+main{min-width:0}
+section.part{margin-bottom:56px}
+.part-h{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--fg);padding-bottom:8px;margin-bottom:8px}
+.part-h .no{font-family:var(--serif);font-weight:900;font-size:15px;color:var(--accent);letter-spacing:.08em;white-space:nowrap}
+.part-h h2{font-family:var(--serif);font-weight:900;font-size:clamp(24px,3.4vw,32px);margin:0;line-height:1.3}
+.part-meta{color:var(--muted);font-size:14px;margin:0 0 20px}
+h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:40px 0 10px;text-wrap:balance;scroll-margin-top:20px}
+h4{font-size:16px;margin:22px 0 6px}
+p,ul,ol{max-width:68ch}
+ul{padding-left:1.25em;margin:8px 0}
+li{margin:4px 0}
+li::marker{color:var(--accent)}
+b,strong{font-weight:700}
+.hl{background:linear-gradient(transparent 58%,var(--accent-soft) 58%);font-weight:700}
+
+.q{display:inline-block;font-size:11.5px;line-height:1;padding:3px 5px 2px;border-radius:4px;border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums;vertical-align:2px;margin-left:3px;white-space:nowrap}
+
+figure{margin:22px 0 26px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px}
+figure .scroll{overflow-x:auto}
+figure svg{display:block;width:100%;height:auto;min-width:560px}
+figure.narrow svg{min-width:0;max-width:640px;margin:0 auto}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:10px}
+
+.tbl{overflow-x:auto;margin:14px 0 20px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.04em;border-bottom:1.5px solid var(--fg)}
+td:first-child{font-weight:700;white-space:nowrap}
+td.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);white-space:nowrap}
+
+.trap{border-left:3px solid var(--mark);background:var(--mark-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;max-width:68ch;font-size:15px}
+.trap::before{content:"易錯";font-weight:700;color:var(--mark);margin-right:8px;font-size:13px;letter-spacing:.08em}
+.note{font-size:14px;color:var(--muted);max-width:68ch}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:16px 0 22px;padding:0;list-style:none;max-width:none}
+.flow li{flex:1 1 120px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0;font-size:14px;line-height:1.5;position:relative}
+.flow li b{display:block;font-family:var(--serif);font-size:17px;margin-bottom:2px}
+.flow li .step{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.06em}
+
+.matrix{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;max-width:560px;margin:16px 0 22px;font-size:15px}
+.matrix div{padding:12px;border-radius:8px;background:var(--paper);border:1px solid var(--line);line-height:1.5}
+.matrix .h{background:none;border:none;font-size:13px;color:var(--muted);font-weight:700;display:flex;align-items:flex-end;padding:4px 8px}
+.matrix .rh{background:none;border:none;font-size:13px;color:var(--muted);font-weight:700;display:flex;align-items:center;padding:4px 8px}
+.matrix .on{background:var(--accent-soft);border-color:transparent}
+.matrix b{font-family:var(--serif);font-size:18px;display:block}
+.matrix small{color:var(--muted);font-size:12.5px}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0 20px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.card h4{margin:0 0 6px;font-family:var(--serif);font-size:18px}
+.card ul{margin:0}
+.card.bad h4{color:var(--mark)}
+.card.good h4{color:var(--accent)}
+
+details.quiz{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin:8px 0;max-width:68ch}
+details.quiz summary{cursor:pointer;padding:10px 14px;list-style:none;font-weight:500}
+details.quiz summary::-webkit-details-marker{display:none}
+details.quiz summary::before{content:"Q";font-weight:700;color:var(--accent);margin-right:10px}
+details.quiz[open] summary{border-bottom:1px solid var(--line)}
+details.quiz .a{padding:10px 14px;color:var(--fg)}
+details.quiz .a::before{content:"答";font-weight:700;color:var(--mark);margin-right:10px}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+/* svg */
+svg text{font-family:var(--sans);fill:var(--fg)}
+.lbl{font-size:15px;font-weight:700}
+.lbl-b{font-size:16px;font-weight:700}
+.lbl-s{font-size:12.5px;fill:var(--muted)}
+.lbl-acc{font-size:13px;font-weight:700;fill:var(--accent)}
+.lbl-num{font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.f-derm{fill:var(--derm)} .f-subq{fill:var(--subq)} .f-epi{fill:var(--epi)} .f-corn{fill:var(--corn)} .f-corn-soft{fill:var(--corn-soft)} .f-luc{fill:var(--luc)}
+.f-fat{fill:var(--fat);stroke:var(--fat-line);stroke-width:1.2}
+.f-foll{fill:var(--foll);stroke:var(--corn);stroke-width:1.5}
+.f-mel{fill:var(--mel)} .s-mel{stroke:var(--mel)}
+.f-accent{fill:var(--accent)} .s-accent{stroke:var(--accent)}
+.v-art{stroke:var(--art)} .v-art-fill{fill:var(--art)} .v-vein{stroke:var(--vein)} .v-nerve{stroke:var(--nerve)}
+.s-sweat{stroke:var(--sweat)} .g-sweat{fill:none;stroke:var(--sweat);stroke-width:3}
+.s-seb{stroke:var(--seb)} .g-seb{fill:var(--seb);stroke:var(--corn);stroke-width:1}
+.s-hair{stroke:var(--hair);stroke-linecap:round} .s-muscle{stroke:var(--muscle)}
+.s-ink{stroke:var(--fg)} .s-muted{stroke:var(--muted);stroke-width:1.2} .s-line{stroke:var(--line);stroke-width:1}
+.leader{stroke:var(--muted);stroke-width:1;fill:none} .dot{fill:var(--fg)}
+.cell{fill:var(--epi);stroke:var(--corn);stroke-width:1.2} .cell-corn{fill:var(--corn);opacity:.9}
+.cell-spine{fill:none;stroke:var(--corn);stroke-width:1.4;stroke-dasharray:2 3}
+.nuc{fill:var(--mel);opacity:.55} .gran{fill:var(--mel)}
+.f-sun{fill:var(--sun)} .f-ozone{fill:var(--ozone)} .s-uvc{stroke:var(--uvc)} .s-uvb{stroke:var(--uvb)} .s-uva{stroke:var(--uva)}
+.band{fill:none;stroke:var(--fg);stroke-width:2}
+.f-face{fill:var(--face);stroke:var(--corn);stroke-width:1.5} .f-t{fill:var(--t);opacity:.45} .f-lip{fill:var(--lip)} .f-eye{fill:var(--eye);stroke:var(--fg);stroke-width:1.5}
+.f-water{fill:var(--water)} .f-oil{fill:var(--oil)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+body{margin:0}
+.cta{display:inline-block;margin-top:20px;padding:10px 18px;border-radius:8px;background:var(--accent);color:var(--paper);font-weight:700;text-decoration:none}
+.cta:hover{filter:brightness(1.08)}
+.cta:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+</style>
+
+<header class="top">
+  <div class="kicker">10000 美容丙級・學科</div>
+  <h1>美容丙級學科講義</h1>
+  <p class="lede">依題庫三個單元整理：皮膚認識（169 題）、護膚（55 題）、化粧品認識（38 題）。每個重點後面的小標籤是出處題號，方便回頭對照題庫。</p>
+  <div class="legend">
+    <span><span class="q">皮 36</span> 工作項目 01 皮膚認識 第 36 題</span>
+    <span><span class="q">護 12</span> 工作項目 02 護膚 第 12 題</span>
+    <span><span class="q">化 8</span> 共同科目 化粧品認識 第 8 題</span>
+  </div>
+  <a class="cta" href="quiz/">隨機 25 題測驗 →</a>
+</header>
+
+</head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="目錄">
+  <ol>
+    <li class="part">一・皮膚認識</li>
+    <li><a href="#overview">皮膚總覽</a></li>
+    <li><a href="#epidermis">表皮五層</a></li>
+    <li><a href="#melanin">黑色素與紫外線</a></li>
+    <li><a href="#dermis">真皮</a></li>
+    <li><a href="#subq">皮下組織</a></li>
+    <li><a href="#sebum">皮脂腺與皮脂膜</a></li>
+    <li><a href="#sweat">汗腺</a></li>
+    <li><a href="#function">皮膚的功能</a></li>
+    <li><a href="#ph">酸鹼值 pH</a></li>
+    <li><a href="#types">膚質判斷</a></li>
+    <li><a href="#hair">毛髮・指甲・皮紋</a></li>
+    <li><a href="#limits">美容師的界線</a></li>
+    <li class="part">二・護膚</li>
+    <li><a href="#routine">保養程序</a></li>
+    <li><a href="#massage">按摩</a></li>
+    <li><a href="#steam">蒸臉器</a></li>
+    <li><a href="#bytype">各膚質保養</a></li>
+    <li class="part">三・化粧品認識</li>
+    <li><a href="#law">法規</a></li>
+    <li><a href="#ingredients">成分</a></li>
+    <li><a href="#products">分類與使用</a></li>
+    <li><a href="#hairchem">燙髮・染髮安全</a></li>
+    <li class="part">四・考前速記</li>
+    <li><a href="#numbers">數字總表</a></li>
+    <li><a href="#traps">易錯陷阱</a></li>
+    <li><a href="#quiz">自我檢測</a></li>
+  </ol>
+</nav>
+
+<main>
+<!-- ============================================================ PART 1 -->
+<section class="part">
+  <div class="part-h"><span class="no">第一單元</span><h2>皮膚認識</h2></div>
+  <p class="part-meta">工作項目 01・169 題，是題數最多的單元。先把「三層構造」和「表皮五層」的圖記熟，大部分題目都能直接推出答案。</p>
+
+  <h3 id="overview">1. 皮膚總覽</h3>
+  <ul>
+    <li>皮膚是<span class="hl">人體最大的器官</span><span class="q">皮 49</span>，約佔體重的 <b>15%</b><span class="q">皮 138</span>。</li>
+    <li>由外而內分三層：<span class="hl">表皮 → 真皮 → 皮下組織</span><span class="q">皮 96</span><span class="q">皮 10</span><span class="q">皮 116</span>。</li>
+    <li>皮膚的衍生構造（附屬器官）：<b>毛髮、指甲</b>，以及汗腺、皮脂腺<span class="q">皮 26</span>。</li>
+    <li>「組織」＝由成群相似的細胞組成的構造<span class="q">皮 119</span>。</li>
+    <li>就滲透性而言，<b>豬皮</b>和人類皮膚最相似<span class="q">皮 148</span>。</li>
+  </ul>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 830 540" role="img" aria-label="皮膚構造剖面圖：表皮、真皮、皮下組織與附屬器官"><rect x="120" y="120" width="480" height="240" class="f-derm"/><rect x="120" y="360" width="480" height="160" class="f-subq"/><circle cx="152" cy="378" r="15" class="f-fat"/><circle cx="184" cy="378" r="15" class="f-fat"/><circle cx="216" cy="378" r="15" class="f-fat"/><circle cx="248" cy="378" r="15" class="f-fat"/><circle cx="280" cy="378" r="15" class="f-fat"/><circle cx="312" cy="378" r="15" class="f-fat"/><circle cx="344" cy="378" r="15" class="f-fat"/><circle cx="376" cy="378" r="15" class="f-fat"/><circle cx="408" cy="378" r="15" class="f-fat"/><circle cx="440" cy="378" r="15" class="f-fat"/><circle cx="472" cy="378" r="15" class="f-fat"/><circle cx="504" cy="378" r="15" class="f-fat"/><circle cx="536" cy="378" r="15" class="f-fat"/><circle cx="568" cy="378" r="15" class="f-fat"/><circle cx="136" cy="408" r="15" class="f-fat"/><circle cx="168" cy="408" r="15" class="f-fat"/><circle cx="200" cy="408" r="15" class="f-fat"/><circle cx="232" cy="408" r="15" class="f-fat"/><circle cx="264" cy="408" r="15" class="f-fat"/><circle cx="296" cy="408" r="15" class="f-fat"/><circle cx="328" cy="408" r="15" class="f-fat"/><circle cx="360" cy="408" r="15" class="f-fat"/><circle cx="392" cy="408" r="15" class="f-fat"/><circle cx="424" cy="408" r="15" class="f-fat"/><circle cx="456" cy="408" r="15" class="f-fat"/><circle cx="488" cy="408" r="15" class="f-fat"/><circle cx="520" cy="408" r="15" class="f-fat"/><circle cx="552" cy="408" r="15" class="f-fat"/><circle cx="584" cy="408" r="15" class="f-fat"/><circle cx="152" cy="438" r="15" class="f-fat"/><circle cx="184" cy="438" r="15" class="f-fat"/><circle cx="216" cy="438" r="15" class="f-fat"/><circle cx="248" cy="438" r="15" class="f-fat"/><circle cx="280" cy="438" r="15" class="f-fat"/><circle cx="312" cy="438" r="15" class="f-fat"/><circle cx="344" cy="438" r="15" class="f-fat"/><circle cx="376" cy="438" r="15" class="f-fat"/><circle cx="408" cy="438" r="15" class="f-fat"/><circle cx="440" cy="438" r="15" class="f-fat"/><circle cx="472" cy="438" r="15" class="f-fat"/><circle cx="504" cy="438" r="15" class="f-fat"/><circle cx="536" cy="438" r="15" class="f-fat"/><circle cx="568" cy="438" r="15" class="f-fat"/><circle cx="136" cy="468" r="15" class="f-fat"/><circle cx="168" cy="468" r="15" class="f-fat"/><circle cx="200" cy="468" r="15" class="f-fat"/><circle cx="232" cy="468" r="15" class="f-fat"/><circle cx="264" cy="468" r="15" class="f-fat"/><circle cx="296" cy="468" r="15" class="f-fat"/><circle cx="328" cy="468" r="15" class="f-fat"/><circle cx="360" cy="468" r="15" class="f-fat"/><circle cx="392" cy="468" r="15" class="f-fat"/><circle cx="424" cy="468" r="15" class="f-fat"/><circle cx="456" cy="468" r="15" class="f-fat"/><circle cx="488" cy="468" r="15" class="f-fat"/><circle cx="520" cy="468" r="15" class="f-fat"/><circle cx="552" cy="468" r="15" class="f-fat"/><circle cx="584" cy="468" r="15" class="f-fat"/><circle cx="152" cy="498" r="15" class="f-fat"/><circle cx="184" cy="498" r="15" class="f-fat"/><circle cx="216" cy="498" r="15" class="f-fat"/><circle cx="248" cy="498" r="15" class="f-fat"/><circle cx="280" cy="498" r="15" class="f-fat"/><circle cx="312" cy="498" r="15" class="f-fat"/><circle cx="344" cy="498" r="15" class="f-fat"/><circle cx="376" cy="498" r="15" class="f-fat"/><circle cx="408" cy="498" r="15" class="f-fat"/><circle cx="440" cy="498" r="15" class="f-fat"/><circle cx="472" cy="498" r="15" class="f-fat"/><circle cx="504" cy="498" r="15" class="f-fat"/><circle cx="536" cy="498" r="15" class="f-fat"/><circle cx="568" cy="498" r="15" class="f-fat"/><rect x="120" y="360" width="480" height="160" fill="none" class="s-line"/><path d="M120 452 C 250 440, 420 468, 600 450" class="v-art" stroke-width="7" fill="none"/><path d="M120 470 C 250 458, 420 486, 600 468" class="v-vein" stroke-width="7" fill="none"/><path d="M120 298 C 260 290, 420 306, 600 296" class="v-art" stroke-width="4" fill="none"/><path d="M120 312 C 260 304, 420 320, 600 310" class="v-vein" stroke-width="4" fill="none"/><path d="M356 300 V 138 Q 360 128 364 138 V 308" class="v-art" stroke-width="2" fill="none"/><path d="M416 300 V 138 Q 420 128 424 138 V 308" class="v-art" stroke-width="2" fill="none"/><path d="M536 300 V 138 Q 540 128 544 138 V 308" class="v-art" stroke-width="2" fill="none"/><path d="M120 70 H600 V138 Q 590 118 580 138 Q 570 158 560 138 Q 550 118 540 138 Q 530 158 520 138 Q 510 118 500 138 Q 490 158 480 138 Q 470 118 460 138 Q 450 158 440 138 Q 430 118 420 138 Q 410 158 400 138 Q 390 118 380 138 Q 370 158 360 138 Q 350 118 340 138 Q 330 158 320 138 Q 310 118 300 138 Q 290 158 280 138 Q 270 118 260 138 Q 250 158 240 138 Q 230 118 220 138 Q 210 158 200 138 Q 190 118 180 138 Q 170 158 160 138 Q 150 118 140 138 Q 130 158 120 138 Z" class="f-epi"/><rect x="120" y="70" width="480" height="9" class="f-corn"/><path d="M120 345 C 250 340, 380 320, 470 280 S 550 230, 556 168" class="v-nerve" stroke-width="3" fill="none"/><path d="M556 168 l-8 -12 M556 168 l0 -14 M556 168 l8 -12" class="v-nerve" stroke-width="2" fill="none"/><path d="M226 345 C 226 260, 240 170, 250 132" class="s-sweat" stroke-width="4" fill="none"/><ellipse cx="210" cy="350" rx="11" ry="8" class="g-sweat"/><ellipse cx="224" cy="360" rx="11" ry="8" class="g-sweat"/><ellipse cx="206" cy="366" rx="11" ry="8" class="g-sweat"/><ellipse cx="220" cy="344" rx="11" ry="8" class="g-sweat"/><ellipse cx="214" cy="374" rx="11" ry="8" class="g-sweat"/><path d="M246 70 V 392 Q 246 418 260 418 Q 274 418 274 392 V 70" class="f-foll"/><ellipse cx="260" cy="404" rx="20" ry="16" class="f-foll"/><ellipse cx="260" cy="410" rx="7" ry="6" class="v-art-fill"/><line x1="260" y1="398" x2="260" y2="70" class="s-hair" stroke-width="6"/><path d="M260 72 C 256 50, 246 28, 232 10" class="s-hair" stroke-width="6" fill="none"/><path d="M274 152 H 286" class="s-seb" stroke-width="5"/><circle cx="290" cy="160" r="12" class="g-seb"/><circle cx="302" cy="176" r="12" class="g-seb"/><circle cx="286" cy="184" r="11" class="g-seb"/><circle cx="300" cy="196" r="9" class="g-seb"/><path d="M274 250 L 338 146" class="s-muscle" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M470 322 V 160 Q 462 150 470 140 Q 478 130 470 120 Q 462 110 470 100 Q 478 90 470 80 V 70" class="s-sweat" stroke-width="4" fill="none"/><ellipse cx="462" cy="330" rx="10" ry="7" class="g-sweat"/><ellipse cx="478" cy="334" rx="10" ry="7" class="g-sweat"/><ellipse cx="468" cy="342" rx="10" ry="7" class="g-sweat"/><ellipse cx="484" cy="346" rx="10" ry="7" class="g-sweat"/><ellipse cx="458" cy="344" rx="10" ry="7" class="g-sweat"/><line x1="120" y1="70" x2="600" y2="70" class="s-ink" stroke-width="1.5"/><path d="M112 72 H106 V138 H112" class="s-muted" fill="none"/><text x="100" y="105" text-anchor="end" class="lbl-b">表皮</text><text x="100" y="122" text-anchor="end" class="lbl-s">無血管</text><path d="M112 142 H106 V358 H112" class="s-muted" fill="none"/><text x="100" y="250" text-anchor="end" class="lbl-b">真皮</text><text x="100" y="267" text-anchor="end" class="lbl-s">血管・神經・腺體</text><path d="M70 142 H64 V190 H70" class="s-muted" fill="none"/><text x="58" y="171" text-anchor="end" class="lbl-s">乳頭層</text><path d="M70 194 H64 V358 H70" class="s-muted" fill="none"/><text x="58" y="281" text-anchor="end" class="lbl-s">網狀層</text><path d="M112 362 H106 V518 H112" class="s-muted" fill="none"/><text x="100" y="440" text-anchor="end" class="lbl-b">皮下組織</text><text x="100" y="457" text-anchor="end" class="lbl-s">脂肪</text><circle cx="234" cy="22" r="3" class="dot"/><path d="M234 22 L 612 22 H 620" class="leader" fill="none"/><text x="626" y="27" class="lbl">毛幹</text><text x="626" y="43" class="lbl-s">露出皮膚的部分</text><circle cx="470" cy="70" r="3" class="dot"/><path d="M470 70 L 612 58 H 620" class="leader" fill="none"/><text x="626" y="63" class="lbl">汗孔</text><text x="626" y="79" class="lbl-s">小汗腺開口於皮膚表面</text><circle cx="416" cy="136" r="3" class="dot"/><path d="M416 136 L 612 102 H 620" class="leader" fill="none"/><text x="626" y="107" class="lbl">微血管</text><text x="626" y="123" class="lbl-s">供給表皮營養</text><circle cx="330" cy="158" r="3" class="dot"/><path d="M330 158 L 612 146 H 620" class="leader" fill="none"/><text x="626" y="151" class="lbl">豎毛肌</text><text x="626" y="167" class="lbl-s">自主神經支配</text><circle cx="306" cy="184" r="3" class="dot"/><path d="M306 184 L 612 190 H 620" class="leader" fill="none"/><text x="626" y="195" class="lbl">皮脂腺</text><text x="626" y="211" class="lbl-s">開口於毛囊</text><circle cx="556" cy="162" r="3" class="dot"/><path d="M556 162 L 612 234 H 620" class="leader" fill="none"/><text x="626" y="239" class="lbl">感覺神經末梢</text><text x="626" y="255" class="lbl-s">冷・熱・痛・癢</text><circle cx="274" cy="290" r="3" class="dot"/><path d="M274 290 L 612 278 H 620" class="leader" fill="none"/><text x="626" y="283" class="lbl">毛囊</text><circle cx="488" cy="336" r="3" class="dot"/><path d="M488 336 L 612 314 H 620" class="leader" fill="none"/><text x="626" y="319" class="lbl">小汗腺</text><text x="626" y="335" class="lbl-s">全身・散熱</text><circle cx="592" cy="303" r="3" class="dot"/><path d="M592 303 L 612 352 H 620" class="leader" fill="none"/><text x="626" y="357" class="lbl">動脈 / 靜脈</text><circle cx="230" cy="364" r="3" class="dot"/><path d="M230 364 L 612 390 H 620" class="leader" fill="none"/><text x="626" y="395" class="lbl">大汗腺（頂漿腺）</text><text x="626" y="411" class="lbl-s">開口於毛囊・狐臭</text><circle cx="280" cy="406" r="3" class="dot"/><path d="M280 406 L 612 430 H 620" class="leader" fill="none"/><text x="626" y="435" class="lbl">毛球 / 毛乳頭</text><circle cx="540" cy="480" r="3" class="dot"/><path d="M540 480 L 612 478 H 620" class="leader" fill="none"/><text x="626" y="483" class="lbl">脂肪細胞</text><text x="626" y="499" class="lbl-s">保溫・緩衝・儲能</text></svg></div>
+    <figcaption>皮膚剖面。表皮沒有血管，營養靠真皮的血液供給；汗腺、皮脂腺、血管、神經都在真皮；皮下組織主要是脂肪。</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>層</th><th>重點</th><th>出處</th></tr></thead>
+    <tbody>
+      <tr><td>表皮</td><td>最外層的保護層；<b>沒有血管</b>；最厚在手掌與腳底，最薄在眼瞼</td><td><span class="q">皮 116</span><span class="q">皮 124</span><span class="q">皮 100</span><span class="q">皮 121</span></td></tr>
+      <tr><td>真皮</td><td>含血管、淋巴管、神經、汗腺、皮脂腺；由膠原纖維與彈性纖維構成；厚 0.3–3 mm</td><td><span class="q">皮 54</span><span class="q">皮 90</span><span class="q">皮 140</span></td></tr>
+      <tr><td>皮下組織</td><td>在真皮之下；含大量脂肪，與曲線美有關</td><td><span class="q">皮 25</span><span class="q">皮 39</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="epidermis">2. 表皮五層</h3>
+  <p>由外到內的順序：<span class="hl">角質層、透明層、顆粒層、有棘層、基底層</span><span class="q">皮 127</span>。口訣：<b>「角・透・顆・棘・基」</b>。</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 860 432" role="img" aria-label="表皮五層示意圖"><defs><marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-accent"/></marker></defs><rect x="170" y="336" width="390" height="50" class="f-derm"/><path d="M170 368 C 300 360, 420 376, 560 366" class="v-art" stroke-width="4" fill="none"/><text x="365.0" y="356" text-anchor="middle" class="lbl-s">真皮：血液經基底膜供給表皮養分</text><rect x="170" y="40" width="390" height="56" class="f-corn-soft"/><rect x="170" y="46" width="26" height="6" rx="3" class="cell-corn"/><rect x="202" y="46" width="56" height="6" rx="3" class="cell-corn"/><rect x="264" y="46" width="56" height="6" rx="3" class="cell-corn"/><rect x="326" y="46" width="56" height="6" rx="3" class="cell-corn"/><rect x="388" y="46" width="56" height="6" rx="3" class="cell-corn"/><rect x="450" y="46" width="56" height="6" rx="3" class="cell-corn"/><rect x="512" y="46" width="48" height="6" rx="3" class="cell-corn"/><rect x="170" y="55" width="56" height="6" rx="3" class="cell-corn"/><rect x="232" y="55" width="56" height="6" rx="3" class="cell-corn"/><rect x="294" y="55" width="56" height="6" rx="3" class="cell-corn"/><rect x="356" y="55" width="56" height="6" rx="3" class="cell-corn"/><rect x="418" y="55" width="56" height="6" rx="3" class="cell-corn"/><rect x="480" y="55" width="56" height="6" rx="3" class="cell-corn"/><rect x="542" y="55" width="18" height="6" rx="3" class="cell-corn"/><rect x="170" y="64" width="26" height="6" rx="3" class="cell-corn"/><rect x="202" y="64" width="56" height="6" rx="3" class="cell-corn"/><rect x="264" y="64" width="56" height="6" rx="3" class="cell-corn"/><rect x="326" y="64" width="56" height="6" rx="3" class="cell-corn"/><rect x="388" y="64" width="56" height="6" rx="3" class="cell-corn"/><rect x="450" y="64" width="56" height="6" rx="3" class="cell-corn"/><rect x="512" y="64" width="48" height="6" rx="3" class="cell-corn"/><rect x="170" y="73" width="56" height="6" rx="3" class="cell-corn"/><rect x="232" y="73" width="56" height="6" rx="3" class="cell-corn"/><rect x="294" y="73" width="56" height="6" rx="3" class="cell-corn"/><rect x="356" y="73" width="56" height="6" rx="3" class="cell-corn"/><rect x="418" y="73" width="56" height="6" rx="3" class="cell-corn"/><rect x="480" y="73" width="56" height="6" rx="3" class="cell-corn"/><rect x="542" y="73" width="18" height="6" rx="3" class="cell-corn"/><rect x="170" y="82" width="26" height="6" rx="3" class="cell-corn"/><rect x="202" y="82" width="56" height="6" rx="3" class="cell-corn"/><rect x="264" y="82" width="56" height="6" rx="3" class="cell-corn"/><rect x="326" y="82" width="56" height="6" rx="3" class="cell-corn"/><rect x="388" y="82" width="56" height="6" rx="3" class="cell-corn"/><rect x="450" y="82" width="56" height="6" rx="3" class="cell-corn"/><rect x="512" y="82" width="48" height="6" rx="3" class="cell-corn"/><rect x="170" y="91" width="56" height="6" rx="3" class="cell-corn"/><rect x="232" y="91" width="56" height="6" rx="3" class="cell-corn"/><rect x="294" y="91" width="56" height="6" rx="3" class="cell-corn"/><rect x="356" y="91" width="56" height="6" rx="3" class="cell-corn"/><rect x="418" y="91" width="56" height="6" rx="3" class="cell-corn"/><rect x="480" y="91" width="56" height="6" rx="3" class="cell-corn"/><rect x="542" y="91" width="18" height="6" rx="3" class="cell-corn"/><rect x="230" y="26" width="46" height="6" rx="3" class="cell-corn" transform="rotate(-8 253 29)"/><rect x="330" y="22" width="46" height="6" rx="3" class="cell-corn" transform="rotate(6 353 25)"/><rect x="470" y="28" width="46" height="6" rx="3" class="cell-corn" transform="rotate(-4 493 31)"/><rect x="170" y="96" width="390" height="18" class="f-luc"/><rect x="170" y="114" width="390" height="46" class="f-epi"/><ellipse cx="184" cy="126" rx="22" ry="9" class="cell"/><circle cx="172" cy="124" r="1.8" class="gran"/><circle cx="180" cy="128" r="1.8" class="gran"/><circle cx="188" cy="124" r="1.8" class="gran"/><circle cx="196" cy="128" r="1.8" class="gran"/><ellipse cx="232" cy="126" rx="22" ry="9" class="cell"/><circle cx="220" cy="124" r="1.8" class="gran"/><circle cx="228" cy="128" r="1.8" class="gran"/><circle cx="236" cy="124" r="1.8" class="gran"/><circle cx="244" cy="128" r="1.8" class="gran"/><ellipse cx="280" cy="126" rx="22" ry="9" class="cell"/><circle cx="268" cy="124" r="1.8" class="gran"/><circle cx="276" cy="128" r="1.8" class="gran"/><circle cx="284" cy="124" r="1.8" class="gran"/><circle cx="292" cy="128" r="1.8" class="gran"/><ellipse cx="328" cy="126" rx="22" ry="9" class="cell"/><circle cx="316" cy="124" r="1.8" class="gran"/><circle cx="324" cy="128" r="1.8" class="gran"/><circle cx="332" cy="124" r="1.8" class="gran"/><circle cx="340" cy="128" r="1.8" class="gran"/><ellipse cx="376" cy="126" rx="22" ry="9" class="cell"/><circle cx="364" cy="124" r="1.8" class="gran"/><circle cx="372" cy="128" r="1.8" class="gran"/><circle cx="380" cy="124" r="1.8" class="gran"/><circle cx="388" cy="128" r="1.8" class="gran"/><ellipse cx="424" cy="126" rx="22" ry="9" class="cell"/><circle cx="412" cy="124" r="1.8" class="gran"/><circle cx="420" cy="128" r="1.8" class="gran"/><circle cx="428" cy="124" r="1.8" class="gran"/><circle cx="436" cy="128" r="1.8" class="gran"/><ellipse cx="472" cy="126" rx="22" ry="9" class="cell"/><circle cx="460" cy="124" r="1.8" class="gran"/><circle cx="468" cy="128" r="1.8" class="gran"/><circle cx="476" cy="124" r="1.8" class="gran"/><circle cx="484" cy="128" r="1.8" class="gran"/><ellipse cx="520" cy="126" rx="22" ry="9" class="cell"/><circle cx="508" cy="124" r="1.8" class="gran"/><circle cx="516" cy="128" r="1.8" class="gran"/><circle cx="524" cy="124" r="1.8" class="gran"/><circle cx="532" cy="128" r="1.8" class="gran"/><ellipse cx="208" cy="148" rx="22" ry="9" class="cell"/><circle cx="196" cy="146" r="1.8" class="gran"/><circle cx="204" cy="150" r="1.8" class="gran"/><circle cx="212" cy="146" r="1.8" class="gran"/><circle cx="220" cy="150" r="1.8" class="gran"/><ellipse cx="256" cy="148" rx="22" ry="9" class="cell"/><circle cx="244" cy="146" r="1.8" class="gran"/><circle cx="252" cy="150" r="1.8" class="gran"/><circle cx="260" cy="146" r="1.8" class="gran"/><circle cx="268" cy="150" r="1.8" class="gran"/><ellipse cx="304" cy="148" rx="22" ry="9" class="cell"/><circle cx="292" cy="146" r="1.8" class="gran"/><circle cx="300" cy="150" r="1.8" class="gran"/><circle cx="308" cy="146" r="1.8" class="gran"/><circle cx="316" cy="150" r="1.8" class="gran"/><ellipse cx="352" cy="148" rx="22" ry="9" class="cell"/><circle cx="340" cy="146" r="1.8" class="gran"/><circle cx="348" cy="150" r="1.8" class="gran"/><circle cx="356" cy="146" r="1.8" class="gran"/><circle cx="364" cy="150" r="1.8" class="gran"/><ellipse cx="400" cy="148" rx="22" ry="9" class="cell"/><circle cx="388" cy="146" r="1.8" class="gran"/><circle cx="396" cy="150" r="1.8" class="gran"/><circle cx="404" cy="146" r="1.8" class="gran"/><circle cx="412" cy="150" r="1.8" class="gran"/><ellipse cx="448" cy="148" rx="22" ry="9" class="cell"/><circle cx="436" cy="146" r="1.8" class="gran"/><circle cx="444" cy="150" r="1.8" class="gran"/><circle cx="452" cy="146" r="1.8" class="gran"/><circle cx="460" cy="150" r="1.8" class="gran"/><ellipse cx="496" cy="148" rx="22" ry="9" class="cell"/><circle cx="484" cy="146" r="1.8" class="gran"/><circle cx="492" cy="150" r="1.8" class="gran"/><circle cx="500" cy="146" r="1.8" class="gran"/><circle cx="508" cy="150" r="1.8" class="gran"/><ellipse cx="544" cy="148" rx="22" ry="9" class="cell"/><circle cx="532" cy="146" r="1.8" class="gran"/><circle cx="540" cy="150" r="1.8" class="gran"/><circle cx="548" cy="146" r="1.8" class="gran"/><circle cx="556" cy="150" r="1.8" class="gran"/><rect x="170" y="160" width="390" height="130" class="f-epi"/><circle cx="186" cy="178" r="17" class="cell-spine"/><circle cx="186" cy="178" r="14" class="cell"/><circle cx="186" cy="178" r="4.5" class="nuc"/><circle cx="220" cy="178" r="17" class="cell-spine"/><circle cx="220" cy="178" r="14" class="cell"/><circle cx="220" cy="178" r="4.5" class="nuc"/><circle cx="254" cy="178" r="17" class="cell-spine"/><circle cx="254" cy="178" r="14" class="cell"/><circle cx="254" cy="178" r="4.5" class="nuc"/><circle cx="288" cy="178" r="17" class="cell-spine"/><circle cx="288" cy="178" r="14" class="cell"/><circle cx="288" cy="178" r="4.5" class="nuc"/><circle cx="322" cy="178" r="17" class="cell-spine"/><circle cx="322" cy="178" r="14" class="cell"/><circle cx="322" cy="178" r="4.5" class="nuc"/><circle cx="356" cy="178" r="17" class="cell-spine"/><circle cx="356" cy="178" r="14" class="cell"/><circle cx="356" cy="178" r="4.5" class="nuc"/><circle cx="390" cy="178" r="17" class="cell-spine"/><circle cx="390" cy="178" r="14" class="cell"/><circle cx="390" cy="178" r="4.5" class="nuc"/><circle cx="424" cy="178" r="17" class="cell-spine"/><circle cx="424" cy="178" r="14" class="cell"/><circle cx="424" cy="178" r="4.5" class="nuc"/><circle cx="458" cy="178" r="17" class="cell-spine"/><circle cx="458" cy="178" r="14" class="cell"/><circle cx="458" cy="178" r="4.5" class="nuc"/><circle cx="492" cy="178" r="17" class="cell-spine"/><circle cx="492" cy="178" r="14" class="cell"/><circle cx="492" cy="178" r="4.5" class="nuc"/><circle cx="526" cy="178" r="17" class="cell-spine"/><circle cx="526" cy="178" r="14" class="cell"/><circle cx="526" cy="178" r="4.5" class="nuc"/><circle cx="203" cy="208" r="17" class="cell-spine"/><circle cx="203" cy="208" r="14" class="cell"/><circle cx="203" cy="208" r="4.5" class="nuc"/><circle cx="237" cy="208" r="17" class="cell-spine"/><circle cx="237" cy="208" r="14" class="cell"/><circle cx="237" cy="208" r="4.5" class="nuc"/><circle cx="271" cy="208" r="17" class="cell-spine"/><circle cx="271" cy="208" r="14" class="cell"/><circle cx="271" cy="208" r="4.5" class="nuc"/><circle cx="305" cy="208" r="17" class="cell-spine"/><circle cx="305" cy="208" r="14" class="cell"/><circle cx="305" cy="208" r="4.5" class="nuc"/><circle cx="339" cy="208" r="17" class="cell-spine"/><circle cx="339" cy="208" r="14" class="cell"/><circle cx="339" cy="208" r="4.5" class="nuc"/><circle cx="373" cy="208" r="17" class="cell-spine"/><circle cx="373" cy="208" r="14" class="cell"/><circle cx="373" cy="208" r="4.5" class="nuc"/><circle cx="407" cy="208" r="17" class="cell-spine"/><circle cx="407" cy="208" r="14" class="cell"/><circle cx="407" cy="208" r="4.5" class="nuc"/><circle cx="441" cy="208" r="17" class="cell-spine"/><circle cx="441" cy="208" r="14" class="cell"/><circle cx="441" cy="208" r="4.5" class="nuc"/><circle cx="475" cy="208" r="17" class="cell-spine"/><circle cx="475" cy="208" r="14" class="cell"/><circle cx="475" cy="208" r="4.5" class="nuc"/><circle cx="509" cy="208" r="17" class="cell-spine"/><circle cx="509" cy="208" r="14" class="cell"/><circle cx="509" cy="208" r="4.5" class="nuc"/><circle cx="543" cy="208" r="17" class="cell-spine"/><circle cx="543" cy="208" r="14" class="cell"/><circle cx="543" cy="208" r="4.5" class="nuc"/><circle cx="186" cy="238" r="17" class="cell-spine"/><circle cx="186" cy="238" r="14" class="cell"/><circle cx="186" cy="238" r="4.5" class="nuc"/><circle cx="220" cy="238" r="17" class="cell-spine"/><circle cx="220" cy="238" r="14" class="cell"/><circle cx="220" cy="238" r="4.5" class="nuc"/><circle cx="254" cy="238" r="17" class="cell-spine"/><circle cx="254" cy="238" r="14" class="cell"/><circle cx="254" cy="238" r="4.5" class="nuc"/><circle cx="288" cy="238" r="17" class="cell-spine"/><circle cx="288" cy="238" r="14" class="cell"/><circle cx="288" cy="238" r="4.5" class="nuc"/><circle cx="322" cy="238" r="17" class="cell-spine"/><circle cx="322" cy="238" r="14" class="cell"/><circle cx="322" cy="238" r="4.5" class="nuc"/><circle cx="356" cy="238" r="17" class="cell-spine"/><circle cx="356" cy="238" r="14" class="cell"/><circle cx="356" cy="238" r="4.5" class="nuc"/><circle cx="390" cy="238" r="17" class="cell-spine"/><circle cx="390" cy="238" r="14" class="cell"/><circle cx="390" cy="238" r="4.5" class="nuc"/><circle cx="424" cy="238" r="17" class="cell-spine"/><circle cx="424" cy="238" r="14" class="cell"/><circle cx="424" cy="238" r="4.5" class="nuc"/><circle cx="458" cy="238" r="17" class="cell-spine"/><circle cx="458" cy="238" r="14" class="cell"/><circle cx="458" cy="238" r="4.5" class="nuc"/><circle cx="492" cy="238" r="17" class="cell-spine"/><circle cx="492" cy="238" r="14" class="cell"/><circle cx="492" cy="238" r="4.5" class="nuc"/><circle cx="526" cy="238" r="17" class="cell-spine"/><circle cx="526" cy="238" r="14" class="cell"/><circle cx="526" cy="238" r="4.5" class="nuc"/><circle cx="203" cy="268" r="17" class="cell-spine"/><circle cx="203" cy="268" r="14" class="cell"/><circle cx="203" cy="268" r="4.5" class="nuc"/><circle cx="237" cy="268" r="17" class="cell-spine"/><circle cx="237" cy="268" r="14" class="cell"/><circle cx="237" cy="268" r="4.5" class="nuc"/><circle cx="271" cy="268" r="17" class="cell-spine"/><circle cx="271" cy="268" r="14" class="cell"/><circle cx="271" cy="268" r="4.5" class="nuc"/><circle cx="305" cy="268" r="17" class="cell-spine"/><circle cx="305" cy="268" r="14" class="cell"/><circle cx="305" cy="268" r="4.5" class="nuc"/><circle cx="339" cy="268" r="17" class="cell-spine"/><circle cx="339" cy="268" r="14" class="cell"/><circle cx="339" cy="268" r="4.5" class="nuc"/><circle cx="373" cy="268" r="17" class="cell-spine"/><circle cx="373" cy="268" r="14" class="cell"/><circle cx="373" cy="268" r="4.5" class="nuc"/><circle cx="407" cy="268" r="17" class="cell-spine"/><circle cx="407" cy="268" r="14" class="cell"/><circle cx="407" cy="268" r="4.5" class="nuc"/><circle cx="441" cy="268" r="17" class="cell-spine"/><circle cx="441" cy="268" r="14" class="cell"/><circle cx="441" cy="268" r="4.5" class="nuc"/><circle cx="475" cy="268" r="17" class="cell-spine"/><circle cx="475" cy="268" r="14" class="cell"/><circle cx="475" cy="268" r="4.5" class="nuc"/><circle cx="509" cy="268" r="17" class="cell-spine"/><circle cx="509" cy="268" r="14" class="cell"/><circle cx="509" cy="268" r="4.5" class="nuc"/><circle cx="543" cy="268" r="17" class="cell-spine"/><circle cx="543" cy="268" r="14" class="cell"/><circle cx="543" cy="268" r="4.5" class="nuc"/><rect x="170" y="290" width="390" height="44" class="f-epi"/><rect x="174" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="182.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="194" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="202.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="214" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="222.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="234" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="242.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="254" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="262.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="294" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="302.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="314" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="322.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="334" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="342.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="354" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="362.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="374" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="382.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="394" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="402.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="414" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="422.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="434" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="442.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="454" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="462.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="494" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="502.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="514" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="522.5" cy="316" rx="4.5" ry="7" class="nuc"/><rect x="534" y="294" width="17" height="38" rx="6" class="cell"/><ellipse cx="542.5" cy="316" rx="4.5" ry="7" class="nuc"/><path d="M283 318 L 261 262 M283 318 L 287 250 M283 318 L 309 266 M283 318 L 253 294" class="s-mel" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="283" cy="318" rx="10" ry="12" class="f-mel"/><path d="M483 318 L 461 262 M483 318 L 487 250 M483 318 L 509 266 M483 318 L 453 294" class="s-mel" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="483" cy="318" rx="10" ry="12" class="f-mel"/><line x1="170" y1="335" x2="560" y2="335" class="s-ink" stroke-width="3"/><rect x="170" y="40" width="390" height="294" fill="none" class="s-line"/><path d="M60 330 V 40" class="s-accent" stroke-width="3" marker-end="url(#arr)" fill="none"/><text x="50" y="190" class="lbl-acc" text-anchor="middle" transform="rotate(-90 50 190)">約 28 天　往上推 → 角化 → 剝落</text><path d="M150 42 H144 V112 H150" class="s-muted" fill="none"/><text x="138" y="82.0" text-anchor="end" class="lbl-s">無核</text><path d="M150 116 H144 V332 H150" class="s-muted" fill="none"/><text x="138" y="229.0" text-anchor="end" class="lbl-s">有核</text><path d="M560 68 H 580" class="leader" fill="none"/><text x="588" y="66" class="lbl">角質層</text><text x="588" y="83" class="lbl-s">最外層・扁平無核死細胞・含 N.M.F.</text><path d="M560 105 H 580" class="leader" fill="none"/><text x="588" y="103" class="lbl">透明層</text><text x="588" y="120" class="lbl-s">無核・只在手掌、腳底</text><path d="M560 137 H 580" class="leader" fill="none"/><text x="588" y="135" class="lbl">顆粒層</text><text x="588" y="152" class="lbl-s">顆粒＝角質素・開始角化</text><path d="M560 225 H 580" class="leader" fill="none"/><text x="588" y="223" class="lbl">有棘層</text><text x="588" y="240" class="lbl-s">表皮最厚・有淋巴液流通・會分裂</text><path d="M560 312 H 580" class="leader" fill="none"/><text x="588" y="310" class="lbl">基底層（生發層）</text><text x="588" y="327" class="lbl-s">最內層・最年輕・會分裂・有黑色素細胞</text><path d="M493 322 C 523 360, 560 400, 580 402" class="leader" fill="none"/><text x="588" y="406" class="lbl">黑色素細胞</text><text x="588" y="422" class="lbl-s">與基底細胞約 1：10</text><text x="170" y="404" class="lbl-s">基底膜（粗線）：表皮與真皮的交界</text></svg></div>
+    <figcaption>新細胞在基底層產生，一路往上推、變扁、角化，最後從角質層剝落，全程約 28 天。</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>層</th><th>考點</th><th>出處</th></tr></thead>
+    <tbody>
+      <tr><td>角質層</td><td>表皮最外層；細胞<b>扁平、無核的死細胞</b>，不斷剝落遞補；與皮膚柔軟光滑有關；能防禦紫外線；產生<b>天然保濕因子 N.M.F.</b>；含水 <b>10–20%</b> 最理想；光澤度取決於角質層的水分；主要化學屏障是角質層的游離脂肪；會自然更新，不必刻意去除</td><td><span class="q">皮 45</span><span class="q">皮 11</span><span class="q">皮 89</span><span class="q">皮 47</span><span class="q">皮 35</span><span class="q">皮 59</span><span class="q">皮 106</span><span class="q">皮 67</span><span class="q">皮 129</span><span class="q">皮 146</span><span class="q">皮 165</span></td></tr>
+      <tr><td>透明層</td><td><b>無核細胞</b>；只分布在<b>手掌、腳底</b>，所以那裡的皮膚看起來較厚、較白</td><td><span class="q">皮 94</span><span class="q">皮 110</span><span class="q">皮 159</span></td></tr>
+      <tr><td>顆粒層</td><td>顆粒是<b>角質素</b>；細胞從這層<b>開始蛻變出角質物質</b></td><td><span class="q">皮 27</span><span class="q">皮 85</span></td></tr>
+      <tr><td>有棘層</td><td><b>表皮中最厚的一層</b>，有淋巴液流通；由裡向外第二層；可分裂</td><td><span class="q">皮 108</span><span class="q">皮 72</span><span class="q">皮 41</span></td></tr>
+      <tr><td>基底層</td><td>表皮最內層（最下方），又稱<b>生發層</b>；細胞最年輕，會有絲分裂產生新細胞；新陳代謝最旺盛；<b>黑色素細胞只分布在這層</b>，與基底細胞約 1：10</td><td><span class="q">皮 20</span><span class="q">皮 97</span><span class="q">皮 18</span><span class="q">皮 136</span><span class="q">皮 28</span><span class="q">皮 60</span><span class="q">皮 99</span><span class="q">皮 128</span><span class="q">皮 154</span><span class="q">皮 36</span><span class="q">皮 137</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>能分裂產生新細胞的：<b>基底層、有棘層</b>（選項只有一層時選基底層）<span class="q">皮 41</span><span class="q">皮 139</span>。</li>
+    <li>表皮更新週期約 <span class="hl">28 天</span><span class="q">皮 17</span><span class="q">皮 126</span>。</li>
+    <li>表皮的養分：由真皮的血液供給<span class="q">皮 98</span>，經過<b>基底膜</b>送到表皮<span class="q">皮 164</span>。選項中若有「血液及淋巴液」也對<span class="q">皮 48</span>。</li>
+  </ul>
+  <div class="trap">「表皮最厚的<b>一層</b>」是有棘層；「表皮最厚的<b>部位</b>」是手掌與腳底。看清楚題目問的是層還是部位。</div>
+
+  <h3 id="melanin">3. 黑色素與紫外線</h3>
+  <ul>
+    <li>皮膚顏色主要決定於<b>黑色素</b><span class="q">皮 46</span>；黑色素保護皮膚對抗<b>紫外線</b><span class="q">皮 21</span>。</li>
+    <li>紫外線照射後，<b>黑色素細胞</b>會增加黑色素分泌，吸收紫外線、保護深層組織<span class="q">皮 169</span>。</li>
+    <li>黑斑是<b>黑色素</b>聚集造成<span class="q">皮 75</span>。黑斑成因：某些藥物、不當化粧品、紫外線（題庫答案不含「肝功能不良」）<span class="q">皮 2</span>。</li>
+    <li>維生素 C 能<b>還原已形成的黑色素</b>，與皮膚的氧化還原密切相關<span class="q">護 12</span><span class="q">皮 150</span>。</li>
+    <li>皮膚經日光（紫外線）照射可合成<b>維生素 D</b>（D<sub>3</sub>）<span class="q">皮 13</span><span class="q">皮 151</span>。</li>
+    <li>臭氧層破洞 → 紫外線增加 → <b>皮膚癌</b><span class="q">皮 7</span>。化粧品禁用氟氯碳化物，就是因為會消耗臭氧<span class="q">化 36</span>。</li>
+    <li>經常做日光浴<b>不是</b>保持皮膚年輕的方法<span class="q">皮 155</span>。</li>
+  </ul>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 760 312" role="img" aria-label="紫外線穿透示意圖"><circle cx="60" cy="40" r="26" class="f-sun"/><text x="60" y="45" text-anchor="middle" class="lbl-b">太陽</text><rect x="120" y="72" width="620" height="22" class="f-ozone"/><text x="130" y="88" class="lbl-s">臭氧層</text><rect x="120" y="170" width="620" height="44" class="f-epi"/><rect x="120" y="214" width="620" height="66" class="f-derm"/><rect x="120" y="280" width="620" height="24" class="f-subq"/><text x="734" y="197" text-anchor="end" class="lbl-s">表皮</text><text x="734" y="252" text-anchor="end" class="lbl-s">真皮</text><text x="734" y="297" text-anchor="end" class="lbl-s">皮下組織</text><path d="M230 20 L234.5 22 L236.9 24 L236.1 26 L232.4 28 L227.6 30 L223.9 32 L223.1 34 L225.5 36 L230 38 L234.5 40 L236.9 42 L236.1 44 L232.4 46 L227.6 48 L223.9 50 L223.1 52 L225.5 54 L230 56 L234.5 58 L236.9 60 L236.1 62 L232.4 64 L227.6 66 L223.9 68 L223.1 70" class="s-uvc" stroke-width="3" fill="none"/><path d="M222 70 l16 12 M238 70 l-16 12" class="s-uvc" stroke-width="3"/><text x="248" y="36" class="lbl">UVC</text><text x="248" y="54" class="lbl-s">被臭氧層吸收</text><path d="M400 20 L404.5 22 L406 24 L403.5 26 L398.8 28 L394.8 30 L394.3 32 L397.6 34 L402.4 36 L405.7 38 L405.2 40 L401.2 42 L396.5 44 L394 46 L395.5 48 L400 50 L404.5 52 L406 54 L403.5 56 L398.8 58 L394.8 60 L394.3 62 L397.6 64 L402.4 66 L405.7 68 L405.2 70 L401.2 72 L396.5 74 L394 76 L395.5 78 L400 80 L404.5 82 L406 84 L403.5 86 L398.8 88 L394.8 90 L394.3 92 L397.6 94 L402.4 96 L405.7 98 L405.2 100 L401.2 102 L396.5 104 L394 106 L395.5 108 L400 110 L404.5 112 L406 114 L403.5 116 L398.8 118 L394.8 120 L394.3 122 L397.6 124 L402.4 126 L405.7 128 L405.2 130 L401.2 132 L396.5 134 L394 136 L395.5 138 L400 140 L404.5 142 L406 144 L403.5 146 L398.8 148 L394.8 150 L394.3 152 L397.6 154 L402.4 156 L405.7 158 L405.2 160 L401.2 162 L396.5 164 L394 166 L395.5 168 L400 170 L404.5 172 L406 174 L403.5 176 L398.8 178 L394.8 180 L394.3 182 L397.6 184 L402.4 186 L405.7 188 L405.2 190 L401.2 192 L396.5 194 L394 196 L395.5 198 L400 200 L404.5 202 L406 204" class="s-uvb" stroke-width="3" fill="none"/><text x="416" y="36" class="lbl">UVB</text><text x="416" y="54" class="lbl-s">到達表皮・曬紅曬傷</text><path d="M580 20 L584 22 L586.9 24 L588 26 L586.9 28 L584 30 L580 32 L576 34 L573.1 36 L572 38 L573.1 40 L576 42 L580 44 L584 46 L586.9 48 L588 50 L586.9 52 L584 54 L580 56 L576 58 L573.1 60 L572 62 L573.1 64 L576 66 L580 68 L584 70 L586.9 72 L588 74 L586.9 76 L584 78 L580 80 L576 82 L573.1 84 L572 86 L573.1 88 L576 90 L580 92 L584 94 L586.9 96 L588 98 L586.9 100 L584 102 L580 104 L576 106 L573.1 108 L572 110 L573.1 112 L576 114 L580 116 L584 118 L586.9 120 L588 122 L586.9 124 L584 126 L580 128 L576 130 L573.1 132 L572 134 L573.1 136 L576 138 L580 140 L584 142 L586.9 144 L588 146 L586.9 148 L584 150 L580 152 L576 154 L573.1 156 L572 158 L573.1 160 L576 162 L580 164 L584 166 L586.9 168 L588 170 L586.9 172 L584 174 L580 176 L576 178 L573.1 180 L572 182 L573.1 184 L576 186 L580 188 L584 190 L586.9 192 L588 194 L586.9 196 L584 198 L580 200 L576 202 L573.1 204 L572 206 L573.1 208 L576 210 L580 212 L584 214 L586.9 216 L588 218 L586.9 220 L584 222 L580 224 L576 226 L573.1 228 L572 230 L573.1 232 L576 234 L580 236 L584 238 L586.9 240 L588 242 L586.9 244 L584 246 L580 248 L576 250 L573.1 252 L572 254 L573.1 256 L576 258 L580 260 L584 262 L586.9 264 L588 266 L586.9 268" class="s-uva" stroke-width="3" fill="none"/><text x="596" y="36" class="lbl">UVA</text><text x="596" y="54" class="lbl-s">深入真皮・老化</text></svg></div>
+    <figcaption>題庫考的是 UVC：在大氣中被臭氧層吸收，到不了地面，對皮膚影響不大<span class="q">皮 125</span>。UVA、UVB 的穿透深度為補充知識。</figcaption>
+  </figure>
+
+  <h3 id="dermis">4. 真皮</h3>
+  <ul>
+    <li>含<b>血管、淋巴管、神經、汗腺、皮脂腺</b><span class="q">皮 54</span><span class="q">皮 120</span>；皮膚的<b>感覺接受器</b>在真皮<span class="q">皮 88</span>；汗腺在真皮層<span class="q">皮 38</span>。</li>
+    <li>分兩層：上方<b>乳頭層</b>（波浪狀伸入表皮）、下方<b>網狀層</b>。<b>膠原纖維</b>在網狀層<span class="q">皮 37</span>；網狀層<b>沒有黑色素</b><span class="q">皮 19</span>。</li>
+    <li>主要由<b>彈性纖維與膠原纖維</b>構成<span class="q">皮 90</span>；構成真皮最大的部分是<b>膠原纖維</b>（纖維蛋白質）<span class="q">皮 161</span><span class="q">皮 134</span>。</li>
+    <li><b>彈性纖維</b>賦予皮膚彈力和張力<span class="q">皮 86</span>；彈力纖維及膠原纖維與皮膚硬度、伸張度有關<span class="q">皮 92</span>。</li>
+    <li>功用：<b>供給表皮營養</b><span class="q">皮 109</span><span class="q">皮 133</span>。</li>
+    <li>老化產生皺紋，主要是<b>真皮</b>組織衰退、失去彈性<span class="q">皮 58</span>；膠原纖維失去柔軟與溶水性 → <b>皺紋與鬆弛</b><span class="q">皮 84</span>。</li>
+    <li>構成真皮的細胞：纖維母細胞、組織球與單核球、脂肪細胞。<b>角化細胞不是</b>（它在表皮）<span class="q">皮 160</span>。</li>
+    <li>傷口癒合靠<b>纖維母細胞</b>增殖<span class="q">皮 141</span>。</li>
+  </ul>
+
+  <h3 id="subq">5. 皮下組織</h3>
+  <ul>
+    <li>位於<b>真皮之下</b><span class="q">皮 25</span>，含大量脂肪，與人體曲線美有關<span class="q">皮 39</span>。</li>
+    <li>功用：防止體溫散失、緩和外界刺激、貯存過剩能量。<b>「使皮膚有光澤」不是</b>它的功用<span class="q">皮 162</span>。</li>
+    <li>脂肪急遽減少（急速減肥）→ 皮膚出現<b>皺紋</b><span class="q">皮 55</span><span class="q">護 35</span>。</li>
+  </ul>
+
+  <h3 id="sebum">6. 皮脂腺與皮脂膜</h3>
+  <div class="cols">
+    <div class="card">
+      <h4>分布</h4>
+      <ul>
+        <li><b>手掌、腳底沒有</b>皮脂腺<span class="q">皮 8</span></li>
+        <li>分泌最多：<b>鼻頭</b><span class="q">皮 95</span><span class="q">皮 153</span>；額頭也很豐富<span class="q">皮 83</span></li>
+        <li>最少：<b>四肢</b><span class="q">皮 111</span></li>
+        <li>開口於毛囊；屬<b>有導管腺體</b>（汗腺也是）<span class="q">皮 112</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>與年齡、面皰</h4>
+      <ul>
+        <li>分泌最旺盛：<b>15–20 歲</b><span class="q">皮 103</span></li>
+        <li>面皰粉刺最容易在<b>青春期</b>形成<span class="q">皮 82</span>，與<b>性荷爾蒙</b>變化有關<span class="q">皮 91</span></li>
+        <li>粉刺是皮脂腺分泌失調<span class="q">皮 53</span>；皮脂腺是影響膚質的主要因素<span class="q">皮 101</span></li>
+        <li>缺乏維生素 A，皮脂和汗水分泌會衰退<span class="q">皮 149</span></li>
+      </ul>
+    </div>
+  </div>
+  <ul>
+    <li><b>皮脂</b>的作用：使皮膚保持<b>滋潤</b><span class="q">皮 107</span>、潤滑、抑菌、防止乾燥。<b>不會供給皮膚養分</b><span class="q">皮 56</span>。</li>
+    <li><b>皮脂膜</b>＝<b>汗液＋皮脂</b>混合而成<span class="q">皮 122</span>，呈<b>弱酸性</b><span class="q">皮 73</span><span class="q">皮 143</span>。</li>
+    <li>皮脂膜的功用：潤滑皮膚與毛髮、防止乾燥、抑制微生物繁殖。<b>不能漂白皮膚</b><span class="q">皮 69</span>，也<b>不能防止長青春痘</b><span class="q">皮 163</span>。</li>
+  </ul>
+
+  <h3 id="sweat">7. 汗腺</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>小汗腺</th><th>大汗腺（頂漿腺）</th></tr></thead>
+    <tbody>
+      <tr><td>開口</td><td><b>皮膚表面</b><span class="q">皮 71</span></td><td><b>毛囊</b><span class="q">皮 102</span></td></tr>
+      <tr><td>分布</td><td><b>全身</b><span class="q">皮 123</span>；手掌、腳底、前額、腋下特別多<span class="q">皮 24</span>；<b>唇部、甲床沒有</b><span class="q">皮 81</span><span class="q">皮 166</span></td><td>腋下、陰部等處<span class="q">皮 102</span></td></tr>
+      <tr><td>數量／時期</td><td>約 <b>200–500 萬個</b><span class="q">皮 167</span></td><td><b>青春期</b>功能最旺盛<span class="q">皮 93</span></td></tr>
+      <tr><td>功能</td><td>分泌水分、靠蒸發<b>散熱</b>調節體溫<span class="q">皮 87</span></td><td>分泌物含蛋白質，經細菌（多為<b>革蘭氏陽性菌</b>）分解氧化產生體臭<span class="q">皮 102</span><span class="q">皮 152</span></td></tr>
+      <tr><td>相關問題</td><td><b>多汗症</b><span class="q">皮 70</span></td><td><b>狐臭</b><span class="q">皮 61</span><span class="q">皮 77</span><span class="q">皮 168</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>汗水呈<b>弱酸性</b><span class="q">皮 142</span>；汗腺可排出身體的<b>廢物</b><span class="q">皮 22</span>。</li>
+    <li>控制排汗的是<b>神經系統</b><span class="q">皮 113</span>。</li>
+    <li><b>乳腺</b>是變型的頂漿腺<span class="q">皮 144</span>。</li>
+  </ul>
+
+  <h3 id="function">8. 皮膚的功能</h3>
+  <div class="cols">
+    <div class="card good">
+      <h4>有的功能</h4>
+      <ul>
+        <li><b>保護</b>：角質層、黑色素、皮脂膜</li>
+        <li><b>調節體溫</b>：維持在 <b>37°C</b><span class="q">皮 23</span><span class="q">皮 114</span><span class="q">皮 62</span></li>
+        <li><b>分泌</b>：皮脂</li>
+        <li><b>排泄</b>：汗腺排汗<span class="q">皮 63</span></li>
+        <li><b>吸收</b>：脂溶性物質較易穿透<span class="q">皮 130</span></li>
+        <li><b>感覺</b>：因為有神經<span class="q">皮 52</span><span class="q">皮 74</span><span class="q">皮 115</span></li>
+        <li><b>呼吸</b>：約為肺的 <b>1%</b><span class="q">皮 76</span></li>
+        <li><b>合成維生素 D</b><span class="q">皮 13</span></li>
+      </ul>
+    </div>
+    <div class="card bad">
+      <h4>沒有的功能</h4>
+      <ul>
+        <li><b>消化</b><span class="q">皮 12</span></li>
+        <li><b>造血</b><span class="q">皮 50</span></li>
+      </ul>
+      <h4 style="margin-top:14px">體溫調節細節</h4>
+      <ul>
+        <li>人體熱量 <b>80%</b> 靠皮膚散發<span class="q">皮 57</span></li>
+        <li>受熱時血管<b>擴張</b><span class="q">皮 117</span></li>
+        <li>主要靠<b>汗腺</b>的排泄作用<span class="q">皮 105</span></li>
+        <li>蒸發 1 公升汗約散熱 <b>540 kcal</b><span class="q">皮 131</span></li>
+      </ul>
+    </div>
+  </div>
+  <ul>
+    <li>皮膚營養由<b>血液</b>供應<span class="q">皮 9</span>；癢覺接受器是<b>神經末端</b><span class="q">皮 135</span>；豎毛肌由<b>自主神經</b>支配<span class="q">皮 145</span>。</li>
+  </ul>
+
+  <h3 id="ph">9. 酸鹼值 pH</h3>
+  <figure class="narrow">
+    <div class="scroll"><svg viewBox="0 0 760 160" role="img" aria-label="酸鹼值刻度"><defs><linearGradient id="phg" x1="0" x2="1"><stop offset="0" style="stop-color:var(--acid)"/><stop offset="0.5" style="stop-color:var(--neutral)"/><stop offset="1" style="stop-color:var(--alk)"/></linearGradient></defs><rect x="40" y="70" width="680" height="24" rx="12" fill="url(#phg)"/><line x1="40" y1="94" x2="40" y2="101" class="s-muted"/><text x="40" y="116" text-anchor="middle" class="lbl-num">0</text><line x1="88.6" y1="94" x2="88.6" y2="101" class="s-muted"/><text x="88.6" y="116" text-anchor="middle" class="lbl-num">1</text><line x1="137.1" y1="94" x2="137.1" y2="101" class="s-muted"/><text x="137.1" y="116" text-anchor="middle" class="lbl-num">2</text><line x1="185.7" y1="94" x2="185.7" y2="101" class="s-muted"/><text x="185.7" y="116" text-anchor="middle" class="lbl-num">3</text><line x1="234.3" y1="94" x2="234.3" y2="101" class="s-muted"/><text x="234.3" y="116" text-anchor="middle" class="lbl-num">4</text><line x1="282.9" y1="94" x2="282.9" y2="101" class="s-muted"/><text x="282.9" y="116" text-anchor="middle" class="lbl-num">5</text><line x1="331.4" y1="94" x2="331.4" y2="101" class="s-muted"/><text x="331.4" y="116" text-anchor="middle" class="lbl-num">6</text><line x1="380" y1="94" x2="380" y2="101" class="s-muted"/><text x="380" y="116" text-anchor="middle" class="lbl-num">7</text><line x1="428.6" y1="94" x2="428.6" y2="101" class="s-muted"/><text x="428.6" y="116" text-anchor="middle" class="lbl-num">8</text><line x1="477.1" y1="94" x2="477.1" y2="101" class="s-muted"/><text x="477.1" y="116" text-anchor="middle" class="lbl-num">9</text><line x1="525.7" y1="94" x2="525.7" y2="101" class="s-muted"/><text x="525.7" y="116" text-anchor="middle" class="lbl-num">10</text><line x1="574.3" y1="94" x2="574.3" y2="101" class="s-muted"/><text x="574.3" y="116" text-anchor="middle" class="lbl-num">11</text><line x1="622.9" y1="94" x2="622.9" y2="101" class="s-muted"/><text x="622.9" y="116" text-anchor="middle" class="lbl-num">12</text><line x1="671.4" y1="94" x2="671.4" y2="101" class="s-muted"/><text x="671.4" y="116" text-anchor="middle" class="lbl-num">13</text><line x1="720" y1="94" x2="720" y2="101" class="s-muted"/><text x="720" y="116" text-anchor="middle" class="lbl-num">14</text><rect x="234.3" y="62" width="97.1" height="40" rx="6" class="band"/><text x="282.9" y="48" text-anchor="middle" class="lbl">皮膚 4–6 弱酸性</text><text x="282.9" y="30" text-anchor="middle" class="lbl-s">健康 5–6・皮脂膜・汗水</text><path d="M380 58 V 104" class="s-ink" stroke-width="2"/><text x="380" y="48" text-anchor="middle" class="lbl">7 中性</text><path d="M399.4 104 V 136" class="s-ink" stroke-width="2"/><text x="405.4" y="148" class="lbl">血液 ≈7.4 弱鹼性</text><text x="40" y="148" class="lbl-s">← 數值愈低，酸性愈強</text><text x="720" y="48" text-anchor="end" class="lbl-s">鹼性 →</text></svg></div>
+    <figcaption>皮膚、皮脂膜、汗水都是弱酸性；血液是弱鹼性。</figcaption>
+  </figure>
+  <ul>
+    <li>健康皮膚 pH 約 <b>5–6</b><span class="q">皮 80</span>；pH 4–6 屬於<b>弱酸性</b><span class="q">皮 40</span>。</li>
+    <li>人體<b>血液是弱鹼性</b><span class="q">皮 31</span>。</li>
+    <li>中性點是 pH <b>7</b>；pH 愈低<b>酸性愈強</b><span class="q">化 9</span><span class="q">化 10</span>。</li>
+  </ul>
+  <div class="trap">「正常皮膚的 pH 值是 7」是<b>錯的</b><span class="q">皮 5</span>。7 是中性，皮膚是弱酸性。</div>
+
+  <h3 id="types">10. 膚質判斷</h3>
+  <p>判斷膚質要<b>油分與水分並重</b><span class="q">皮 118</span>。</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 740 412" role="img" aria-label="T字部位與按摩方向"><defs><marker id="arr2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-accent"/></marker></defs><g transform="translate(10 0)"><clipPath id="fc10"><ellipse cx="170" cy="210" rx="120" ry="158"/></clipPath><ellipse cx="170" cy="210" rx="120" ry="158" class="f-face"/><g clip-path="url(#fc10)"><rect x="40" y="50" width="260" height="84" class="f-t"/><rect x="148" y="130" width="44" height="146" class="f-t"/><ellipse cx="170" cy="352" rx="62" ry="36" class="f-t"/></g><text x="170" y="100" text-anchor="middle" class="lbl">額頭</text><text x="170" y="350" text-anchor="middle" class="lbl">下巴</text><text x="92" y="240" text-anchor="middle" class="lbl-s">臉頰</text><text x="248" y="240" text-anchor="middle" class="lbl-s">臉頰</text><path d="M112 178 H 70" class="leader"/><text x="18" y="182" class="lbl-s">眼眶</text><path d="M112 150 Q 132 140 152 150 M188 150 Q 208 140 228 150" class="s-ink" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="132" cy="178" rx="20" ry="9" class="f-eye"/><ellipse cx="208" cy="178" rx="20" ry="9" class="f-eye"/><path d="M170 190 V 250 Q 160 262 170 266 Q 180 262 170 250" class="s-ink" stroke-width="2" fill="none"/><path d="M140 300 Q 170 318 200 300 Q 170 292 140 300 Z" class="f-lip"/><text x="170" y="400" text-anchor="middle" class="lbl-b">T 字部位＝額頭・鼻子・下巴</text></g><g transform="translate(390 0)"><clipPath id="fc390"><ellipse cx="170" cy="210" rx="120" ry="158"/></clipPath><ellipse cx="170" cy="210" rx="120" ry="158" class="f-face"/><path d="M130 120 V 76" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M170 120 V 70" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M210 120 V 76" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M150 240 Q 110 222 76 196" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M190 240 Q 230 222 264 196" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M150 282 Q 110 272 82 250" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M190 282 Q 230 272 258 250" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M150 336 Q 120 330 100 306" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M190 336 Q 220 330 240 306" class="s-accent" stroke-width="2.5" fill="none" marker-end="url(#arr2)"/><path d="M112 150 Q 132 140 152 150 M188 150 Q 208 140 228 150" class="s-ink" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="132" cy="178" rx="20" ry="9" class="f-eye"/><ellipse cx="208" cy="178" rx="20" ry="9" class="f-eye"/><path d="M170 190 V 250 Q 160 262 170 266 Q 180 262 170 250" class="s-ink" stroke-width="2" fill="none"/><path d="M140 300 Q 170 318 200 300 Q 170 292 140 300 Z" class="f-lip"/><text x="170" y="400" text-anchor="middle" class="lbl-b">按摩：由下往上、由內往外</text></g></svg></div>
+    <figcaption>左：T 字部位<span class="q">皮 32</span><span class="q">護 2</span>，油性皮膚最不油的地方是<b>眼眶</b><span class="q">皮 33</span>。右：按摩方向，見第二單元。</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>膚質</th><th>特徵</th><th>出處</th></tr></thead>
+    <tbody>
+      <tr><td>中性</td><td><b>最理想</b>；健康有光澤、紋理細緻</td><td><span class="q">皮 34</span><span class="q">皮 66</span></td></tr>
+      <tr><td>乾性</td><td>皮脂分泌少、<b>水分少</b>；粗糙無光澤、易有小皺紋</td><td><span class="q">護 1</span><span class="q">皮 42</span><span class="q">皮 14</span></td></tr>
+      <tr><td>油性</td><td>全臉油膩、毛孔粗大、易生面皰</td><td><span class="q">皮 51</span><span class="q">皮 64</span></td></tr>
+      <tr><td>混合性</td><td><b>T 字區</b>出油、毛孔粗大，<b>兩頰乾燥</b></td><td><span class="q">皮 65</span></td></tr>
+      <tr><td>敏感性</td><td>易出現<b>小紅點、發癢</b></td><td><span class="q">皮 43</span></td></tr>
+      <tr><td>皮脂漏</td><td>油膩而閃光</td><td><span class="q">皮 30</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>皮膚乾燥是皮膚<b>老化</b>的現象之一<span class="q">皮 104</span>；皮膚乾燥多半是缺乏<b>水分與油分</b><span class="q">護 31</span>。</li>
+  </ul>
+
+  <h3 id="hair">11. 毛髮・指甲・皮紋</h3>
+  <div class="cols">
+    <div class="card">
+      <h4>毛髮</h4>
+      <ul>
+        <li>突出皮膚表面的部分叫<b>毛幹</b><span class="q">皮 78</span></li>
+        <li><b>嘴唇</b>沒有毛髮<span class="q">皮 29</span></li>
+        <li>每天落髮 <b>50–100 根</b><span class="q">皮 5</span></li>
+        <li>生長週期約 <b>2–6 年</b><span class="q">皮 158</span></li>
+        <li>睫毛功用：防塵土、強光、昆蟲。<b>「增加眼部美麗」不是生理功用</b><span class="q">皮 157</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>指甲與皮紋</h4>
+      <ul>
+        <li>健康指甲呈<b>粉紅色</b><span class="q">皮 68</span></li>
+        <li>每天長約 <b>0.1 mm</b><span class="q">皮 132</span></li>
+        <li>皮膚表面細紋的凹處叫<b>皮溝</b>，凸處叫皮丘<span class="q">皮 79</span></li>
+        <li>皮膚上本來就有正常菌叢；皮膚間隙處微生物較多；<b>細菌在潮濕處長得快</b>，說乾燥處較快是錯的<span class="q">皮 147</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 id="limits">12. 美容師的界線</h3>
+  <p>遇到疾病相關狀況，答案一律是<span class="hl">請顧客找皮膚科醫師</span>：</p>
+  <ul>
+    <li>黑斑有異常變化<span class="q">皮 1</span>、出血結痂的小黑痣<span class="q">皮 3</span>、化膿性痤瘡<span class="q">皮 15</span>、嚴重青春痘<span class="q">護 29</span>、化粧品過敏<span class="q">化 24</span>。</li>
+    <li>美容師<b>不應該為顧客換膚</b><span class="q">皮 5</span>；角質層會自然更新，不必磨皮或換膚去除<span class="q">皮 165</span>。</li>
+    <li><b>含藥化粧品</b>：染髮劑、青春痘乳膏、漂白霜。<b>清潔霜不是</b><span class="q">皮 4</span>。</li>
+    <li>化粧品中的<b>香料</b>容易導致過敏<span class="q">皮 6</span>；不含香料的肥皂不易引起過敏性接觸皮膚炎<span class="q">皮 16</span>。</li>
+    <li>防止青春痘：用不含香料的肥皂，<b>每天早晚各洗一次</b><span class="q">皮 156</span>。</li>
+  </ul>
+</section>
+
+<!-- ============================================================ PART 2 -->
+<section class="part">
+  <div class="part-h"><span class="no">第二單元</span><h2>護膚</h2></div>
+  <p class="part-meta">工作項目 02・55 題。重點是保養順序、按摩手法，以及「哪種膚質要多蒸／少蒸、多按／少按」。</p>
+
+  <h3 id="routine">1. 保養程序</h3>
+  <ol class="flow">
+    <li><span class="step">第 1 步</span><b>卸粧</b>先卸<b>眼、唇</b>，用清潔乳／霜<span class="q">護 46</span><span class="q">護 5</span><span class="q">護 22</span></li>
+    <li><span class="step">第 2 步</span><b>洗臉</b>用溫水、軟水<span class="q">護 23</span><span class="q">護 41</span></li>
+    <li><span class="step">第 3 步</span><b>蒸臉</b>依膚質調整時間</li>
+    <li><span class="step">第 4 步</span><b>按摩</b>使用按摩霜<span class="q">護 33</span></li>
+    <li><span class="step">第 5 步</span><b>敷面</b>暫時隔絕空氣、收斂毛孔<span class="q">護 45</span></li>
+    <li><span class="step">最後</span><b>營養</b>晚間保養的最後一步<span class="q">護 26</span></li>
+  </ol>
+  <ul>
+    <li>有化粧時要<b>先卸粧再洗臉</b><span class="q">護 24</span>；清潔程序優先使用<b>清潔乳／霜</b><span class="q">護 15</span>。</li>
+    <li>美容從業人員工作前用<b>肥皂水</b>洗手<span class="q">護 39</span>；坐姿<b>背脊伸直</b><span class="q">護 43</span>；顧客採<b>躺姿</b><span class="q">護 47</span>。</li>
+    <li>專業保養頻率：<b>視肌膚狀況而定</b><span class="q">護 7</span>。</li>
+    <li>肌膚新陳代謝最旺盛在<b>睡眠時</b><span class="q">護 21</span>；吸收養分最佳在<b>夜間</b><span class="q">護 25</span>。</li>
+    <li>健康皮膚要件：皮脂膜正常、血液循環順暢、角化順暢。「黑色素細胞較少」<b>不是</b><span class="q">護 30</span>。暴飲暴食當然也不是<span class="q">護 27</span>。</li>
+  </ul>
+
+  <h3 id="massage">2. 按摩</h3>
+  <ul>
+    <li>方向<b>順著肌肉紋理</b><span class="q">護 3</span>，<span class="hl">由下往上、由內往外</span><span class="q">護 44</span>（見上方臉部右圖）。</li>
+    <li>與按摩手技最無關的是<b>皮膚酸鹼度</b><span class="q">護 4</span>。</li>
+    <li>用<b>中指、無名指</b>的第一、二節<b>指腹</b><span class="q">護 10</span><span class="q">護 40</span>。</li>
+    <li>必備條件：<b>輕緩</b>而有節奏<span class="q">護 20</span>；紓解緊張用<b>輕撫</b><span class="q">護 8</span>；敏感肌力量<b>輕、時間短</b><span class="q">護 6</span>。</li>
+    <li>皺紋出現在與肌肉紋理<b>垂直</b>的地方<span class="q">護 18</span>；肌肉紋理是斜向的部位是<b>頰部</b><span class="q">護 19</span>。</li>
+    <li>按摩功效：促進血液循環、增加張力彈力、延緩老化。<b>「降低皮膚溫度」不是</b><span class="q">護 48</span>。</li>
+  </ul>
+
+  <h3 id="steam">3. 蒸臉器</h3>
+  <div class="matrix" role="table" aria-label="各膚質蒸臉與按摩">
+    <div class="h" role="columnheader"></div><div class="h" role="columnheader">多按摩</div><div class="h" role="columnheader">少按摩</div>
+    <div class="rh" role="rowheader">多蒸臉</div>
+    <div><small>題庫未出現</small></div>
+    <div class="on"><b>油性</b><small>護 37</small></div>
+    <div class="rh" role="rowheader">少蒸臉</div>
+    <div class="on"><b>乾性</b><small>護 11</small></div>
+    <div class="on"><b>敏感性・面皰</b><small>護 36・護 38；嚴重面皰不按摩（護 17）</small></div>
+  </div>
+  <ul>
+    <li>蒸臉時間：敏感皮膚、面皰皮膚都比中性<b>短</b><span class="q">護 51</span><span class="q">護 52</span>；乾性比油性<b>短</b><span class="q">護 53</span>。</li>
+    <li>噴霧口距離臉部約 <b>40 公分</b><span class="q">護 54</span>；噴霧含<b>臭氧</b>，可殺菌消炎<span class="q">護 55</span>。</li>
+    <li>加水要<b>低於最大容量刻度</b><span class="q">護 49</span>；水面低於最小刻度時，<b>先關電源再加水</b><span class="q">護 50</span>。</li>
+  </ul>
+
+  <h3 id="bytype">4. 各膚質保養重點</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>膚質</th><th>保養品與做法</th><th>出處</th></tr></thead>
+    <tbody>
+      <tr><td>乾性</td><td>高油度營養霜；富含油質的清潔霜</td><td><span class="q">護 9</span><span class="q">化 23</span></td></tr>
+      <tr><td>敏感性</td><td>選<b>不含色素、香料、酒精</b>；無刺激、具安撫鎮靜作用</td><td><span class="q">護 34</span><span class="q">護 42</span></td></tr>
+      <tr><td>面皰（青春痘）</td><td>著重<b>清潔、消炎</b>；洗臉用刺激性小的肥皂；避免高油度化粧品；多吃<b>鹼性</b>食品；不要化濃粧掩飾</td><td><span class="q">護 14</span><span class="q">護 28</span><span class="q">護 32</span><span class="q">護 16</span><span class="q">護 29</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>防曬係數：選項 2、4、8、15 中以 <b>SPF 15</b> 效果最佳<span class="q">護 13</span>。</li>
+  </ul>
+</section>
+
+<!-- ============================================================ PART 3 -->
+<section class="part">
+  <div class="part-h"><span class="no">第三單元</span><h2>化粧品認識</h2></div>
+  <p class="part-meta">共同科目 90012 工作項目 01・38 題。法規題看關鍵字，成分題記住「誰負責做什麼」。</p>
+
+  <h3 id="law">1. 化粧品衛生安全管理法</h3>
+  <ul>
+    <li>化粧品業者＝以<b>製造、輸入或販賣</b>化粧品為營業者<span class="q">化 7</span>。</li>
+    <li>主管：衛生福利部<b>食品藥物管理署</b><span class="q">化 37</span>；工廠設廠標準由<b>經濟部會同衛生福利部</b>訂定<span class="q">化 34</span>。</li>
+    <li><b>仿單＝說明書</b><span class="q">化 30</span><span class="q">化 31</span>；包裝必須刊載<b>全成分</b><span class="q">化 38</span>；國內製造以<b>中文</b>為主<span class="q">化 33</span>。</li>
+    <li>廣告：<b>刊播後由主管機關監控</b>，不必事前核准<span class="q">化 32</span>。</li>
+    <li>化粧品<b>不得含類固醇</b><span class="q">化 1</span><span class="q">化 2</span>；禁用<b>氟氯碳化物</b>（消耗臭氧）<span class="q">化 36</span>。</li>
+  </ul>
+  <div class="cols">
+    <div class="card good"><h4>可以宣稱</h4><ul><li>滋潤肌膚<span class="q">化 28</span></li><li>改善體味、修飾容貌、潤澤肌膚<span class="q">化 8</span></li></ul></div>
+    <div class="card bad"><h4>不可宣稱</h4><ul><li>平撫肌膚疤痕<span class="q">化 8</span></li><li>改善橘皮組織、塑身、瓦解脂肪<span class="q">化 28</span></li></ul></div>
+  </div>
+  <ul>
+    <li>使用後發炎、發癢、紅腫、水泡：<b>立即停止使用</b><span class="q">化 3</span>，並<b>請醫師治療</b><span class="q">化 24</span>。</li>
+  </ul>
+
+  <h3 id="ingredients">2. 成分</h3>
+  <figure class="narrow">
+    <div class="scroll"><svg viewBox="0 0 600 232" role="img" aria-label="乳化示意圖"><rect x="0" y="0" width="420" height="230" rx="14" class="f-water"/><text x="16" y="26" class="lbl-s">水相</text><circle cx="110" cy="120" r="46" class="f-oil"/><line x1="144" y1="120" x2="158" y2="120" class="s-ink" stroke-width="1.5"/><circle cx="163" cy="120" r="4.5" class="f-accent"/><line x1="142.3" y1="130.5" x2="155.7" y2="134.8" class="s-ink" stroke-width="1.5"/><circle cx="160.4" cy="136.4" r="4.5" class="f-accent"/><line x1="137.5" y1="140" x2="148.8" y2="148.2" class="s-ink" stroke-width="1.5"/><circle cx="152.9" cy="151.2" r="4.5" class="f-accent"/><line x1="130" y1="147.5" x2="138.2" y2="158.8" class="s-ink" stroke-width="1.5"/><circle cx="141.2" cy="162.9" r="4.5" class="f-accent"/><line x1="120.5" y1="152.3" x2="124.8" y2="165.7" class="s-ink" stroke-width="1.5"/><circle cx="126.4" cy="170.4" r="4.5" class="f-accent"/><line x1="110" y1="154" x2="110" y2="168" class="s-ink" stroke-width="1.5"/><circle cx="110" cy="173" r="4.5" class="f-accent"/><line x1="99.5" y1="152.3" x2="95.2" y2="165.7" class="s-ink" stroke-width="1.5"/><circle cx="93.6" cy="170.4" r="4.5" class="f-accent"/><line x1="90" y1="147.5" x2="81.8" y2="158.8" class="s-ink" stroke-width="1.5"/><circle cx="78.8" cy="162.9" r="4.5" class="f-accent"/><line x1="82.5" y1="140" x2="71.2" y2="148.2" class="s-ink" stroke-width="1.5"/><circle cx="67.1" cy="151.2" r="4.5" class="f-accent"/><line x1="77.7" y1="130.5" x2="64.3" y2="134.8" class="s-ink" stroke-width="1.5"/><circle cx="59.6" cy="136.4" r="4.5" class="f-accent"/><line x1="76" y1="120" x2="62" y2="120" class="s-ink" stroke-width="1.5"/><circle cx="57" cy="120" r="4.5" class="f-accent"/><line x1="77.7" y1="109.5" x2="64.3" y2="105.2" class="s-ink" stroke-width="1.5"/><circle cx="59.6" cy="103.6" r="4.5" class="f-accent"/><line x1="82.5" y1="100" x2="71.2" y2="91.8" class="s-ink" stroke-width="1.5"/><circle cx="67.1" cy="88.8" r="4.5" class="f-accent"/><line x1="90" y1="92.5" x2="81.8" y2="81.2" class="s-ink" stroke-width="1.5"/><circle cx="78.8" cy="77.1" r="4.5" class="f-accent"/><line x1="99.5" y1="87.7" x2="95.2" y2="74.3" class="s-ink" stroke-width="1.5"/><circle cx="93.6" cy="69.6" r="4.5" class="f-accent"/><line x1="110" y1="86" x2="110" y2="72" class="s-ink" stroke-width="1.5"/><circle cx="110" cy="67" r="4.5" class="f-accent"/><line x1="120.5" y1="87.7" x2="124.8" y2="74.3" class="s-ink" stroke-width="1.5"/><circle cx="126.4" cy="69.6" r="4.5" class="f-accent"/><line x1="130" y1="92.5" x2="138.2" y2="81.2" class="s-ink" stroke-width="1.5"/><circle cx="141.2" cy="77.1" r="4.5" class="f-accent"/><line x1="137.5" y1="100" x2="148.8" y2="91.8" class="s-ink" stroke-width="1.5"/><circle cx="152.9" cy="88.8" r="4.5" class="f-accent"/><line x1="142.3" y1="109.5" x2="155.7" y2="105.2" class="s-ink" stroke-width="1.5"/><circle cx="160.4" cy="103.6" r="4.5" class="f-accent"/><circle cx="270" cy="90" r="34" class="f-oil"/><line x1="292" y1="90" x2="306" y2="90" class="s-ink" stroke-width="1.5"/><circle cx="311" cy="90" r="4.5" class="f-accent"/><line x1="290.1" y1="98.9" x2="302.9" y2="104.6" class="s-ink" stroke-width="1.5"/><circle cx="307.5" cy="106.7" r="4.5" class="f-accent"/><line x1="284.7" y1="106.3" x2="294.1" y2="116.8" class="s-ink" stroke-width="1.5"/><circle cx="297.4" cy="120.5" r="4.5" class="f-accent"/><line x1="276.8" y1="110.9" x2="281.1" y2="124.2" class="s-ink" stroke-width="1.5"/><circle cx="282.7" cy="129" r="4.5" class="f-accent"/><line x1="267.7" y1="111.9" x2="266.2" y2="125.8" class="s-ink" stroke-width="1.5"/><circle cx="265.7" cy="130.8" r="4.5" class="f-accent"/><line x1="259" y1="109.1" x2="252" y2="121.2" class="s-ink" stroke-width="1.5"/><circle cx="249.5" cy="125.5" r="4.5" class="f-accent"/><line x1="252.2" y1="102.9" x2="240.9" y2="111.2" class="s-ink" stroke-width="1.5"/><circle cx="236.8" cy="114.1" r="4.5" class="f-accent"/><line x1="248.5" y1="94.6" x2="234.8" y2="97.5" class="s-ink" stroke-width="1.5"/><circle cx="229.9" cy="98.5" r="4.5" class="f-accent"/><line x1="248.5" y1="85.4" x2="234.8" y2="82.5" class="s-ink" stroke-width="1.5"/><circle cx="229.9" cy="81.5" r="4.5" class="f-accent"/><line x1="252.2" y1="77.1" x2="240.9" y2="68.8" class="s-ink" stroke-width="1.5"/><circle cx="236.8" cy="65.9" r="4.5" class="f-accent"/><line x1="259" y1="70.9" x2="252" y2="58.8" class="s-ink" stroke-width="1.5"/><circle cx="249.5" cy="54.5" r="4.5" class="f-accent"/><line x1="267.7" y1="68.1" x2="266.2" y2="54.2" class="s-ink" stroke-width="1.5"/><circle cx="265.7" cy="49.2" r="4.5" class="f-accent"/><line x1="276.8" y1="69.1" x2="281.1" y2="55.8" class="s-ink" stroke-width="1.5"/><circle cx="282.7" cy="51" r="4.5" class="f-accent"/><line x1="284.7" y1="73.7" x2="294.1" y2="63.2" class="s-ink" stroke-width="1.5"/><circle cx="297.4" cy="59.5" r="4.5" class="f-accent"/><line x1="290.1" y1="81.1" x2="302.9" y2="75.4" class="s-ink" stroke-width="1.5"/><circle cx="307.5" cy="73.3" r="4.5" class="f-accent"/><circle cx="300" cy="176" r="30" class="f-oil"/><line x1="318" y1="176" x2="332" y2="176" class="s-ink" stroke-width="1.5"/><circle cx="337" cy="176" r="4.5" class="f-accent"/><line x1="315.9" y1="184.4" x2="328.3" y2="190.9" class="s-ink" stroke-width="1.5"/><circle cx="332.8" cy="193.2" r="4.5" class="f-accent"/><line x1="310.2" y1="190.8" x2="318.2" y2="202.3" class="s-ink" stroke-width="1.5"/><circle cx="321" cy="206.5" r="4.5" class="f-accent"/><line x1="302.2" y1="193.9" x2="303.9" y2="207.8" class="s-ink" stroke-width="1.5"/><circle cx="304.5" cy="212.7" r="4.5" class="f-accent"/><line x1="293.6" y1="192.8" x2="288.7" y2="205.9" class="s-ink" stroke-width="1.5"/><circle cx="286.9" cy="210.6" r="4.5" class="f-accent"/><line x1="286.5" y1="187.9" x2="276" y2="197.2" class="s-ink" stroke-width="1.5"/><circle cx="272.3" cy="200.5" r="4.5" class="f-accent"/><line x1="282.5" y1="180.3" x2="268.9" y2="183.7" class="s-ink" stroke-width="1.5"/><circle cx="264.1" cy="184.9" r="4.5" class="f-accent"/><line x1="282.5" y1="171.7" x2="268.9" y2="168.3" class="s-ink" stroke-width="1.5"/><circle cx="264.1" cy="167.1" r="4.5" class="f-accent"/><line x1="286.5" y1="164.1" x2="276" y2="154.8" class="s-ink" stroke-width="1.5"/><circle cx="272.3" cy="151.5" r="4.5" class="f-accent"/><line x1="293.6" y1="159.2" x2="288.7" y2="146.1" class="s-ink" stroke-width="1.5"/><circle cx="286.9" cy="141.4" r="4.5" class="f-accent"/><line x1="302.2" y1="158.1" x2="303.9" y2="144.2" class="s-ink" stroke-width="1.5"/><circle cx="304.5" cy="139.3" r="4.5" class="f-accent"/><line x1="310.2" y1="161.2" x2="318.2" y2="149.7" class="s-ink" stroke-width="1.5"/><circle cx="321" cy="145.5" r="4.5" class="f-accent"/><line x1="315.9" y1="167.6" x2="328.3" y2="161.1" class="s-ink" stroke-width="1.5"/><circle cx="332.8" cy="158.8" r="4.5" class="f-accent"/><text x="110" y="125" text-anchor="middle" class="lbl-s">油滴</text><circle cx="440" cy="70" r="6" class="f-accent"/><text x="456" y="75" class="lbl-s">親水端：朝向水</text><line x1="434" y1="104" x2="450" y2="104" class="s-ink" stroke-width="2"/><text x="456" y="109" class="lbl-s">親油端：插進油</text><text x="434" y="150" class="lbl">界面活性劑</text><text x="434" y="168" class="lbl-s">（乳化劑）把油和水</text><text x="434" y="186" class="lbl-s">均勻混合 → 乳化</text></svg></div>
+    <figcaption>乳化：兩種互不相溶的液體，一種均勻分散在另一種裡<span class="q">化 11</span>。讓油水結合的物質是界面活性劑，也叫乳化劑<span class="q">化 4</span><span class="q">化 29</span>。</figcaption>
+  </figure>
+  <div class="tbl"><table>
+    <thead><tr><th>成分</th><th>作用</th><th>出處</th></tr></thead>
+    <tbody>
+      <tr><td>界面活性劑／乳化劑</td><td>使油溶性與水溶性成分密切結合</td><td><span class="q">化 4</span><span class="q">化 29</span></td></tr>
+      <tr><td>維他命 E</td><td>防止氧化、防止變質</td><td><span class="q">化 5</span></td></tr>
+      <tr><td>抗氧化劑</td><td>屬於<b>活性成分</b>（賦形劑、穩定劑、防腐劑不是）</td><td><span class="q">化 20</span></td></tr>
+      <tr><td>維他命 C</td><td><b>水溶性</b>（維他命 A、綿羊油、蠟是油溶性）</td><td><span class="q">化 6</span></td></tr>
+      <tr><td>果酸</td><td>化學名 <b>α-氫氧基酸</b>（AHA）</td><td><span class="q">化 16</span></td></tr>
+      <tr><td>磨砂膏</td><td>移除老舊角質</td><td><span class="q">化 13</span></td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>物質溶在<b>脂溶性溶劑</b>時較易穿透皮膚<span class="q">化 25</span><span class="q">皮 130</span>。</li>
+  </ul>
+
+  <h3 id="products">3. 分類與使用</h3>
+  <ul>
+    <li>香水、古龍水＝<b>香氛用</b>化粧品<span class="q">化 15</span>。前調是花香、綠草、水果；<b>動物香精不是前調</b>（屬後調）<span class="q">化 14</span>。</li>
+    <li>美化膚色、掩蓋瑕疵：<b>粉底</b><span class="q">化 21</span><span class="q">化 27</span>；修飾臉形輪廓：<b>腮紅</b><span class="q">化 22</span>。</li>
+    <li>廣口瓶化粧品用<b>挖杓</b>取用<span class="q">化 12</span>；不適用於化粧品的容器：<b>玻璃安瓿</b><span class="q">化 26</span>。</li>
+  </ul>
+
+  <h3 id="hairchem">4. 燙髮・染髮安全</h3>
+  <ul>
+    <li>使用脫色脫染劑後，間隔 <b>7 天</b>才能燙髮<span class="q">化 17</span>；染髮後 <b>7 天</b>再冷燙<span class="q">化 18</span>。</li>
+    <li>硫醇基乙酸濃度 <b>11% 以上</b>的冷燙劑：<b>限美髮專業技術人士使用</b><span class="q">化 19</span>。</li>
+    <li>不宜染髮：懷孕婦女、頭頸部紅腫受傷或有皮膚病、皮膚測試後發紅起水泡，<b>三者都是</b><span class="q">化 35</span>。</li>
+  </ul>
+</section>
+
+<!-- ============================================================ PART 4 -->
+<section class="part">
+  <div class="part-h"><span class="no">第四單元</span><h2>考前速記</h2></div>
+  <p class="part-meta">考前 10 分鐘看這裡。</p>
+
+  <h3 id="numbers">數字總表</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>項目</th><th>數字</th><th>出處</th></tr></thead>
+    <tbody>
+      <tr><td>表皮更新週期</td><td class="num">28 天</td><td><span class="q">皮 17</span></td></tr>
+      <tr><td>皮膚重量</td><td class="num">體重 15%</td><td><span class="q">皮 138</span></td></tr>
+      <tr><td>健康皮膚 pH</td><td class="num">5–6</td><td><span class="q">皮 80</span></td></tr>
+      <tr><td>角質層理想含水</td><td class="num">10–20%</td><td><span class="q">皮 67</span></td></tr>
+      <tr><td>體溫</td><td class="num">37°C</td><td><span class="q">皮 114</span></td></tr>
+      <tr><td>皮膚散熱比例</td><td class="num">80%</td><td><span class="q">皮 57</span></td></tr>
+      <tr><td>皮膚呼吸量</td><td class="num">肺的 1%</td><td><span class="q">皮 76</span></td></tr>
+      <tr><td>蒸發 1 公升汗散熱</td><td class="num">540 kcal</td><td><span class="q">皮 131</span></td></tr>
+      <tr><td>真皮厚度</td><td class="num">0.3–3 mm</td><td><span class="q">皮 140</span></td></tr>
+      <tr><td>黑色素細胞：基底細胞</td><td class="num">1：10</td><td><span class="q">皮 137</span></td></tr>
+      <tr><td>小汗腺數量</td><td class="num">200–500 萬</td><td><span class="q">皮 167</span></td></tr>
+      <tr><td>皮脂分泌最旺</td><td class="num">15–20 歲</td><td><span class="q">皮 103</span></td></tr>
+      <tr><td>每日落髮</td><td class="num">50–100 根</td><td><span class="q">皮 5</span></td></tr>
+      <tr><td>毛髮生長週期</td><td class="num">2–6 年</td><td><span class="q">皮 158</span></td></tr>
+      <tr><td>指甲生長</td><td class="num">0.1 mm／天</td><td><span class="q">皮 132</span></td></tr>
+      <tr><td>蒸臉噴霧距離</td><td class="num">40 cm</td><td><span class="q">護 54</span></td></tr>
+      <tr><td>脫色／染髮後燙髮</td><td class="num">7 天後</td><td><span class="q">化 17</span><span class="q">化 18</span></td></tr>
+      <tr><td>冷燙劑限專業使用</td><td class="num">硫醇基乙酸 ≥11%</td><td><span class="q">化 19</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="traps">易錯陷阱</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>容易混淆</th><th>正確答案</th></tr></thead>
+    <tbody>
+      <tr><td>小汗腺 vs 大汗腺</td><td>小汗腺開口皮膚表面、管散熱、多汗症；大汗腺開口毛囊、管狐臭</td></tr>
+      <tr><td>沒有汗腺的地方</td><td>唇部、甲床</td></tr>
+      <tr><td>沒有皮脂腺的地方</td><td>手掌、腳底</td></tr>
+      <tr><td>沒有毛髮的地方</td><td>嘴唇</td></tr>
+      <tr><td>沒有血管的層</td><td>表皮</td></tr>
+      <tr><td>黑色素細胞在哪</td><td>只在基底層（網狀層沒有黑色素）</td></tr>
+      <tr><td>無核細胞</td><td>角質層、透明層</td></tr>
+      <tr><td>皮膚 vs 血液酸鹼</td><td>皮膚弱酸；血液弱鹼；正常皮膚 pH 不是 7</td></tr>
+      <tr><td>皮脂「不能」</td><td>供給養分、漂白、防止青春痘</td></tr>
+      <tr><td>皮膚「沒有」的功能</td><td>消化、造血</td></tr>
+      <tr><td>皺紋與肌肉紋理</td><td>垂直；頰部肌肉紋理是斜向</td></tr>
+      <tr><td>按摩「沒有」的功效</td><td>降低皮膚溫度</td></tr>
+      <tr><td>乾性 vs 油性蒸臉</td><td>乾性少蒸多按；油性多蒸少按</td></tr>
+      <tr><td>較易穿透皮膚</td><td>脂溶性溶劑</td></tr>
+      <tr><td>香水前調「不是」</td><td>動物香精</td></tr>
+      <tr><td>化粧品活性成分</td><td>抗氧化劑</td></tr>
+      <tr><td>化粧品廣告</td><td>刊播後監控，不是事前核准</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">題庫中有兩題的答案以題庫為準：黑斑成因「不包含肝功能不良」<span class="q">皮 2</span>，防曬係數「選項中 15 最佳」<span class="q">護 13</span>。考試照題庫答案作答即可。</p>
+
+  <h3 id="quiz">自我檢測</h3>
+  <p class="note">點題目看答案。</p>
+  <details class="quiz"><summary>表皮由外到內的五層是？</summary><div class="a">角質層、透明層、顆粒層、有棘層、基底層</div></details>
+  <details class="quiz"><summary>表皮中最厚的一層？有淋巴液流通的是？</summary><div class="a">都是有棘層</div></details>
+  <details class="quiz"><summary>天然保濕因子 N.M.F. 是哪一層的產物？</summary><div class="a">角質層</div></details>
+  <details class="quiz"><summary>只分布在手掌、腳底的是哪一層？</summary><div class="a">透明層</div></details>
+  <details class="quiz"><summary>細胞從哪一層開始蛻變出角質物質？</summary><div class="a">顆粒層</div></details>
+  <details class="quiz"><summary>皮膚老化產生皺紋，主要是哪一層衰退？</summary><div class="a">真皮層</div></details>
+  <details class="quiz"><summary>構成真皮最大的部分？</summary><div class="a">膠原纖維</div></details>
+  <details class="quiz"><summary>狐臭與哪種腺體有關？多汗症呢？</summary><div class="a">狐臭：大汗腺（頂漿腺）；多汗症：小汗腺</div></details>
+  <details class="quiz"><summary>皮脂膜由什麼組成？呈什麼性質？</summary><div class="a">汗液＋皮脂；弱酸性</div></details>
+  <details class="quiz"><summary>敏感性皮膚要多蒸臉還是少蒸臉？多按摩還是少按摩？</summary><div class="a">少蒸臉、少按摩</div></details>
+  <details class="quiz"><summary>按摩方向的原則？</summary><div class="a">順著肌肉紋理，由下往上、由內往外</div></details>
+  <details class="quiz"><summary>蒸臉器水面低於最小刻度，該怎麼做？</summary><div class="a">先關電源再加水</div></details>
+  <details class="quiz"><summary>化粧品仿單指的是？</summary><div class="a">說明書</div></details>
+  <details class="quiz"><summary>果酸的化學名？</summary><div class="a">α-氫氧基酸</div></details>
+</section>
+</main>
+</div>
+
+</body>
+</html>
