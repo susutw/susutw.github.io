@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>連通水桶</title>
+  <link rel="stylesheet" href="../../shared/style.css">
+  <script src="../../shared/theme.js"></script>
+  <style>
+    .wrap { max-width: 680px; margin: 0 auto; }
+    .modes {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      margin-bottom: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+    .modes button { background: transparent; color: var(--muted); }
+    .modes button.active { background: var(--accent); color: var(--on-accent); }
+    .hud { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px; flex-wrap: wrap; }
+    .hud .right { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+    #mute { background: var(--panel); border: 1px solid var(--border); padding: 4px 10px; }
+    canvas {
+      display: block;
+      width: 100%;
+      aspect-ratio: 640 / 440;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+    .controls { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .controls button { min-width: 140px; font-size: 1.1rem; padding: 10px 20px; }
+    #share { background: var(--accent-2); color: #fff; }
+    .hint { color: var(--muted); text-align: center; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main class="container wrap">
+    <a class="back" href="../../">← 回大廳</a>
+    <div>
+      <div class="modes">
+        <button data-mode="endless">無限模式</button>
+        <button data-mode="daily">每日挑戰</button>
+      </div>
+    </div>
+    <div class="hud">
+      <strong id="title"></strong>
+      <span id="status"></span>
+      <span class="right"><span id="extra"></span><button id="mute" aria-label="靜音">🔊</button></span>
+    </div>
+    <canvas id="board"></canvas>
+    <div class="controls">
+      <button id="action">開始放水 ▶</button>
+      <button id="share" hidden>分享成績 📋</button>
+    </div>
+    <p class="hint">紅線往下掉時按「停」（或空白鍵 / 點畫面），讓右桶水位落在綠色區間</p>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

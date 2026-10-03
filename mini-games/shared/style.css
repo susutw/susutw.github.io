@@ -1,0 +1,107 @@
+/* 預設淺色；<html data-theme="dark"> 切換為深色（由 shared/theme.js 控制） */
+:root {
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --text: #1f2340;
+  --muted: #6b6f8f;
+  --border: #e3e5f0;
+  --accent: #1f9d55;
+  --on-accent: #ffffff;
+  --accent-2: #e84a8a;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(31, 35, 64, 0.12);
+
+  /* 遊戲 canvas 用色 */
+  --water: #3b9cf0;
+  --water-soft: rgba(59, 156, 240, 0.3);
+  --wall: #8a8fb3;
+  --pipe: #b9bdd8;
+  --stand: #e3e5f0;
+  --zone: rgba(31, 157, 85, 0.16);
+  --zone-line: #1f9d55;
+  --marker: #e5484d;
+  --snake: #2fb36b;
+  --snake-head: #1f7f4b;
+  --food: #e84a8a;
+  --overlay: rgba(255, 255, 255, 0.82);
+
+  color-scheme: light;
+  font-family: system-ui, -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f1020;
+  --panel: #1a1b33;
+  --text: #e8e8f5;
+  --muted: #9a9bc0;
+  --border: #2a2c50;
+  --accent: #7cf29c;
+  --on-accent: #10131a;
+  --accent-2: #ff7ab6;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  --water: #4fb3ff;
+  --water-soft: rgba(79, 179, 255, 0.35);
+  --wall: #c9cbe8;
+  --pipe: #5b5e8c;
+  --stand: #2a2c50;
+  --zone: rgba(124, 242, 156, 0.22);
+  --zone-line: #7cf29c;
+  --marker: #ff5d73;
+  --snake: #7cf29c;
+  --snake-head: #b6ffc9;
+  --food: #ff7ab6;
+  --overlay: rgba(0, 0, 0, 0.66);
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a { color: var(--accent); }
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.back:hover { color: var(--text); }
+
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+button:disabled { opacity: .5; cursor: default; }
+
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  font-size: 1.1rem;
+}

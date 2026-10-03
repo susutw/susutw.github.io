@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Games</title>
+  <link rel="stylesheet" href="shared/style.css">
+  <script src="shared/theme.js"></script>
+  <style>
+    h1 { font-size: 2.2rem; margin: 8px 0 4px; }
+    .sub { color: var(--muted); margin: 0 0 24px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      display: block;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: var(--radius);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .emoji { font-size: 2.4rem; }
+    .card h2 { margin: 8px 0 4px; font-size: 1.2rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>🎮 Mini Games</h1>
+    <p class="sub">一些有趣的網頁小遊戲</p>
+    <div class="grid" id="games"></div>
+  </main>
+  <script>
+    // 新增遊戲時，在這裡加一筆
+    const games = [
+      { slug: 'snake', emoji: '🐍', name: '貪食蛇', desc: '方向鍵或滑動操控，吃越多越長' },
+      { slug: 'buckets', emoji: '🪣', name: '連通水桶', desc: '抓準時機停止放水，讓右桶水位剛好落在安全區間' },
+    ];
+    document.getElementById('games').innerHTML = games.map(g => `
+      <a class="card" href="games/${g.slug}/">
+        <div class="emoji">${g.emoji}</div>
+        <h2>${g.name}</h2>
+        <p>${g.desc}</p>
+      </a>`).join('');
+  </script>
+</body>
+</html>

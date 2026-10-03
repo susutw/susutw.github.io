@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>貪食蛇</title>
+  <link rel="stylesheet" href="../../shared/style.css">
+  <script src="../../shared/theme.js"></script>
+  <style>
+    .hud { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    canvas {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1;
+      margin: 0 auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      touch-action: none;
+    }
+    .wrap { max-width: 480px; margin: 0 auto; }
+    .hint { color: var(--muted); text-align: center; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main class="container wrap">
+    <a class="back" href="../../">← 回大廳</a>
+    <div class="hud">
+      <strong>🐍 分數：<span id="score">0</span></strong>
+      <span>最高：<span id="best">0</span></span>
+    </div>
+    <canvas id="board" width="480" height="480"></canvas>
+    <p class="hint">方向鍵 / WASD / 滑動操控，空白鍵暫停</p>
+    <p style="text-align:center"><button id="start">開始</button></p>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
