@@ -1,101 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>I-Chia Su - Resume</title>
+    <style>
+        @page { size: A4; margin: 14mm 16mm; }
+        body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.4; color: #111; background: #fff; max-width: 800px; margin: 0 auto; padding: 16px; }
+        h1 { font-size: 20pt; margin: 0 0 4px; }
+        h2 { font-size: 12pt; margin: 12px 0 4px; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid #999; }
+        h3 { font-size: 10.5pt; margin: 8px 0 2px; }
+        h4 { font-size: 10.5pt; font-weight: normal; font-style: italic; margin: 6px 0 2px; }
+        p { margin: 2px 0; }
+        ul { margin: 2px 0 4px; padding-left: 18px; }
+        li { margin: 1px 0; }
+        a { color: inherit; }
+        .contact { color: #333; }
+        @media print { body { padding: 0; max-width: none; } }
+    </style>
+</head>
 <body>
-    <div>
-        <div>
-            <h1>
-                I-Chia Su
-            </h1>
-            <p>
-                Mail: <a href="mailto:sudosu.tw@gmail.com">sudosu.tw@gmail.com</a><br>
-                LinkedIn: <a href="https://www.linkedin.com/in/sudosu-tw">https://www.linkedin.com/in/sudosu-tw</a><br>
-                GitHub: <a href="https://github.com/susutw">https://github.com/susutw</a>
-            </p>
-        </div>
-        <div>
-            <h2>
-                Technical Skills
-            </h2>
-            <p>
-                PHP, Laravel, PostgreSQL, Git, Python, Fast API
-            </p>
-        </div>
-        <hr>
-        <div>
-            <h2>
-                Experience
-            </h2>
-            <div>
+    <h1>I-Chia (Susu) Su</h1>
+    <p class="contact">
+        <a href="mailto:sudosu.tw@gmail.com">sudosu.tw@gmail.com</a> ·
+        <a href="https://www.linkedin.com/in/sudosu-tw">linkedin.com/in/sudosu-tw</a> ·
+        <a href="https://github.com/susutw">github.com/susutw</a> · Taipei, Taiwan
+    </p>
 
-                <h3>
-                    Senior Software Engineer at KKday Payment Team (2021 - present)
-                </h3>
-                <p>
-                    <span>KKday is a well-known OTA in Asia. As a part of the Payment Team, I work to enhance the user
-                        experience during payment transactions and prevent fraudulent attacks through our strong risk
-                        management system.</span><br>
-                <ul>
-                    <li>Owner of the Risk Management System, guiding project development and technical decisions. Making
-                        the service grows from a single-purpose component into a core system
-                        that influences both pre- and post-transaction flows.</li>
-                    <li>The payment system and risk management system were developed using Laravel, maintained through
-                        expertise in Laravel for both these systems.</li>
-                    <li>Integrating Japan's mobile payment, PayPay, with a usage rate of 40% in the Japanese market.
-                        <br>
-                        Integrating the buy-now-pay-later mobile payment, Atome, with a usage rate of 10% in the
-                        Singapore
-                        market.
-                    </li>
-                    <li>Implementing Riskified into our risk management system. Riskified is a real-time order risk
-                        management platform. Conditionally using Riskified to assess suspicious orders, reducing losses
-                        caused by fraudulent transactions.</li>
-                    <li>Developing a risk management dashboard using Vue.js for use by the risk control team, allowing
-                        them
-                        to instantly block fraudulent activities by adjusting the analytical conditions of the risk
-                        management system.</li>
-                </ul>
-                </p>
-            </div>
-            <div>
-                <h3>
-                    Software Engineer at Gabor Ltd. (2020 - 2021)
-                </h3>
-                <p>
-                    <span>
-                        Gabor focuses on reducing the operational costs of e-commerce businesses and also owns his own
-                        products, such as a restaurant reservation system.
-                    </span>
-                <ul>
-                    <li>Developing an e-commerce Content Management System using Laravel to reduce the operational costs
-                        of
-                        e-commerce.</li>
-                    <li>Collaborating with Yahoo Taiwan to maintain Yahoo News and Yahoo Auto websites developed using
-                        Laravel.</li>
-                    <li>Employing Test-driven development to ensure development quality and reduce error rates during
-                        code
-                        modifications.</li>
-                    <li>Developing a restaurant reservation system using Fast API.</li>
-                </ul>
-                </p>
-            </div>
-        </div>
-        <hr>
-        <div>
-            <h2>
-                Education
-            </h2>
-            <p><strong>Tunghai University</strong> - B.S., Computer Science (Taichung, Taiwan)</p>
-        </div>
-        <hr>
-        <div>
-            <h2>
-                Personal
-            </h2>
-            <p>I enjoy engaging in open-source communities. Since 2018, I have been volunteering for the COSCUP program
-                team. COSCUP is an annual conference organized by the Taiwanese open-source community participants since
-                2006. In 2023, I founded the COSCUP booth team and attended FOSDEM and FOSSAISA, aiming to raise more
-                awareness about COSCUP and encourage participation in our events.</p>
-            <p>I am also a travel enthusiast, and my favorite quote is 'You don’t know what you don’t know.' There’s
-                always something new to discover as long as you keep exploring, sparking inspiration in unexpected ways.
-            </p>
-        </div>
-    </div>
+    <h2>Summary</h2>
+    <p>Software engineer with 6+ years of experience building and supporting production payment and SaaS systems.
+        I turn requirements into specs, triage production issues through logs, databases and code, and own release
+        verification. I use AI coding tools (Claude Code, MCP) every day.</p>
+
+    <h2>Skills</h2>
+    <ul>
+        <li><strong>Troubleshooting:</strong> SQL (PostgreSQL, MySQL), logs and metrics (Grafana, Loki/LogQL), stack traces, code review</li>
+        <li><strong>Delivery:</strong> Agile/Scrum, Jira, Git/GitHub, GitHub Actions, QA verification, release management</li>
+        <li><strong>Languages:</strong> PHP (Laravel), Python, JavaScript/TypeScript</li>
+        <li><strong>Platform:</strong> Docker, RabbitMQ, Redis</li>
+        <li><strong>AI tools:</strong> Claude Code, MCP (Model Context Protocol), AI agents</li>
+    </ul>
+
+    <h2>Experience</h2>
+    <h3>Senior Software Engineer, KKday (Jan 2021 – Aug 2026)</h3>
+    <p>KKday is a leading travel e-commerce platform in Asia.</p>
+
+    <h4>rezio, B2B travel SaaS (Sep 2025 – Aug 2026)</h4>
+    <ul>
+        <li>Triaged and fixed production issues, which made up 58% of my tickets: reproduced merchant-reported
+            symptoms and traced them through logs, databases and code to contract gaps between systems.</li>
+        <li>Delivered Apple Pay across 7 services, including an idempotent batch migration for existing merchants
+            and a release SOP that lists what a dry run cannot verify and starts with a single-store canary.</li>
+        <li>Contributed to the team's AI adoption: 70 runbooks that AI coding tools load as context, read-only MCP
+            access to 16 data sources, and shared permission rules that block database writes.</li>
+    </ul>
+
+    <h4>Payments &amp; Anti-Fraud (Jan 2021 – Oct 2025)</h4>
+    <ul>
+        <li>Built a self-service fraud rule engine, from system analysis to launch, so the operations team could
+            change rules without a deploy. Added a draft → review → approve workflow, and fixed 38 QA defects before
+            launch, including a missing check that the submitter cannot also approve.</li>
+        <li>Led the migration of the risk system from one business unit to three tenants without a rewrite,
+            including the data backfill, and found and fixed three tenant-isolation leaks.</li>
+        <li>Release owner for the risk system: 248 releases across 11 services. Reviewed 879 pull requests.</li>
+        <li>Integrated 15+ payment methods (e.g. PayPay, Atome, Apple Pay, Google Pay, LINE Pay) and a third-party
+            fraud decision service; tuned dynamic 3-D Secure rules for three years.</li>
+        <li>Wrote 17 team runbooks that explain root causes and the most common misdiagnoses, not just fixes.</li>
+    </ul>
+
+    <h3>Software Engineer, Gabor Ltd. (2020 – 2021)</h3>
+    <ul>
+        <li>Built an e-commerce CMS with Laravel and maintained the Yahoo Taiwan News and Yahoo Auto websites.</li>
+        <li>Used test-driven development; built a restaurant reservation system with FastAPI.</li>
+    </ul>
+
+    <h2>Education</h2>
+    <p><strong>Tunghai University</strong>, B.S. in Computer Science (Taichung, Taiwan)</p>
+
+    <h2>Community</h2>
+    <p>COSCUP volunteer since 2018. Founded the COSCUP booth team in 2023 and represented COSCUP at FOSDEM and FOSSASIA.</p>
 </body>
+</html>
